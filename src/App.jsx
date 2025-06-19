@@ -9,6 +9,7 @@ import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import AdminProjects from './pages/admin/Projects';
 
 const App = () => {
   const [theme, setTheme] = useState('dark');
@@ -37,6 +38,8 @@ const App = () => {
             <Route path="/experience" element={<Experience />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin/projects" element={<AdminProjects />} />
+
           </Routes>
         </main>
         <Footer />
