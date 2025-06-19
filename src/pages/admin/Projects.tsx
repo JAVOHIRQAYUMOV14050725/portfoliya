@@ -14,7 +14,7 @@ interface Toast {
 }
 
 const AdminProjects: React.FC = () => {
-    const { data, isLoading } = useProjectsQuery();
+    const { data, isLoading, isError } = useProjectsQuery();
     const createMutation = useCreateProject();
     const updateMutation = useUpdateProject();
     const deleteMutation = useDeleteProject();
@@ -36,10 +36,10 @@ const AdminProjects: React.FC = () => {
     const handleCreate = (values: ProjectFormValues & { techStack: string[] }) => {
         createMutation.mutate(values, {
             onSuccess: () => {
-                showToast('Project created');
+                showToast('✅ Project created successfully!');
                 closeForm();
             },
-            onError: () => showToast('Failed to create project', 'error'),
+            onError: () => showToast('❌ Failed to create project', 'error'),
         });
     };
 
@@ -49,41 +49,55 @@ const AdminProjects: React.FC = () => {
             { id: editing.id, ...values },
             {
                 onSuccess: () => {
-                    showToast('Project updated');
+                    showToast('✏️ Project updated successfully!');
                     closeForm();
                 },
-                onError: () => showToast('Failed to update project', 'error'),
+                onError: () => showToast('❌ Failed to update project', 'error'),
             }
         );
     };
 
     const handleDelete = (id: number) => {
-        if (!window.confirm('Delete this project?')) return;
+        if (!window.confirm('❗ Are you sure you want to delete this project?')) return;
         deleteMutation.mutate(id, {
-            onSuccess: () => showToast('Project deleted'),
-            onError: () => showToast('Failed to delete project', 'error'),
+            onSuccess: () => showToast('🗑️ Project deleted'),
+            onError: () => showToast('❌ Failed to delete project', 'error'),
         });
     };
 
+    const isEmpty = Array.isArray(data) && data.length === 0;
+
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Projects</h1>
+        <div className="p-6 max-w-6xl mx-auto">
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-3xl font-bold text-cyan-700 dark:text-cyan-300">
+                    🚀 Manage Projects
+                </h1>
+                <button
+                    onClick={() => {
+                        setEditing(null);
+                        setShowForm(true);
+                    }}
+                    className="px-5 py-2 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition"
+                >
+                    ➕ Add Project
+                </button>
+            </div>
+
             {toast && (
                 <div
-                    className={`fixed top-4 right-4 px-4 py-2 rounded text-white ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'
+                    className={`fixed top-4 right-4 px-4 py-2 rounded text-white shadow-lg z-50 ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'
                         }`}
                 >
                     {toast.message}
                 </div>
             )}
-            <button
-                onClick={() => setShowForm(true)}
-                className="mb-4 px-4 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700"
-            >
-                Add Project
-            </button>
+
             {showForm && (
-                <div className="mb-4 border p-4 rounded bg-white dark:bg-slate-800">
+                <div className="mb-6 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 p-6 shadow">
+                    <h2 className="text-xl font-semibold mb-4 text-slate-700 dark:text-slate-200">
+                        {editing ? '✏️ Edit Project' : '🆕 New Project'}
+                    </h2>
                     <ProjectForm
                         defaultValues={editing || undefined}
                         onSubmit={editing ? handleUpdate : handleCreate}
@@ -91,41 +105,56 @@ const AdminProjects: React.FC = () => {
                     />
                 </div>
             )}
+
             {isLoading ? (
-                <p>Loading...</p>
+                <p className="text-center text-slate-500">Loading projects...</p>
+            ) : isError ? (
+                <p className="text-center text-red-500">❌ Failed to load projects or invalid data.</p>
+            ) : isEmpty ? (
+                <p className="text-center text-slate-500">No projects found.</p>
             ) : (
-                <table className="min-w-full border divide-y divide-slate-200">
-                    <thead className="bg-slate-100">
-                        <tr>
-                            <th className="px-4 py-2 text-left text-sm font-medium">Title</th>
-                            <th className="px-4 py-2 text-left text-sm font-medium">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-200">
-                        {data?.map((project) => (
-                            <tr key={project.id} className="hover:bg-slate-50">
-                                <td className="px-4 py-2">{project.title}</td>
-                                <td className="px-4 py-2 space-x-2">
-                                    <button
-                                        onClick={() => {
-                                            setEditing(project);
-                                            setShowForm(true);
-                                        }}
-                                        className="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {data!.map((project) => (
+                        <div
+                            key={project.id}
+                            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition"
+                        >
+                            <h3 className="text-lg font-semibold text-cyan-700 dark:text-cyan-300 mb-1">
+                                {project.title}
+                            </h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-2 line-clamp-2">
+                                {project.description || 'No description provided.'}
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-3">
+                                {project.techStack?.map((tech, i) => (
+                                    <span
+                                        key={i}
+                                        className="bg-slate-100 dark:bg-slate-700 text-xs text-slate-800 dark:text-slate-200 px-2 py-0.5 rounded-full"
                                     >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(project.id)}
-                                        className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="flex justify-end space-x-2">
+                                <button
+                                    onClick={() => {
+                                        setEditing(project);
+                                        setShowForm(true);
+                                    }}
+                                    className="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(project.id)}
+                                    className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );

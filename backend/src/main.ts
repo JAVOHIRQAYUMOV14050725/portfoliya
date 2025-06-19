@@ -5,6 +5,8 @@ import * as session from 'express-session';
 import connectRedis from 'connect-redis';
 import { RedisStore } from 'connect-redis';
 import { createClient } from 'redis';
+import { ClassSerializerInterceptor } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +24,7 @@ async function bootstrap() {
   await redisClient.connect();
 
 
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   // Session o‘rnatish
   app.use(

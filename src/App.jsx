@@ -1,6 +1,7 @@
-// 📁 src/App.jsx
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,6 +11,8 @@ import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import AdminProjects from './pages/admin/Projects';
+
+const queryClient = new QueryClient(); // ✅
 
 const App = () => {
   const [theme, setTheme] = useState('dark');
@@ -27,24 +30,25 @@ const App = () => {
   }, [theme]);
 
   return (
-    <Router>
-      <div className="bg-white dark:bg-slate-900 transition-colors duration-300">
-        <Header theme={theme} setTheme={setTheme} />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin/projects" element={<AdminProjects />} />
-
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <QueryClientProvider client={queryClient}> {/* ✅ react-query konteksti */}
+      <Router>
+        <div className="bg-white dark:bg-slate-900 transition-colors duration-300">
+          <Header theme={theme} setTheme={setTheme} />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/admin/projects" element={<AdminProjects />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </QueryClientProvider>
   );
 };
 
