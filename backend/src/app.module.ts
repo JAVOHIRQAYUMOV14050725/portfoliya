@@ -11,6 +11,7 @@ import { UploadModule } from './upload/upload.module';
 import { HeroModule } from './hero/hero.module';
 import { ContactMessageModule } from './contact-message/contact-message.module';
 import { ContactModule } from './contact/contact.module';
+import { ContactInfoModule } from './contact-info/contact-info.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ContactModule } from './contact/contact.module';
     HeroModule,
     ContactMessageModule,
     ContactModule,
+    ContactInfoModule,
   ],
 })
 export class AppModule { }

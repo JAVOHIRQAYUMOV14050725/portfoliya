@@ -18,6 +18,7 @@ import AdminSkills from "./pages/admin/AdminSkills";
 import AdminProjects from "./pages/admin/AdminProjects";
 import AdminHero from "./pages/admin/AdminHero";
 import AdminMessages from "./pages/admin/AdminMessages";
+import AdminContactInfo from "./pages/admin/AdminContactInfo";
 
 const queryClient = new QueryClient();
 
@@ -68,7 +69,7 @@ const App = () => {
                 path="/admin/messages"
                 element={
                   <ProtectedRoute>
-                    <AdminMessages/>
+                    <AdminMessages />
                   </ProtectedRoute>
                 }
               />
@@ -93,6 +94,14 @@ const App = () => {
                 element={
                   <ProtectedRoute>
                     <AdminHero />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/contact-info"
+                element={
+                  <ProtectedRoute>
+                    <AdminContactInfo />
                   </ProtectedRoute>
                 }
               />

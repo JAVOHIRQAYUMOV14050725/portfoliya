@@ -35,6 +35,7 @@ const Header = ({ theme, setTheme }) => {
       { to: "/admin/contact", label: "Manage Contact" },
       { to: "/admin/hero", label: "Manage Hero" },
       { to: "/admin/messages", label: "Admin massage" },
+      { to: "/admin/contact-info", label: "Manage Contact Info" },
     ],
     public: [
       { to: "/projects", label: "\u21B3 Public Projects" },
