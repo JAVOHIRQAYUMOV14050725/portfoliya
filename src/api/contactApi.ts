@@ -3,11 +3,14 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '../utils/axios';
 
 export const useMessagesQuery = () => {
-    return useQuery(['messages'], async () => {
-        const res = await axios.get('/contact');
-        return res.data;
+    return useQuery({
+        queryKey: ['messages'],
+        queryFn: async () => {
+            const res = await axios.get('/contact');
+            return res.data;
+        },
     });
-};
+  };
 
 export const useDeleteMessage = () => {
     const queryClient = useQueryClient();
