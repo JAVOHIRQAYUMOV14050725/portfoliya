@@ -3,8 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Contact } from "./entities/contact.entity";
 import { CreateContactDto } from "./dto/create-contact.dto";
-import * as nodemailer from 'nodemailer'; // ✅ Nodemailer import
-
+import * as nodemailer from 'nodemailer';
 @Injectable()
 export class ContactService {
   constructor(
@@ -15,7 +14,7 @@ export class ContactService {
   async create(dto: CreateContactDto) {
     const contact = this.contactRepo.create(dto);
     const saved = await this.contactRepo.save(contact);
-    await this.sendMail(dto); // 📧 Email yuboriladi
+    await this.sendMail(dto); 
     return saved;
   }
 
@@ -40,14 +39,14 @@ export class ContactService {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'your.email@gmail.com',      // <-- O‘zingizning emailingiz
-        pass: 'your-app-password',         // <-- App password
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
       },
     });
 
     await transporter.sendMail({
       from: '"Portfolio Site" <your.email@gmail.com>',
-      to: 'your.email@gmail.com',
+      to:process.env.MAIL_USER,
       subject: `New Contact from ${data.fullName}`,
       html: `
         <p><strong>Name:</strong> ${data.fullName}</p>

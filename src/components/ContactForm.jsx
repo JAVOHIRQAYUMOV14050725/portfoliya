@@ -7,9 +7,9 @@ import toast from "react-hot-toast";
 import { useCreateContact } from "../api/contactApi";
 
 const schema = yup.object().shape({
-  fullName: yup.string().required("Full name is required"),
+  fullName: yup.string().min(3).required("Full name is required"),
   email: yup.string().email().required("Email is required"),
-  message: yup.string().required("Message is required"),
+  message: yup.string().min(10).required("Message is required"),
 });
 
 const ContactForm = () => {
