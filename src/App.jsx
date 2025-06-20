@@ -17,6 +17,7 @@ import AdminExperience from "./pages/admin/AdminExperience";
 import AdminSkills from "./pages/admin/AdminSkills";
 import AdminProjects from "./pages/admin/AdminProjects";
 import AdminHero from "./pages/admin/AdminHero";
+import AdminMessages from "./pages/admin/AdminMessages";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,14 @@ const App = () => {
                 element={
                   <ProtectedRoute>
                     <AdminProjects />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/messages"
+                element={
+                  <ProtectedRoute>
+                    <AdminMessages/>
                   </ProtectedRoute>
                 }
               />

@@ -9,6 +9,8 @@ import { SkillModule } from './skill/skill.module';
 import { ExperienceModule } from './experience/experience.module';
 import { UploadModule } from './upload/upload.module';
 import { HeroModule } from './hero/hero.module';
+import { ContactMessageModule } from './contact-message/contact-message.module';
+import { ContactModule } from './contact/contact.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { HeroModule } from './hero/hero.module';
     ExperienceModule,
     UploadModule,
     HeroModule,
+    ContactMessageModule,
+    ContactModule,
   ],
 })
 export class AppModule { }
