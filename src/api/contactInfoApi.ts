@@ -15,7 +15,7 @@ export const useContactInfoQuery = () => {
 export const useUpdateContactInfo = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (data) => axios.patch("/contact-info", data),
+        mutationFn: ({ id, ...payload }) => axios.patch(`/contact-info/${id}`, payload),
         onSuccess: () => queryClient.invalidateQueries(["contact-info"]),
     });
 };
