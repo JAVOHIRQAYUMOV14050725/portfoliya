@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 /**
  * Project interface represents a project entity as returned by the API.
@@ -129,22 +129,26 @@ export const deleteProject = async (id: number): Promise<Project> => {
  * Uses ['projects'] as the query key. Ensures the data is always an array (empty if no projects).
  */
 export const useProjectsQuery = () => {
-    return useQuery<Project[]>(['projects'], getProjects, {
-        // Provide an initial empty array to avoid undefined data on first render.
+    return useQuery({
+        queryKey: ['projects'],
+        queryFn: getProjects,
         initialData: [],
     });
 };
-
+  
 /**
  * useProjectQuery - React Query hook to retrieve a single project by ID.
  * Uses ['projects', id] as the query key for scope. Only enabled when an id is provided.
  * @param id - The project ID to fetch.
  */
 export const useProjectQuery = (id: number) => {
-    return useQuery<Project>(['projects', id], () => getProject(id), {
-        enabled: !!id, // Only run the query if a valid ID is provided.
+    return useQuery({
+        queryKey: ['projects', id],
+        queryFn: () => getProject(id),
+        enabled: !!id,
     });
 };
+  
 
 /**
  * useCreateProject - React Query mutation hook to create a new project.
@@ -152,13 +156,15 @@ export const useProjectQuery = (id: number) => {
  */
 export const useCreateProject = () => {
     const queryClient = useQueryClient();
-    return useMutation<Project, unknown, ProjectPayload>(createProject, {
+
+    return useMutation({
+        mutationFn: createProject,
         onSuccess: () => {
-            // Invalidate and refetch the projects list after a successful creation.
-            queryClient.invalidateQueries(['projects']);
+            queryClient.invalidateQueries({ queryKey: ['projects'] });
         },
     });
 };
+  
 
 /**
  * useUpdateProject - React Query mutation hook to update an existing project.
@@ -167,17 +173,16 @@ export const useCreateProject = () => {
  */
 export const useUpdateProject = () => {
     const queryClient = useQueryClient();
-    return useMutation<Project, unknown, { id: number; data: ProjectPayload }>(
-        ({ id, data }) => updateProject(id, data),
-        {
-            onSuccess: (_updatedProject, variables) => {
-                // After a successful update, refresh the projects list and the specific project query.
-                queryClient.invalidateQueries(['projects']);
-                queryClient.invalidateQueries(['projects', variables.id]);
-            },
-        }
-    );
+
+    return useMutation({
+        mutationFn: ({ id, data }: { id: number; data: ProjectPayload }) => updateProject(id, data),
+        onSuccess: (_updatedProject, variables) => {
+            queryClient.invalidateQueries({ queryKey: ['projects'] });
+            queryClient.invalidateQueries({ queryKey: ['projects', variables.id] });
+        },
+    });
 };
+  
 
 /**
  * useDeleteProject - React Query mutation hook to delete a project by ID.
@@ -185,14 +190,13 @@ export const useUpdateProject = () => {
  */
 export const useDeleteProject = () => {
     const queryClient = useQueryClient();
-    return useMutation<Project, unknown, number>(
-        (id: number) => deleteProject(id),
-        {
-            onSuccess: (_deletedProject, id) => {
-                // After deletion, remove the project from the list by invalidating the queries.
-                queryClient.invalidateQueries(['projects']);
-                queryClient.invalidateQueries(['projects', id]);
-            },
-        }
-    );
+
+    return useMutation({
+        mutationFn: (id: number) => deleteProject(id),
+        onSuccess: (_deletedProject, id) => {
+            queryClient.invalidateQueries({ queryKey: ['projects'] });
+            queryClient.invalidateQueries({ queryKey: ['projects', id] });
+        },
+    });
 };
+  

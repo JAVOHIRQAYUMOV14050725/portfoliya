@@ -1,3 +1,4 @@
+// ✅ OPTIMIZED AdminProjects.tsx (Full CRUD with React Query v5)
 import React, { useState } from 'react';
 import {
     useProjectsQuery,
@@ -14,7 +15,7 @@ interface Toast {
 }
 
 const AdminProjects: React.FC = () => {
-    const { data, isLoading, isError } = useProjectsQuery();
+    const { data: projects = [], isLoading, isError } = useProjectsQuery();
     const createMutation = useCreateProject();
     const updateMutation = useUpdateProject();
     const deleteMutation = useDeleteProject();
@@ -46,7 +47,7 @@ const AdminProjects: React.FC = () => {
     const handleUpdate = (values: ProjectFormValues & { techStack: string[] }) => {
         if (!editing) return;
         updateMutation.mutate(
-            { id: editing.id, ...values },
+            { id: editing.id, data: values },
             {
                 onSuccess: () => {
                     showToast('✏️ Project updated successfully!');
@@ -65,29 +66,26 @@ const AdminProjects: React.FC = () => {
         });
     };
 
-    const isEmpty = Array.isArray(data) && data.length === 0;
-
     return (
         <div className="p-6 max-w-6xl mx-auto">
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-cyan-700 dark:text-cyan-300">
-                    🚀 Manage Projects
-                </h1>
+                <h1 className="text-3xl font-bold text-cyan-700 dark:text-cyan-300">🚀 Manage Projects</h1>
                 <button
                     onClick={() => {
                         setEditing(null);
                         setShowForm(true);
                     }}
-                    className="px-5 py-2 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition"
+                    className="z-50 relative px-5 py-2 bg-yellow-300 text-black font-bold border border-black rounded hover:bg-yellow-400 transition"
                 >
                     ➕ Add Project
                 </button>
+
+
             </div>
 
             {toast && (
                 <div
-                    className={`fixed top-4 right-4 px-4 py-2 rounded text-white shadow-lg z-50 ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'
-                        }`}
+                    className={`fixed top-4 right-4 px-4 py-2 rounded text-white shadow-lg z-50 ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'}`}
                 >
                     {toast.message}
                 </div>
@@ -110,11 +108,11 @@ const AdminProjects: React.FC = () => {
                 <p className="text-center text-slate-500">Loading projects...</p>
             ) : isError ? (
                 <p className="text-center text-red-500">❌ Failed to load projects or invalid data.</p>
-            ) : isEmpty ? (
+            ) : projects.length === 0 ? (
                 <p className="text-center text-slate-500">No projects found.</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {data!.map((project) => (
+                    {projects.map((project) => (
                         <div
                             key={project.id}
                             className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:shadow-md transition"

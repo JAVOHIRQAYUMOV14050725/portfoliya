@@ -1,3 +1,4 @@
+// ✅ OPTIMIZED ProjectForm.tsx
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,9 +9,9 @@ const schema = yup.object({
     title: yup.string().required('Title is required'),
     description: yup.string().optional(),
     techStack: yup.string().optional(),
-    githubUrl: yup.string().url('Invalid URL').optional(),
-    liveUrl: yup.string().url('Invalid URL').optional(),
-    imageUrl: yup.string().url('Invalid URL').optional(),
+    githubUrl: yup.string().url('Invalid GitHub URL').optional(),
+    liveUrl: yup.string().url('Invalid Live URL').optional(),
+    imageUrl: yup.string().url('Invalid Image URL').optional(),
 });
 
 export type ProjectFormValues = yup.InferType<typeof schema>;
@@ -39,59 +40,31 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ defaultValues, onSubmit, onCa
     });
 
     const submitHandler = (data: ProjectFormValues) => {
-        const payload = {
-            ...data,
-            techStack: data.techStack
-                ? data.techStack.split(',').map((t) => t.trim()).filter(Boolean)
-                : [],
-        };
-        onSubmit(payload as ProjectFormValues & { techStack: string[] });
+        const techStackArray = data.techStack
+            ? data.techStack.split(',').map((t) => t.trim()).filter(Boolean)
+            : [];
+        onSubmit({ ...data, techStack: techStackArray });
     };
 
     return (
         <form onSubmit={handleSubmit(submitHandler)} className="space-y-4">
-            <div>
-                <label className="block text-sm font-medium mb-1">Title</label>
-                <input
-                    type="text"
-                    {...register('title')}
-                    className="w-full border rounded p-2"
-                />
-                {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Description</label>
-                <textarea {...register('description')} className="w-full border rounded p-2" />
-                {errors.description && (
-                    <p className="text-red-500 text-sm">{errors.description.message}</p>
-                )}
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Tech Stack (comma separated)</label>
-                <input type="text" {...register('techStack')} className="w-full border rounded p-2" />
-                {errors.techStack && (
-                    <p className="text-red-500 text-sm">{errors.techStack.message}</p>
-                )}
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">GitHub URL</label>
-                <input type="url" {...register('githubUrl')} className="w-full border rounded p-2" />
-                {errors.githubUrl && (
-                    <p className="text-red-500 text-sm">{errors.githubUrl.message}</p>
-                )}
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Live URL</label>
-                <input type="url" {...register('liveUrl')} className="w-full border rounded p-2" />
-                {errors.liveUrl && <p className="text-red-500 text-sm">{errors.liveUrl.message}</p>}
-            </div>
-            <div>
-                <label className="block text-sm font-medium mb-1">Image URL</label>
-                <input type="url" {...register('imageUrl')} className="w-full border rounded p-2" />
-                {errors.imageUrl && (
-                    <p className="text-red-500 text-sm">{errors.imageUrl.message}</p>
-                )}
-            </div>
+            {['title', 'description', 'techStack', 'githubUrl', 'liveUrl', 'imageUrl'].map((field) => (
+                <div key={field}>
+                    <label className="block text-sm font-medium mb-1 capitalize">{field.replace(/([A-Z])/g, ' $1')}</label>
+                    {field === 'description' ? (
+                        <textarea {...register(field as keyof ProjectFormValues)} className="w-full border rounded p-2" />
+                    ) : (
+                        <input
+                            type={field.includes('Url') ? 'url' : 'text'}
+                            {...register(field as keyof ProjectFormValues)}
+                            className="w-full border rounded p-2"
+                        />
+                    )}
+                    {errors[field as keyof typeof errors] && (
+                        <p className="text-red-500 text-sm">{errors[field as keyof typeof errors]?.message}</p>
+                    )}
+                </div>
+            ))}
             <div className="flex justify-end space-x-2">
                 {onCancel && (
                     <button
