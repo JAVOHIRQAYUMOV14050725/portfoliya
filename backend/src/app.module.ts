@@ -6,6 +6,9 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './user/user.module';
 import { ProjectModule } from './project/project.module';
 import { SkillModule } from './skill/skill.module';
+import { ExperienceModule } from './experience/experience.module';
+import { UploadModule } from './upload/upload.module';
+import { HeroModule } from './hero/hero.module';
 
 @Module({
   imports: [
@@ -24,6 +27,9 @@ import { SkillModule } from './skill/skill.module';
     AuthModule,
     ProjectModule,
     SkillModule,
+    ExperienceModule,
+    UploadModule,
+    HeroModule,
   ],
 })
 export class AppModule { }

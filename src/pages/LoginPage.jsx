@@ -1,6 +1,7 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function LoginPage() {
   const {
@@ -11,13 +12,20 @@ function LoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post('http://localhost:3000/auth/login', data, {
+      await axios.post("http://localhost:3000/auth/login", data, {
         withCredentials: true,
       });
-      alert('✅ Login successful!');
-      window.location.href = '/admin/projects';
+
+      toast.success("✅ Login successful!", {
+        icon: "🚀",
+        duration: 3000,
+      });
+
+      setTimeout(() => {
+        window.location.href = "/admin/projects";
+      }, 1000); // 1 sekund kutib, yo'naltirish
     } catch (err) {
-      alert('❌ Login failed. Check your credentials.');
+      toast.error("❌ Login failed. Check your credentials.");
     }
   };
 
@@ -38,7 +46,7 @@ function LoginPage() {
           </label>
           <input
             type="email"
-            {...register('email', { required: 'Email is required' })}
+            {...register("email", { required: "Email is required" })}
             className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
           {errors.email && (
@@ -53,11 +61,13 @@ function LoginPage() {
           </label>
           <input
             type="password"
-            {...register('password', { required: 'Password is required' })}
+            {...register("password", { required: "Password is required" })}
             className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
           {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </p>
           )}
         </div>
 
@@ -67,7 +77,7 @@ function LoginPage() {
           disabled={isSubmitting}
           className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? 'Logging in...' : 'Login'}
+          {isSubmitting ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>

@@ -18,3 +18,15 @@ root.render(
     </QueryClientProvider>
   </React.StrictMode>
 );
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <App />
+          <Toaster position="top-right" />
+        </QueryClientProvider>
+      </HelmetProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+);

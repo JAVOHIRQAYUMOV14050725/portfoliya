@@ -33,6 +33,7 @@ const Header = ({ theme, setTheme }) => {
       { to: "/admin/skills", label: "Manage Skills" },
       { to: "/admin/experience", label: "Manage Experience" },
       { to: "/admin/contact", label: "Manage Contact" },
+      { to: "/admin/hero", label: "Manage Hero"}
     ],
     public: [
       { to: "/projects", label: "\u21B3 Public Projects" },

@@ -16,6 +16,7 @@ import {
 } from "../../api/skillApi";
 import { iconOptions } from "../../constants/iconOptions";
 
+// All available icons
 const allIcons = {
   ...FaIcons,
   ...SiIcons,
@@ -23,11 +24,17 @@ const allIcons = {
   ...GiIcons,
 };
 
+// Preview for icon
 function getIconComponent(iconName) {
   const Icon = allIcons[iconName];
-  return Icon ? <Icon className="inline-block mr-1" /> : null;
+  return Icon ? (
+    <Icon className="inline-block mr-1" />
+  ) : (
+    <span className="text-xs text-red-400">[invalid icon]</span>
+  );
 }
 
+// Schema
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
   category: z.enum(["hard", "soft", "language"]),
@@ -122,18 +129,30 @@ function AdminSkills() {
               placeholder="Pick tech icon"
               value={iconOptions.find((o) => o.value === selectedIcon) || null}
               isClearable
+              filterOption={(option, inputValue) => {
+                const label = option.label.toLowerCase();
+                const value = option.value.toLowerCase();
+                const input = inputValue.toLowerCase();
+                return label.includes(input) || value.includes(input);
+              }}
             />
 
-            <input
-              type="text"
-              value={customIcon}
-              onChange={(e) => {
-                setCustomIcon(e.target.value);
-                setValue("icon", e.target.value);
-              }}
-              placeholder="or enter icon name (e.g. FaLaravel)"
-              className="w-full px-2 py-1 border border-gray-300 rounded text-xs pr-10"
-            />
+            <div className="relative">
+              <input
+                type="text"
+                value={customIcon}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setCustomIcon(val);
+                  setValue("icon", val);
+                }}
+                placeholder="or enter icon name (e.g. FaLaravel)"
+                className="w-full px-2 py-1 border border-gray-300 rounded text-xs pr-10"
+              />
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
+                {getIconComponent(customIcon)}
+              </span>
+            </div>
 
             {customIcon && (
               <div className="absolute z-10 mt-1 bg-white dark:bg-slate-800 border rounded w-full shadow max-h-40 overflow-auto text-xs">

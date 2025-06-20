@@ -8,6 +8,9 @@ import { createClient } from 'redis';
 import { ClassSerializerInterceptor } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { UsersService } from './user/user.service';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import { join } from 'path';
+import * as express from 'express'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -40,6 +43,8 @@ async function bootstrap() {
       },
     }),
   );
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+
   app.enableCors({
     origin: 'http://localhost:5173', // yoki deploy bo‘lsa frontend URL
     credentials: true,

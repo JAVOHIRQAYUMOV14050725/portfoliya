@@ -1,12 +1,20 @@
-  import React from 'react';
-  import { motion } from 'framer-motion';
-  import { Link } from 'react-router-dom';
-  import Typewriter from '../components/Typewriter';
-  import Section from '../components/Section';
-  import portfolioData from '../data/portfolioData';
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useHeroQuery } from "../api/heroApi";
+import Typewriter from "../components/Typewriter";
+import Section from "../components/Section";
 
-  const Hero = () => (
-    <Section id="home" className="pt-32 md:pt-48 min-h-screen flex items-center">
+const Hero = () => {
+  const { data, isLoading } = useHeroQuery();
+
+  if (isLoading || !data) return null;
+
+  return (
+    <Section
+      id="home"
+      className="pt-32 md:pt-48 min-h-screen flex items-center"
+    >
       <div className="text-center w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -14,20 +22,22 @@
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-800 dark:text-slate-100"
         >
-          {portfolioData.personalInfo.name}
+          {data.name}
         </motion.h1>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-4 text-xl md:text-2xl text-slate-600 dark:text-slate-300"
         >
-          <span className="mr-2">{portfolioData.hero.tagline}</span>
+          <span className="mr-2">{data.tagline}</span>
           <Typewriter
-            sequence={portfolioData.hero.technologies}
+            sequence={data.technologies}
             className="font-mono text-cyan-500 dark:text-cyan-400"
           />
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,5 +60,6 @@
       </div>
     </Section>
   );
+};
 
-  export default Hero;
+export default Hero;

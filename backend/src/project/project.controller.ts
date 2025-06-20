@@ -8,8 +8,13 @@ import {
   Put,
   Req,
   UseGuards,
+  UploadedFile,
+  UseInterceptors,
   UnauthorizedException,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 import { Request } from 'express';
 import { ProjectService } from './project.service';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -20,13 +25,11 @@ import { AuthGuard } from '../common/guards/auth.guard';
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) { }
 
-  // ✅ Public: ko‘rish hammaga ochiq
   @Get()
   async findAllPublic() {
     return this.projectService.findAllPublic();
   }
 
-  // 🔐 Authenticated user: o‘ziga tegishli projectlar
   @UseGuards(AuthGuard)
   @Get('my')
   async findAllByUser(@Req() req: Request) {
@@ -35,7 +38,25 @@ export class ProjectController {
     return this.projectService.findAllByUser(user.id);
   }
 
-  // 🔐 Create
+  // ✅ Upload endpoint
+  @UseGuards(AuthGuard)
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads/projects',
+        filename: (_req, file, cb) => {
+          const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          cb(null, uniqueName + extname(file.originalname));
+        },
+      }),
+    })
+  )
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+    return { imageUrl: `${baseUrl}/uploads/projects/${file.filename}` };
+  }
+
   @UseGuards(AuthGuard)
   @Post()
   async create(@Body() dto: CreateProjectDto, @Req() req: Request) {
@@ -43,7 +64,6 @@ export class ProjectController {
     return this.projectService.create(dto, user.id);
   }
 
-  // 🔐 Update
   @UseGuards(AuthGuard)
   @Put(':id')
   async update(
@@ -55,7 +75,6 @@ export class ProjectController {
     return this.projectService.update(+id, dto, user.id);
   }
 
-  // 🔐 Delete
   @UseGuards(AuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: string, @Req() req: Request) {
