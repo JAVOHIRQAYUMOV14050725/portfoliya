@@ -7,6 +7,7 @@ import { RedisStore } from 'connect-redis';
 import { createClient } from 'redis';
 import { ClassSerializerInterceptor } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { UsersService } from './user/user.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -39,6 +40,14 @@ async function bootstrap() {
       },
     }),
   );
+  app.enableCors({
+    origin: 'http://localhost:5173', // yoki deploy bo‘lsa frontend URL
+    credentials: true,
+  });
+  const userService = app.get(UsersService);
+  await userService.createAdminIfNotExists(); // 👉 bu metod user.service.ts faylingizda mavjud bo‘lishi kerak
+
+  
 
   await app.listen(3000);
 }

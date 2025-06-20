@@ -1,41 +1,46 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 import { User } from '../../user/entities/user.entity';
-import { Expose } from 'class-transformer';
 
 @Entity()
 export class Project {
     @PrimaryGeneratedColumn()
-    @Expose()
     id: number;
 
     @Column()
-    @Expose()
     title: string;
 
     @Column({ nullable: true })
-    @Expose()
     description: string;
 
-    @Column('simple-array', { nullable: true })
-    @Expose()
+    @Column('text', { array: true, nullable: true })
     techStack: string[];
 
     @Column({ nullable: true })
-    @Expose()
+    imageUrl: string;
+
+    @Column()
     githubUrl: string;
 
     @Column({ nullable: true })
-    @Expose()
     liveUrl: string;
 
-    @Column({ nullable: true })
-    @Expose()
-    imageUrl: string;
+    @Column()
+    userId: number;
 
-    @ManyToOne(() => User, (user) => user.projects, { eager: false })
+    @ManyToOne(() => User, (user) => user.projects)
     user: User;
 
-    @Column()
-    @Expose()
-    userId: number;
+    @CreateDateColumn() // ✅ Bu ikkisiga e'tibor
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 }
+  

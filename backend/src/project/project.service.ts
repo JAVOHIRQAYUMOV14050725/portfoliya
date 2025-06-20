@@ -1,6 +1,4 @@
-// 📁 src/project/project.service.ts
-
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -12,15 +10,26 @@ export class ProjectService {
   constructor(
     @InjectRepository(Project)
     private readonly projectRepository: Repository<Project>,
-  ) { }
+  ) {}
+
+  // 🔓 Public view
+  async findAllPublic(): Promise<Project[]> {
+    return this.projectRepository.find({
+      order: { createdAt: 'DESC' },
+    });
+  }
+
+  // 🔐 Authenticated user's own projects
+  async findAllByUser(userId: number) {
+    return this.projectRepository.find({
+      where: { userId },
+      order: { createdAt: 'DESC' },
+    });
+  }
 
   async create(dto: CreateProjectDto, userId: number) {
     const project = this.projectRepository.create({ ...dto, userId });
     return this.projectRepository.save(project);
-  }
-
-  async findAll(userId: number) {
-    return this.projectRepository.find({ where: { userId } });
   }
 
   async findOne(id: number, userId: number) {

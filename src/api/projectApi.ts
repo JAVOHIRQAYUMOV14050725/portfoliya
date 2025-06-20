@@ -5,6 +5,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
  * Project interface represents a project entity as returned by the API.
  * All fields from the backend Project entity are included, with optional fields marked accordingly.
  */
+
+axios.defaults.baseURL = 'http://localhost:3000'; // 👈 NestJS backend porti
+axios.defaults.withCredentials = true;
+
 export interface Project {
     id: number;
     title: string;
@@ -64,6 +68,26 @@ export const getProjects = async (): Promise<Project[]> => {
     // If data is not an array (unexpected format), return an empty array to satisfy the return type.
     return [];
 };
+
+/**
+ * Fetch all public projects — ko‘rish hammaga ochiq (no auth required)
+ */
+export const getPublicProjects = async (): Promise<Project[]> => {
+    const response = await axios.get('/projects'); // public API endpoint
+    const data = extractData(response);
+    return Array.isArray(data) ? data as Project[] : [];
+};
+
+/**
+ * React Query hook for public project list
+ */
+export const usePublicProjectsQuery = () => {
+    return useQuery({
+        queryKey: ['public-projects'],
+        queryFn: getPublicProjects,
+        initialData: [],
+    });
+  };
 
 /**
  * Fetch a single project by ID for the current user.
