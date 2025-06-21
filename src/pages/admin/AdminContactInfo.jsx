@@ -7,26 +7,71 @@ import * as yup from "yup";
 import {
   useContactInfoQuery,
   useUpdateContactInfo,
+  useCreateContactInfo,
+  useDeleteContactInfo
 } from "../../api/contactInfoApi";
 
 const schema = yup.object().shape({
-  phone: yup.string().required("Phone is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  location: yup.string().required("Location is required"),
-  github: yup.string().url("Invalid GitHub URL").required("GitHub is required"),
+  phone: yup
+    .string()
+    .transform((value) => value.replace(/\s+/g, ""))
+    .required("Phone is required"),
+
+  email: yup
+    .string()
+    .transform((value) => value.trim().toLowerCase())
+    .email("Invalid email")
+    .required("Email is required"),
+
+  location: yup
+    .string()
+    .transform((value) => value.trim())
+    .required("Location is required"),
+
+  github: yup
+    .string()
+    .transform((value, originalValue) => {
+      if (!originalValue?.startsWith("http")) {
+        return `https://github.com/${originalValue.replace(/^@/, "")}`;
+      }
+      return originalValue;
+    })
+    .url("Invalid GitHub URL")
+    .required("GitHub is required"),
+
   telegram: yup
     .string()
+    .transform((value, originalValue) => {
+      if (originalValue?.startsWith("@")) {
+        return `https://t.me/${originalValue.slice(1)}`;
+      }
+      if (!originalValue?.startsWith("http")) {
+        return `https://t.me/${originalValue}`;
+      }
+      return originalValue;
+    })
     .url("Invalid Telegram URL")
     .required("Telegram is required"),
+
   linkedin: yup
     .string()
+    .transform((value, originalValue) => {
+      if (!originalValue?.startsWith("http")) {
+        return `https://linkedin.com/in/${originalValue.replace(/^@/, "")}`;
+      }
+      return originalValue;
+    })
     .url("Invalid LinkedIn URL")
     .required("LinkedIn is required"),
 });
 
+  
 const AdminContactInfo = () => {
   const { data, isLoading } = useContactInfoQuery();
   const updateMutation = useUpdateContactInfo();
+  const createMutation = useCreateContactInfo();
+  const deleteMutation = useDeleteContactInfo();
+
 
   const {
     register,
@@ -58,18 +103,45 @@ const AdminContactInfo = () => {
     );
   };
 
+  const handleCreate = () => {
+    createMutation.mutate(
+      {
+        phone: "",
+        email: "",
+        location: "",
+        github: "",
+        telegram: "",
+        linkedin: "",
+      },
+      {
+        onSuccess: () => toast.success("✅ Contact info created"),
+        onError: () => toast.error("❌ Failed to create contact info"),
+      }
+    );
+  };
+
   if (isLoading)
     return (
       <p className="text-center mt-10 text-slate-400">
         ⏳ Loading contact info...
       </p>
     );
-  if (!data?.id)
+
+  if (!data?.id) {
     return (
-      <p className="text-center mt-10 text-red-400">
-        ⚠️ No contact info found. Please add one from backend.
-      </p>
+      <div className="text-center mt-10">
+        <p className="text-red-400 mb-4">
+          ⚠️ No contact info found. You can add one below:
+        </p>
+        <button
+          onClick={handleCreate}
+          className="bg-cyan-600 text-white px-6 py-2 rounded hover:bg-cyan-700"
+        >
+          ➕ Add Contact Info
+        </button>
+      </div>
     );
+  }
 
   return (
     <form
@@ -80,49 +152,103 @@ const AdminContactInfo = () => {
         📇 Edit Contact Info
       </h2>
 
-      {[
-        { name: "phone", type: "tel", placeholder: "+998 94 202 40 44" },
-        { name: "email", type: "email", placeholder: "example@mail.com" },
-        { name: "location", type: "text", placeholder: "Tashkent, Uzbekistan" },
-        {
-          name: "github",
-          type: "url",
-          placeholder: "https://github.com/yourname",
-        },
-        {
-          name: "telegram",
-          type: "url",
-          placeholder: "https://t.me/yourusername",
-        },
-        {
-          name: "linkedin",
-          type: "url",
-          placeholder: "https://linkedin.com/in/yourname",
-        },
-      ].map(({ name, type, placeholder }) => (
-        <div key={name}>
-          <label className="block mb-1 capitalize text-slate-700 dark:text-slate-300">
-            {name}
-          </label>
-          <input
-            type={type}
-            placeholder={placeholder}
-            {...register(name)}
-            className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
-          />
-          {errors[name] && (
-            <p className="text-red-500 text-sm mt-1">{errors[name]?.message}</p>
-          )}
-        </div>
-      ))}
+      {["phone", "email", "location", "github", "telegram", "linkedin"].map(
+        (name) => {
+          const placeholders = {
+            phone: "Enter your phone number",
+            email: "Enter your email address",
+            location: "Enter your location",
+            github: "https://github.com/your-username",
+            telegram: "https://t.me/your-username",
+            linkedin: "https://linkedin.com/in/your-username",
+          };
+          
+          const types = {
+            phone: "tel",
+            email: "email",
+            location: "text",
+            github: "text",
+            telegram: "text",
+            linkedin: "text", 
+          };
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-md disabled:opacity-50"
-      >
-        {isSubmitting ? "Saving..." : "Save Changes"}
-      </button>
+          return (
+            <div key={name}>
+              <label className="block mb-1 capitalize text-slate-700 dark:text-slate-300">
+                {name}
+              </label>
+              <input
+                type={types[name]}
+                placeholder={placeholders[name]}
+                {...register(name)}
+                onBlur={(e) => {
+                  const value = e.target.value;
+
+                  // Telegram
+                  if (name === "telegram" && value.startsWith("@")) {
+                    const transformed = `https://t.me/${value.slice(1)}`;
+                    e.target.value = transformed;
+                    reset({ ...getValues(), telegram: transformed });
+                  }
+
+                  // GitHub
+                  if (name === "github" && !value.startsWith("http")) {
+                    const transformed = `https://github.com/${value.replace(/^@/, "")}`;
+                    e.target.value = transformed;
+                    reset({ ...getValues(), github: transformed });
+                  }
+
+                  // LinkedIn
+                  if (name === "linkedin" && !value.startsWith("http")) {
+                    const transformed = `https://linkedin.com/in/${value.replace(/^@/, "")}`;
+                    e.target.value = transformed;
+                    reset({ ...getValues(), linkedin: transformed });
+                  }
+                }}
+                className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              />
+
+              {errors[name] && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors[name]?.message}
+                </p>
+              )}
+            </div>
+          );
+        }
+      )}
+
+      <div className="flex items-center gap-4 pt-4">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-md disabled:opacity-50"
+        >
+          {isSubmitting ? "Saving..." : "Save Changes"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => toast("🧹 Reset to last saved") || reset(data)}
+          className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md"
+        >
+          Reset
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            if (confirm("Are you sure you want to delete contact info?")) {
+              deleteMutation.mutate(data.id, {
+                onSuccess: () => toast.success("🗑️ Contact info deleted"),
+                onError: () => toast.error("❌ Failed to delete contact info"),
+              });
+            }
+          }}
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+        >
+          Delete
+        </button>
+      </div>
     </form>
   );
 };

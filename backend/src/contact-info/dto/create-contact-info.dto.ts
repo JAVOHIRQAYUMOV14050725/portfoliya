@@ -22,11 +22,10 @@ export class CreateContactInfoDto {
     @IsUrl({}, { message: 'GitHub havolasi noto‘g‘ri formatda' })
     github: string;
 
-    @IsString()
-    @Matches(/^@[\w\d_]{3,32}$/, { message: 'Telegram username noto‘g‘ri' })
+    @IsUrl({}, { message: 'Telegram havolasi noto‘g‘ri formatda' })
     telegram: string;
 
-    @IsString()
+    @IsUrl({}, { message: 'LinkedIn havolasi noto‘g‘ri formatda' })
     linkedin: string;
 }
   

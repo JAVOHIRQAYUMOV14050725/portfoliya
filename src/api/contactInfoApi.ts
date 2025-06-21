@@ -33,3 +33,22 @@ export const usePublicContactInfo = () => {
     });
 };
   
+// api/contactInfoApi.ts
+export const useCreateContactInfo = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (newData) => axios.post("/contact-info", newData),
+        onSuccess: () => queryClient.invalidateQueries(["contact-info"]),
+    });
+};
+  
+export const useDeleteContactInfo = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (id: number) => axios.delete(`/contact-info/${id}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries(["contact-info"]);
+        },
+    });
+};
+  
