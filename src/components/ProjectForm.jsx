@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { motion } from "framer-motion";
-import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { Dialog } from "@headlessui/react";
 import { FilePond, registerPlugin } from "react-filepond";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond/dist/filepond.min.css";
+import axios from "../utils/axios";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
@@ -70,7 +70,7 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
     formData.append("file", file);
     try {
       const res = await axios.post(
-        "http://localhost:3000/upload/project-image",
+        "/upload/project-image",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

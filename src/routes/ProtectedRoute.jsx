@@ -1,14 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios from "../utils/axios";
 
 // ✅ Cookie asosidagi sessiyani yuborish uchun
 axios.defaults.withCredentials = true;
 
 // ✅ Backenddan foydalanuvchi ma'lumotini olish
 const fetchMe = async () => {
-  const response = await axios.get("http://localhost:3000/auth/me");
+  const response = await axios.get("/auth/me");
   return response.data;
 };
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios from "../utils/axios";
 import { Briefcase, GraduationCap } from "lucide-react"; // Yangi ikonkalarni import qilamiz
 import Section from "../components/Section";
 import SectionTitle from "../components/SectionTitle";
 
 const fetchExperience = async () => {
   // Ma'lumotlarni serverdan olish
-  const res = await axios.get("http://localhost:3000/experience");
+  const res = await axios.get("/experience");
   // Ma'lumotlarni sana bo'yicha saralab qaytarish (eng yangisi birinchi)
   return res.data.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 };

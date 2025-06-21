@@ -28,7 +28,7 @@ export class UploadController {
     }),
   )
   async uploadProjectImage(@UploadedFile() file: Express.Multer.File) {
-    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.BASE_URL 
     return {
       imageUrl: `${baseUrl}/uploads/projects/${file.filename}`,
     };

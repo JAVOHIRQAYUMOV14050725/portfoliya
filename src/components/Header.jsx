@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import axios from "axios";
+import axios from "../utils/axios";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ThemeToggle from "./ThemeToggle";
 import portfolioData from "../data/portfolioData";
@@ -13,7 +13,7 @@ const Header = ({ theme, setTheme }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/auth/me", { withCredentials: true })
+      .get("/auth/me", { withCredentials: true })
       .then((res) => setIsAuthenticated(!!res.data?.id))
       .catch(() => setIsAuthenticated(false));
   }, []);
@@ -43,7 +43,7 @@ const Header = ({ theme, setTheme }) => {
 
   const handleLogout = async () => {
     await axios.post(
-      "http://localhost:3000/auth/logout",
+      "/auth/logout",
       {},
       { withCredentials: true }
     );

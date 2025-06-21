@@ -1,9 +1,7 @@
 // 📁 src/api/skillApi.ts
-import axios from 'axios';
+import axios from '../utils/axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-
-axios.defaults.baseURL = 'http://localhost:3000';
-axios.defaults.withCredentials = true;
+import { AxiosResponse } from 'axios';
 
 export interface Skill {
     id: number;
@@ -15,29 +13,33 @@ export interface Skill {
 
 type SkillPayload = Omit<Skill, 'id'>;
 
-// ====================== 📥 Fetch =========================
-export const getSkills = async (): Promise<Skill[]> => {
-    const { data } = await axios.get('/skills');
-    return data;
+// ✅ Common extractor
+const extractData = (response: AxiosResponse<any>): any => {
+    const { data } = response;
+    return data?.data ?? data;
 };
 
-export const useSkillsQuery = () => {
-    return useQuery({ queryKey: ['skills'], queryFn: getSkills });
+// ====================== 📥 Fetch =========================
+export const getSkills = async (): Promise<Skill[]> => {
+    const res = await axios.get('/skills');
+    const data = extractData(res);
+    return Array.isArray(data) ? data : [];
 };
+
+export const useSkillsQuery = () =>
+    useQuery({ queryKey: ['skills'], queryFn: getSkills, initialData: [] });
 
 // ===================== ➕ Create =========================
 export const createSkill = async (payload: SkillPayload): Promise<Skill> => {
-    const { data } = await axios.post('/skills', payload);
-    return data;
+    const res = await axios.post('/skills', payload);
+    return extractData(res);
 };
 
 export const useCreateSkill = () => {
-    const queryClient = useQueryClient();
+    const qc = useQueryClient();
     return useMutation({
         mutationFn: createSkill,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['skills'] });
-        },
+        onSuccess: () => qc.invalidateQueries({ queryKey: ['skills'] }),
     });
 };
 
@@ -49,17 +51,17 @@ export const updateSkill = async ({
     id: number;
     data: SkillPayload;
 }): Promise<Skill> => {
-    const response = await axios.put(`/skills/${id}`, data);
-    return response.data;
+    const res = await axios.put(`/skills/${id}`, data);
+    return extractData(res);
 };
 
 export const useUpdateSkill = () => {
-    const queryClient = useQueryClient();
+    const qc = useQueryClient();
     return useMutation({
         mutationFn: updateSkill,
         onSuccess: (_, { id }) => {
-            queryClient.invalidateQueries({ queryKey: ['skills'] });
-            queryClient.invalidateQueries({ queryKey: ['skills', id] });
+            qc.invalidateQueries({ queryKey: ['skills'] });
+            qc.invalidateQueries({ queryKey: ['skills', id] });
         },
     });
 };
@@ -70,11 +72,9 @@ export const deleteSkill = async (id: number): Promise<void> => {
 };
 
 export const useDeleteSkill = () => {
-    const queryClient = useQueryClient();
+    const qc = useQueryClient();
     return useMutation({
         mutationFn: deleteSkill,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['skills'] });
-        },
+        onSuccess: () => qc.invalidateQueries({ queryKey: ['skills'] }),
     });
 };

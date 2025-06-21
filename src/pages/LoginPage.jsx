@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
+import axios from "../utils/axios";
 
 function LoginPage() {
   const {
@@ -12,7 +12,7 @@ function LoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3000/auth/login", data, {
+      await axios.post("/auth/login", data, {
         withCredentials: true,
       });
 

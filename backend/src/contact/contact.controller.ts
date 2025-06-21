@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 @Controller('contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
-
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() createContactDto: CreateContactDto) {
     return this.contactService.create(createContactDto);

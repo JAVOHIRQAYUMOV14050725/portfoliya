@@ -1,15 +1,13 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "../utils/axios";
 
-axios.defaults.withCredentials = true;
-
-const API = 'http://localhost:3000/experience';
+const ENDPOINT = "/experience";
 
 export const useExperiencesQuery = () => {
     return useQuery({
-        queryKey: ['experience'],
+        queryKey: ["experience"],
         queryFn: async () => {
-            const { data } = await axios.get(API);
+            const { data } = await axios.get(ENDPOINT);
             return data;
         },
     });
@@ -19,10 +17,10 @@ export const useCreateExperience = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (data) => {
-            const res = await axios.post(API, data);
+            const res = await axios.post(ENDPOINT, data);
             return res.data;
         },
-        onSuccess: () => queryClient.invalidateQueries(['experience']),
+        onSuccess: () => queryClient.invalidateQueries(["experience"]),
     });
 };
 
@@ -30,10 +28,10 @@ export const useUpdateExperience = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async ({ id, data }) => {
-            const res = await axios.patch(`${API}/${id}`, data);
+            const res = await axios.patch(`${ENDPOINT}/${id}`, data);
             return res.data;
         },
-        onSuccess: () => queryClient.invalidateQueries(['experience']),
+        onSuccess: () => queryClient.invalidateQueries(["experience"]),
     });
 };
 
@@ -41,8 +39,8 @@ export const useDeleteExperience = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (id) => {
-            await axios.delete(`${API}/${id}`);
+            await axios.delete(`${ENDPOINT}/${id}`);
         },
-        onSuccess: () => queryClient.invalidateQueries(['experience']),
+        onSuccess: () => queryClient.invalidateQueries(["experience"]),
     });
 };

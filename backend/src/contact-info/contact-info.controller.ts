@@ -20,6 +20,7 @@ export class ContactInfoController {
   constructor(private readonly contactInfoService: ContactInfoService) { }
 
   // 🔐 Only Admin can create new contact info
+  @UseGuards(AuthGuard)
   @Post()
   create(@Body() dto: CreateContactInfoDto) {
     return this.contactInfoService.create(dto);
