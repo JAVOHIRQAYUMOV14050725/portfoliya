@@ -30,7 +30,9 @@ export const useDeleteMessage = () => {
 export const useCreateContact = () =>
     useMutation({
         mutationFn: async (newContact) => {
-            const { data } = await axios.post('/contact', newContact);
+            const { data } = await axios.post("/contact", newContact, {
+                withCredentials: false, // ✅ MUHIM: Public route
+            });
             return data;
         },
     });
