@@ -9,9 +9,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 
 import App from "./App";
-import "./i18n"; // ✅ i18next internationalization init
-import "./index.css"; // ✅ TailwindCSS or global styles
-
+import "./i18n"; 
+import "./index.css"; 
 // ✅ React Query client
 const queryClient = new QueryClient();
 

@@ -1,13 +1,9 @@
+// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 
-const detectionOptions = {
-    order: ['localStorage', 'navigator', 'htmlTag'],
-    caches: ['localStorage'],
-};
-  
 i18n
     .use(Backend)
     .use(LanguageDetector)
@@ -15,9 +11,11 @@ i18n
     .init({
         fallbackLng: 'en',
         supportedLngs: ['en', 'uz', 'ru', 'fr', 'zh'],
-        debug: false,
+        detection: {
+            order: ['localStorage', 'navigator'], // 👈 1) localStorage, 2) brauzer
+            caches: ['localStorage'], // 👈 Saqlanadi
+        },
         interpolation: { escapeValue: false },
-        detection: detectionOptions,
         backend: {
             loadPath: '/locales/{{lng}}/translation.json',
         },
