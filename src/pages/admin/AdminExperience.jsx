@@ -17,10 +17,10 @@ import * as SiIcons from "react-icons/si";
 const allIcons = { ...FaIcons, ...MdIcons, ...SiIcons };
 
 const schema = z.object({
-  title: z.string().min(1, "Title is required"),
-  company: z.string().min(1, "Company is required"),
-  description: z.string().min(1, "Description is required"),
-  startDate: z.string().min(4, "Start date is required"),
+  title: z.string().min(1, "admin.experience.errors.title"),
+  company: z.string().min(1, "admin.experience.errors.company"),
+  description: z.string().min(1, "admin.experience.errors.description"),
+  startDate: z.string().min(4, "admin.experience.errors.startDate"),
   endDate: z.string().optional(),
   icon: z.string().optional(),
 });

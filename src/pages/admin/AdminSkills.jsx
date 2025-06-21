@@ -29,7 +29,7 @@ function getIconComponent(iconName) {
 
 // Schema (o'zgarishsiz)
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "admin.skills.errors.name"),
   category: z.enum(["hard", "soft", "language"]),
   icon: z.string().optional(),
   level: z.string().optional(),
@@ -168,7 +168,9 @@ function AdminSkills() {
               className={inputClasses}
             />
             {errors.name && (
-              <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+              <p className="text-red-500 text-xs mt-1">
+                {t(errors.name.message)}
+              </p>
             )}
           </div>
 

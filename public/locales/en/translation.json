@@ -87,7 +87,8 @@
     "loading": "Loading experience...",
     "untitled": "Untitled",
     "unknownCompany": "Unknown Company",
-    "noDescription": "No description provided."
+    "noDescription": "No description provided.",
+    "present": "Present"
   },
   "projects": {
     "loading": "Loading projects...",
@@ -95,7 +96,8 @@
     "title": "Featured Projects",
     "liveDemo": "Live Demo",
     "github": "GitHub",
-    "techStack": "Tech Stack"
+    "techStack": "Tech Stack",
+    "imageNotFound": "Image Not Found"
   },
   "contactSection": {
     "loading": "Loading...",
@@ -115,8 +117,31 @@
     "reset": "Reset"
   },
   "toast": {
+    "__unused": true,
     "success": "✅ Success!",
     "error": "❌ Something went wrong"
+  },
+  "projectForm": {
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "techStack": "Tech Stack",
+      "github": "GitHub URL",
+      "live": "Live Demo URL"
+    },
+    "uploadLabel": "Project Image",
+    "dropHere": "Drop files here...",
+    "dragHere": "Drag & drop an image here, or click to select",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "previewAlt": "Image preview",
+    "previewFullAlt": "Full-size preview",
+    "errors": {
+      "title": "Title is required",
+      "github": "Invalid GitHub URL",
+      "live": "Invalid live demo URL"
+    }
   },
   "admin": {
     "projects": {
@@ -150,6 +175,7 @@
       "namePlaceholder": "e.g. React",
       "iconPlaceholder": "Select an icon...",
       "levelPlaceholder": "e.g. B2",
+      "errors": { "name": "Name is required" },
       "table": {
         "skill": "Skill",
         "category": "Category",
@@ -177,6 +203,12 @@
         "end": "End Date (or leave blank)",
         "icon": "Enter icon name (e.g. FaBriefcase)",
         "description": "Description"
+      },
+      "errors": {
+        "title": "Title is required",
+        "company": "Company is required",
+        "description": "Description is required",
+        "startDate": "Start date is required"
       }
     },
     "hero": {
@@ -189,6 +221,11 @@
       "name": "Name",
       "tagline": "Tagline",
       "technologies": "Technologies (comma-separated)",
+      "errors": {
+        "name": "Name is required",
+        "tagline": "Tagline is required",
+        "technologies": "Technologies are required"
+      },
       "confirmDelete": "⚠️ Delete this hero?",
       "delete": "🗑️ Delete Hero",
       "toast": {
@@ -220,6 +257,18 @@
         "telegram": "https://t.me/your-username",
         "linkedin": "https://linkedin.com/in/your-username"
       },
+      "errors": {
+        "phone": "Phone is required",
+        "invalidEmail": "Invalid email",
+        "email": "Email is required",
+        "location": "Location is required",
+        "githubUrl": "Invalid GitHub URL",
+        "github": "GitHub is required",
+        "telegramUrl": "Invalid Telegram URL",
+        "telegram": "Telegram is required",
+        "linkedinUrl": "Invalid LinkedIn URL",
+        "linkedin": "LinkedIn is required"
+      },
       "reset": "🧹 Reset to last saved",
       "confirmDelete": "Are you sure you want to delete contact info?",
       "toast": {
@@ -235,6 +284,10 @@
   },
   "protected": {
     "checking": "Checking access..."
+  },
+  "iconPicker": {
+    "placeholder": "Enter icon name (e.g. FaNodeJs)",
+    "noMatches": "No matches found"
   },
   "languages": {
     "en": "English",

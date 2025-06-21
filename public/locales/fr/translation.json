@@ -11,9 +11,9 @@
       "manageProjects": "Gérer les projets",
       "manageSkills": "Gérer les compétences",
       "manageExperience": "Gérer l'expérience",
-      "manageHero": "Gérer la page d'accueil",
-      "adminMessages": "Messages d'administration",
-      "manageContact": "Gérer les contacts",
+      "manageHero": "Gérer la section héro",
+      "adminMessages": "Messages administrateur",
+      "manageContact": "Gérer les informations de contact",
       "publicProjects": "↳ Projets publics",
       "publicSkills": "↳ Compétences publiques",
       "panel": "Panneau d'administration",
@@ -25,20 +25,22 @@
   "footer": {
     "copy": "© {{year}} {{name}}. Tous droits réservés."
   },
-  "themeToggle": { "aria": "Changer le thème" },
+  "themeToggle": {
+    "aria": "Changer de thème"
+  },
   "contactForm": {
     "fullName": "Nom complet",
     "email": "Adresse e-mail",
     "message": "Message",
     "send": "Envoyer le message",
-    "sending": "Envoi...",
+    "sending": "Envoi en cours...",
     "toast": {
       "success": "📨 Message envoyé avec succès !",
       "error": "❌ Échec de l'envoi du message"
     },
     "errors": {
       "fullName": "Le nom complet est requis",
-      "email": "L'e-mail est requis",
+      "email": "L'adresse e-mail est requise",
       "message": "Le message est requis"
     }
   },
@@ -52,27 +54,27 @@
       "email": "L'e-mail est requis",
       "password": "Le mot de passe est requis"
     },
-    "loading": "Connexion...",
+    "loading": "Connexion en cours...",
     "submit": "Se connecter"
   },
   "contactPage": {
     "phone": "Téléphone",
     "email": "E-mail",
-    "location": "Adresse",
+    "location": "Localisation",
     "telegram": "Telegram",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "title": "Prenez contact 📨",
     "subtitle": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités.",
-    "details": "Coordonnées",
+    "details": "Détails de contact",
     "collapseAll": "Tout réduire",
-    "expandAll": "Tout développer",
-    "loading": "Chargement des coordonnées...",
+    "expandAll": "Tout déplier",
+    "loading": "Chargement des informations de contact...",
     "failed": "Impossible de charger les informations de contact."
   },
   "hero": {
     "viewProjects": "Voir les projets",
-    "contactMe": "Contactez-moi"
+    "contactMe": "Me contacter"
   },
   "about": {
     "title": "À propos de moi"
@@ -81,29 +83,31 @@
     "title": "Mon arsenal technique",
     "loading": "Chargement des compétences...",
     "hard": "Compétences techniques",
-    "soft": "Compétences interpersonnelles",
+    "soft": "Compétences humaines",
     "languages": "Langues"
   },
   "experience": {
-    "title": "Carrière & Éducation",
+    "title": "Carrière et formation",
     "loading": "Chargement de l'expérience...",
     "untitled": "Sans titre",
     "unknownCompany": "Entreprise inconnue",
-    "noDescription": "Aucune description fournie."
+    "noDescription": "Aucune description fournie.",
+    "present": "Présent"
   },
   "projects": {
     "loading": "Chargement des projets...",
     "error": "Échec du chargement des projets.",
     "title": "Projets en vedette",
-    "liveDemo": "Démo en ligne",
+    "liveDemo": "Démo en direct",
     "github": "GitHub",
-    "techStack": "Pile technologique"
+    "techStack": "Pile technologique",
+    "imageNotFound": "Image introuvable"
   },
   "contactSection": {
     "loading": "Chargement...",
-    "title": "📬 Contactez-moi",
+    "title": "📬 Me contacter",
     "information": "Informations de contact",
-    "description": "Je suis ouvert à des collaborations significatives et à des opportunités passionnantes en back-end. Construisons quelque chose de grand ensemble !"
+    "description": "Je suis ouvert aux collaborations significatives et aux opportunités passionnantes en backend. Construisons quelque chose d'impactant ensemble !"
   },
   "form": {
     "save": "Enregistrer",
@@ -117,8 +121,31 @@
     "reset": "Réinitialiser"
   },
   "toast": {
+    "__unused": true,
     "success": "✅ Succès !",
     "error": "❌ Une erreur s'est produite"
+  },
+  "projectForm": {
+    "fields": {
+      "title": "Titre",
+      "description": "Description",
+      "techStack": "Pile technologique",
+      "github": "URL GitHub",
+      "live": "URL de la démo en direct"
+    },
+    "uploadLabel": "Image du projet",
+    "dropHere": "Déposez les fichiers ici...",
+    "dragHere": "Glissez-déposez une image ici, ou cliquez pour sélectionner",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "submitting": "Soumission en cours...",
+    "previewAlt": "Aperçu de l'image",
+    "previewFullAlt": "Aperçu en taille réelle",
+    "errors": {
+      "title": "Le titre est requis",
+      "github": "URL GitHub non valide",
+      "live": "URL de la démo en direct non valide"
+    }
   },
   "admin": {
     "projects": {
@@ -144,14 +171,17 @@
     "skills": {
       "title": "Gérer les compétences",
       "editSkill": "Modifier la compétence",
-      "newSkill": "Ajouter une compétence",
+      "newSkill": "Ajouter une nouvelle compétence",
       "category": "Catégorie",
       "name": "Nom",
       "icon": "Icône",
       "level": "Niveau",
-      "namePlaceholder": "ex. React",
+      "namePlaceholder": "par ex. React",
       "iconPlaceholder": "Sélectionnez une icône...",
-      "levelPlaceholder": "ex. B2",
+      "levelPlaceholder": "par ex. B2",
+      "errors": {
+        "name": "Le nom est requis"
+      },
       "table": {
         "skill": "Compétence",
         "category": "Catégorie",
@@ -159,14 +189,14 @@
         "actions": "Actions"
       },
       "loading": "Chargement...",
-      "confirmDelete": "Voulez-vous vraiment supprimer cette compétence ?",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette compétence ?",
       "toast": {
         "created": "Compétence créée avec succès !",
         "createError": "Échec de la création de la compétence",
-        "updated": "Compétence mise à jour !",
-        "updateError": "Échec de la mise à jour",
+        "updated": "Compétence mise à jour avec succès !",
+        "updateError": "Échec de la mise à jour de la compétence",
         "deleted": "Compétence supprimée !",
-        "deleteError": "Échec de la suppression"
+        "deleteError": "Échec de la suppression de la compétence"
       }
     },
     "experience": {
@@ -175,30 +205,41 @@
       "placeholders": {
         "title": "Titre du poste",
         "company": "Entreprise",
-        "start": "Date de début (ex. Jan 2023)",
-        "end": "Date de fin (ou laisser vide)",
-        "icon": "Nom de l'icône (ex. FaBriefcase)",
+        "start": "Date de début (par ex. Jan 2023)",
+        "end": "Date de fin (ou laissez vide)",
+        "icon": "Entrez le nom de l'icône (par ex. FaBriefcase)",
         "description": "Description"
+      },
+      "errors": {
+        "title": "Le titre est requis",
+        "company": "L'entreprise est requise",
+        "description": "La description est requise",
+        "startDate": "La date de début est requise"
       }
     },
     "hero": {
       "loading": "Chargement...",
-      "error": "❌ Échec du chargement des données du héros",
-      "add": "➕ Ajouter un héros",
-      "edit": "✏️ Modifier le héros",
-      "editTitle": "✏️ Modifier la section Héros",
-      "newTitle": "➕ Créer une section Héros",
+      "error": "❌ Échec du chargement des données héro",
+      "add": "➕ Ajouter héro",
+      "edit": "✏️ Modifier héro",
+      "editTitle": "✏️ Modifier la section héro",
+      "newTitle": "➕ Créer la section héro",
       "name": "Nom",
       "tagline": "Slogan",
       "technologies": "Technologies (séparées par des virgules)",
-      "confirmDelete": "⚠️ Supprimer ce héros ?",
-      "delete": "🗑️ Supprimer le héros",
+      "errors": {
+        "name": "Le nom est requis",
+        "tagline": "Le slogan est requis",
+        "technologies": "Les technologies sont requises"
+      },
+      "confirmDelete": "⚠️ Supprimer ce héro ?",
+      "delete": "🗑️ Supprimer héro",
       "toast": {
-        "created": "✅ Héros créé",
+        "created": "✅ Héro créé",
         "createError": "❌ Échec de la création",
-        "updated": "✅ Héros mis à jour",
+        "updated": "✅ Héro mis à jour",
         "updateError": "❌ Échec de la mise à jour",
-        "deleted": "🗑️ Héros supprimé",
+        "deleted": "🗑️ Héro supprimé",
         "deleteError": "❌ Échec de la suppression"
       }
     },
@@ -206,37 +247,53 @@
       "title": "📨 Messages de contact",
       "loading": "Chargement...",
       "error": "❌ Échec du chargement des messages",
-      "noMessages": "Aucun message reçu pour l'instant.",
+      "noMessages": "Aucun message reçu pour le moment.",
       "confirmDelete": "❌ Supprimer ce message ?"
     },
     "contact": {
-      "loading": "⏳ Chargement des infos de contact...",
-      "notFound": "⚠️ Aucune info de contact trouvée. Vous pouvez en ajouter ci-dessous :",
-      "add": "➕ Ajouter une info de contact",
-      "title": "📇 Modifier les infos de contact",
+      "loading": "⏳ Chargement des informations de contact...",
+      "notFound": "⚠️ Aucune information de contact trouvée. Vous pouvez en ajouter ci-dessous :",
+      "add": "➕ Ajouter des informations de contact",
+      "title": "📇 Modifier les informations de contact",
       "placeholders": {
         "phone": "Entrez votre numéro de téléphone",
-        "email": "Entrez votre adresse email",
-        "location": "Entrez votre emplacement",
-        "github": "https://github.com/votre-nom",
-        "telegram": "https://t.me/votre-nom",
-        "linkedin": "https://linkedin.com/in/votre-nom"
+        "email": "Entrez votre adresse e-mail",
+        "location": "Entrez votre localisation",
+        "github": "https://github.com/votre-nom-utilisateur",
+        "telegram": "https://t.me/votre-nom-utilisateur",
+        "linkedin": "https://linkedin.com/in/votre-nom-utilisateur"
       },
-      "reset": "🧹 Réinitialiser aux valeurs sauvegardées",
-      "confirmDelete": "Êtes-vous sûr de vouloir supprimer les infos de contact ?",
+      "errors": {
+        "phone": "Le téléphone est requis",
+        "invalidEmail": "E-mail non valide",
+        "email": "L'e-mail est requis",
+        "location": "La localisation est requise",
+        "githubUrl": "URL GitHub non valide",
+        "github": "GitHub est requis",
+        "telegramUrl": "URL Telegram non valide",
+        "telegram": "Telegram est requis",
+        "linkedinUrl": "URL LinkedIn non valide",
+        "linkedin": "LinkedIn est requis"
+      },
+      "reset": "🧹 Réinitialiser à la dernière sauvegarde",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer les informations de contact ?",
       "toast": {
-        "created": "✅ Infos de contact créées",
-        "createError": "❌ Échec de la création",
-        "updated": "✅ Infos de contact mises à jour",
-        "updateError": "❌ Échec de la mise à jour",
-        "deleted": "🗑️ Infos de contact supprimées",
-        "deleteError": "❌ Échec de la suppression",
-        "noValid": "❌ Impossible de mettre à jour : aucune info valide"
+        "created": "✅ Informations de contact créées",
+        "createError": "❌ Échec de la création des informations de contact",
+        "updated": "✅ Informations de contact mises à jour",
+        "updateError": "❌ Échec de la mise à jour des informations de contact",
+        "deleted": "🗑️ Informations de contact supprimées",
+        "deleteError": "❌ Échec de la suppression des informations de contact",
+        "noValid": "❌ Impossible de mettre à jour : aucune information de contact valide trouvée"
       }
     }
   },
   "protected": {
     "checking": "Vérification de l'accès..."
+  },
+  "iconPicker": {
+    "placeholder": "Entrez le nom de l'icône (par ex. FaNodeJs)",
+    "noMatches": "Aucun résultat trouvé"
   },
   "languages": {
     "en": "Anglais",

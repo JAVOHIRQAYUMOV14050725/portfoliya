@@ -16,18 +16,17 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .transform((value) => value.replace(/\s+/g, ""))
-    .required("Phone is required"),
+    .required("admin.contact.errors.phone"),
 
   email: yup
     .string()
     .transform((value) => value.trim().toLowerCase())
-    .email("Invalid email")
-    .required("Email is required"),
-
+    .email("admin.contact.errors.invalidEmail")
+    .required("admin.contact.errors.email"),
   location: yup
     .string()
     .transform((value) => value.trim())
-    .required("Location is required"),
+    .required("admin.contact.errors.location"),
 
   github: yup
     .string()
@@ -37,8 +36,8 @@ const schema = yup.object().shape({
       }
       return originalValue;
     })
-    .url("Invalid GitHub URL")
-    .required("GitHub is required"),
+    .url("admin.contact.errors.githubUrl")
+    .required("admin.contact.errors.github"),
 
   telegram: yup
     .string()
@@ -51,8 +50,8 @@ const schema = yup.object().shape({
       }
       return originalValue;
     })
-    .url("Invalid Telegram URL")
-    .required("Telegram is required"),
+    .url("admin.contact.errors.telegramUrl")
+    .required("admin.contact.errors.telegram"),
 
   linkedin: yup
     .string()
@@ -62,8 +61,8 @@ const schema = yup.object().shape({
       }
       return originalValue;
     })
-    .url("Invalid LinkedIn URL")
-    .required("LinkedIn is required"),
+    .url("admin.contact.errors.linkedinUrl")
+    .required("admin.contact.errors.linkedin"),
 });
 
   
@@ -210,7 +209,7 @@ const AdminContactInfo = () => {
 
               {errors[name] && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors[name]?.message}
+                  {t(errors[name]?.message)}
                 </p>
               )}
             </div>

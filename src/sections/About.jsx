@@ -2,7 +2,6 @@
 import React from 'react';
 import Section from '../components/Section';
 import SectionTitle from '../components/SectionTitle';
-import portfolioData from '../data/portfolioData';
 import { useTranslation } from "react-i18next";
 
 const About = () => {
@@ -11,7 +10,7 @@ const About = () => {
     <Section id="about">
       <SectionTitle>{t("about.title")}</SectionTitle>
       <div className="max-w-3xl mx-auto text-center text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        <p>{portfolioData.about.bio}</p>
+        <p>{t("about.bio")}</p>
       </div>
     </Section>
   );

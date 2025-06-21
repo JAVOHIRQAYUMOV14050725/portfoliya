@@ -1,6 +1,7 @@
 // 📁 src/components/IconPicker.jsx
 import React, { useMemo } from "react";
 import * as FaIcons from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import * as SiIcons from "react-icons/si";
 import * as MdIcons from "react-icons/md";
 import * as GiIcons from "react-icons/gi";
@@ -19,6 +20,7 @@ const getIconComponent = (iconName) => {
 };
 
 const IconPicker = ({ value, onChange }) => {
+  const { t } = useTranslation();
   const suggestions = useMemo(() => {
     if (!value || value.length < 2) return [];
     return Object.keys(allIcons)
@@ -32,7 +34,7 @@ const IconPicker = ({ value, onChange }) => {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Enter icon name (e.g. FaNodeJs)"
+        placeholder={t("iconPicker.placeholder")}
         className={`w-full px-2 py-1 border ${
           getIconComponent(value) ? "border-gray-300" : "border-red-400"
         } rounded text-xs pr-10`}
@@ -57,7 +59,9 @@ const IconPicker = ({ value, onChange }) => {
               </div>
             ))
           ) : (
-            <div className="px-3 py-2 text-gray-400">No matches found</div>
+            <div className="px-3 py-2 text-gray-400">
+              {t("iconPicker.noMatches")}
+            </div>
           )}
         </div>
       )}

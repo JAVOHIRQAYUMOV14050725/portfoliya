@@ -87,7 +87,8 @@ const Experience = () => {
                     {item.company || t("experience.unknownCompany")}
                   </p>
                   <time className="block mb-3 text-xs font-medium text-slate-500 dark:text-slate-400">
-                    {item.startDate || "—"} — {item.endDate || "Present"}
+                    {item.startDate || "—"} —{" "}
+                    {item.endDate || t("experience.present")}
                   </time>
                   <p className="text-sm text-slate-600 dark:text-slate-300">
                     {item.description || t("experience.noDescription")}

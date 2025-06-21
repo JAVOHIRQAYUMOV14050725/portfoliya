@@ -15,11 +15,9 @@ import { useQueryClient } from "@tanstack/react-query";
 
 // ✅ Form validation schema
 const schema = yup.object({
-  name: yup.string().required("Name is required"),
-  tagline: yup.string().required("Tagline is required"),
-  technologies: yup
-    .string()
-    .required("Technologies (comma separated) is required"),
+  name: yup.string().required("admin.hero.errors.name"),
+  tagline: yup.string().required("admin.hero.errors.tagline"),
+  technologies: yup.string().required("admin.hero.errors.technologies"),
 });
 
 const AdminHero = () => {
@@ -163,7 +161,7 @@ const AdminHero = () => {
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:bg-slate-700 dark:text-white"
             />
             {errors.name && (
-              <p className="text-xs text-red-500">{errors.name.message}</p>
+              <p className="text-xs text-red-500">{t(errors.name.message)}</p>
             )}
           </div>
 
@@ -176,7 +174,9 @@ const AdminHero = () => {
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:bg-slate-700 dark:text-white"
             />
             {errors.tagline && (
-              <p className="text-xs text-red-500">{errors.tagline.message}</p>
+              <p className="text-xs text-red-500">
+                {t(errors.tagline.message)}
+              </p>
             )}
           </div>
 
@@ -190,7 +190,7 @@ const AdminHero = () => {
             />
             {errors.technologies && (
               <p className="text-xs text-red-500">
-                {errors.technologies.message}
+                {t(errors.technologies.message)}
               </p>
             )}
           </div>

@@ -154,7 +154,7 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
           <div className="relative mt-3">
             <img
               src={imageUrl}
-              alt="Preview"
+              alt={t("projectForm.previewAlt")}
               className="w-full h-40 object-cover rounded shadow border border-slate-300 dark:border-slate-600 cursor-pointer"
               onClick={() => setPreviewOpen(true)}
             />
@@ -171,7 +171,7 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
           <Dialog.Panel className="relative">
             <img
               src={imageUrl}
-              alt="Preview Full"
+              alt={t("projectForm.previewFullAlt")}
               className="max-h-[80vh] rounded"
             />
             <button

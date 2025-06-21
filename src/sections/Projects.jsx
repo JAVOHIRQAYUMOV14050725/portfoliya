@@ -33,6 +33,10 @@ const Projects = () => {
   const { t } = useTranslation();
   const { data: projects = [], isLoading, isError } = usePublicProjectsQuery();
 
+  const fallbackImageText = encodeURIComponent(
+    t("projects.imageNotFound") || "Image Not Found"
+  );
+
   if (isLoading)
     return (
       <Section>
@@ -66,11 +70,10 @@ const Projects = () => {
               <img
                 src={project.imageUrl}
                 alt={`${project.title} screenshot`}
-                className="w-full h-48 object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="..."
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src =
-                    "https://placehold.co/600x400/1a202c/ffffff?text=Image+Not+Found";
+                  e.target.src = `https://placehold.co/600x400/1a202c/ffffff?text=${fallbackImageText}`;
                 }}
               />
               <div
@@ -108,7 +111,7 @@ const Projects = () => {
               </p>
               <div className="mt-auto pt-4 border-t border-slate-200/60 dark:border-slate-700/60">
                 <h4 className="text-sm font-semibold mb-2 text-slate-700 dark:text-slate-200">
-                  Tech Stack:
+                  {t("projects.techStack")}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack?.map((tech, i) => (

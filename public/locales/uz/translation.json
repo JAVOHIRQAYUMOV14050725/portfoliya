@@ -91,7 +91,8 @@
     "loading": "Tajriba yuklanmoqda...",
     "untitled": "Nomsiz",
     "unknownCompany": "Noma'lum kompaniya",
-    "noDescription": "Tavsif kiritilmagan."
+    "noDescription": "Tavsif kiritilmagan.",
+    "present": "Hozirgi vaqt"
   },
   "projects": {
     "loading": "Loyihalar yuklanmoqda...",
@@ -99,7 +100,8 @@
     "title": "Tanlangan loyihalar",
     "liveDemo": "Jonli demo",
     "github": "GitHub",
-    "techStack": "Texnologiyalar to'plami"
+    "techStack": "Texnologiyalar to'plami",
+    "imageNotFound": "Rasm topilmadi"
   },
   "contactSection": {
     "loading": "Yuklanmoqda...",
@@ -119,8 +121,31 @@
     "reset": "Tiklash"
   },
   "toast": {
+    "__unused": true,
     "success": "✅ Muvaffaqiyatli!",
     "error": "❌ Nimadadir xatolik yuz berdi"
+  },
+  "projectForm": {
+    "fields": {
+      "title": "Sarlavha",
+      "description": "Tavsif",
+      "techStack": "Texnologiyalar to'plami",
+      "github": "GitHub URL",
+      "live": "Jonli demo URL"
+    },
+    "uploadLabel": "Loyiha rasmi",
+    "dropHere": "Fayllarni shu yerga tashlang...",
+    "dragHere": "Rasmni shu yerga sudrab keling yoki tanlash uchun bosing",
+    "cancel": "Bekor qilish",
+    "submit": "Yuborish",
+    "submitting": "Yuborilmoqda...",
+    "previewAlt": "Rasmni oldindan ko'rish",
+    "previewFullAlt": "To'liq o'lchamdagi ko'rish",
+    "errors": {
+      "title": "Sarlavha kiritilishi shart",
+      "github": "Noto'g'ri GitHub URL",
+      "live": "Noto'g'ri jonli demo URL"
+    }
   },
   "admin": {
     "projects": {
@@ -154,6 +179,9 @@
       "namePlaceholder": "masalan, React",
       "iconPlaceholder": "Ikonkani tanlang...",
       "levelPlaceholder": "masalan, B2",
+      "errors": {
+        "name": "Nomi kiritilishi shart"
+      },
       "table": {
         "skill": "Ko'nikma",
         "category": "Kategoriya",
@@ -181,6 +209,12 @@
         "end": "Tugash sanasi (yoki bo'sh qoldiring)",
         "icon": "Ikonka nomini kiriting (masalan, FaBriefcase)",
         "description": "Tavsif"
+      },
+      "errors": {
+        "title": "Sarlavha kiritilishi shart",
+        "company": "Kompaniya kiritilishi shart",
+        "description": "Tavsif kiritilishi shart",
+        "startDate": "Boshlanish sanasi kiritilishi shart"
       }
     },
     "hero": {
@@ -193,6 +227,11 @@
       "name": "Ism",
       "tagline": "Shior",
       "technologies": "Texnologiyalar (vergul bilan ajratilgan)",
+      "errors": {
+        "name": "Ism kiritilishi shart",
+        "tagline": "Shior kiritilishi shart",
+        "technologies": "Texnologiyalar kiritilishi shart"
+      },
       "confirmDelete": "⚠️ Bu bosh qismni o'chirishni xohlaysizmi?",
       "delete": "🗑️ Bosh qismni o'chirish",
       "toast": {
@@ -224,6 +263,18 @@
         "telegram": "https://t.me/sizning-foydalanuvchi-nomingiz",
         "linkedin": "https://linkedin.com/in/sizning-foydalanuvchi-nomingiz"
       },
+      "errors": {
+        "phone": "Telefon kiritilishi shart",
+        "invalidEmail": "Noto'g'ri elektron pochta",
+        "email": "Elektron pochta kiritilishi shart",
+        "location": "Manzil kiritilishi shart",
+        "githubUrl": "Noto'g'ri GitHub URL",
+        "github": "GitHub kiritilishi shart",
+        "telegramUrl": "Noto'g'ri Telegram URL",
+        "telegram": "Telegram kiritilishi shart",
+        "linkedinUrl": "Noto'g'ri LinkedIn URL",
+        "linkedin": "LinkedIn kiritilishi shart"
+      },
       "reset": "🧹 Oxirgi saqlangan holatga qaytarish",
       "confirmDelete": "Aloqa ma'lumotlarini o'chirishni xohlaysizmi?",
       "toast": {
@@ -239,6 +290,10 @@
   },
   "protected": {
     "checking": "Kirish huquqi tekshirilmoqda..."
+  },
+  "iconPicker": {
+    "placeholder": "Ikonka nomini kiriting (masalan, FaNodeJs)",
+    "noMatches": "Hech narsa topilmadi"
   },
   "languages": {
     "en": "Inglizcha",
