@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { useHeroQuery } from "../api/heroApi";
 import Typewriter from "../components/Typewriter";
 import Section from "../components/Section";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = useHeroQuery();
 
   if (isLoading || !data) return null;
@@ -48,13 +50,13 @@ const Hero = () => {
             to="/projects"
             className="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-lg shadow-lg hover:bg-cyan-600 transition-all transform hover:scale-105"
           >
-            View Projects
+            {t("hero.viewProjects")}
           </Link>
           <Link
             to="/contact"
             className="px-6 py-3 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-semibold rounded-lg shadow-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-all transform hover:scale-105"
           >
-            Contact Me
+            {t("hero.contactMe")}
           </Link>
         </motion.div>
       </div>

@@ -4,23 +4,25 @@ import { Mail, Smartphone, MapPin, Github, Send, Linkedin } from "lucide-react";
 import Section from "../components/Section";
 import SectionTitle from "../components/SectionTitle";
 import { usePublicContactInfo } from "../api/contactInfoApi";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = usePublicContactInfo();
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading)
+    return <p className="text-center">{t("contactSection.loading")}</p>;
 
   return (
     <Section id="contact">
-      <SectionTitle>📬 Contact Me</SectionTitle>
+      <SectionTitle>{t("contactSection.title")}</SectionTitle>
       <div className="grid md:grid-cols-2 gap-12">
         <div className="space-y-6">
           <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-            Contact Information
+            {t("contactSection.information")}
           </h3>
           <p className="text-slate-600 dark:text-slate-300">
-            I'm open to meaningful collaborations and exciting backend
-            opportunities. Let's build something impactful together!
+            {t("contactSection.description")}
           </p>
           <div className="space-y-4">
             <a href={`tel:${data.phone}`} className="flex items-center group">

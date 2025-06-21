@@ -9,6 +9,7 @@ import { Dialog } from "@headlessui/react";
 import { FilePond, registerPlugin } from "react-filepond";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import { useTranslation } from "react-i18next";
 import "filepond/dist/filepond.min.css";
 import axios from "../utils/axios";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
@@ -16,23 +17,28 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
 
 const schema = yup.object().shape({
-  title: yup.string().required("Title is required"),
+  title: yup.string().required("projectForm.errors.title"),
   description: yup.string(),
   techStack: yup.string(),
-  githubUrl: yup.string().url("Invalid GitHub URL"),
-  liveUrl: yup.string().url("Invalid Live URL"),
+  githubUrl: yup.string().url("projectForm.errors.github"),
+  liveUrl: yup.string().url("projectForm.errors.live"),
   imageUrl: yup.string().nullable(),
 });
 
 const fields = [
-  { name: "title", label: "Project Title" },
-  { name: "description", label: "Description", type: "textarea" },
-  { name: "techStack", label: "Tech Stack (comma-separated)" },
-  { name: "githubUrl", label: "GitHub URL", type: "url" },
-  { name: "liveUrl", label: "Live URL", type: "url" },
+  { name: "title", labelKey: "projectForm.fields.title" },
+  {
+    name: "description",
+    labelKey: "projectForm.fields.description",
+    type: "textarea",
+  },
+  { name: "techStack", labelKey: "projectForm.fields.techStack" },
+  { name: "githubUrl", labelKey: "projectForm.fields.github", type: "url" },
+  { name: "liveUrl", labelKey: "projectForm.fields.live", type: "url" },
 ];
 
 const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -95,10 +101,10 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
     >
       <input type="hidden" {...register("imageUrl")} />
 
-      {fields.map(({ name, label, type = "text" }) => (
+      {fields.map(({ name, labelKey, type = "text" }) => (
         <div key={name}>
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">
-            {label}
+            {t(labelKey)}
           </label>
           {type === "textarea" ? (
             <textarea
@@ -122,14 +128,16 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
             />
           )}
           {errors[name] && (
-            <p className="text-xs text-red-500 mt-1">{errors[name].message}</p>
+            <p className="text-xs text-red-500 mt-1">
+              {t(errors[name].message)}
+            </p>
           )}
         </div>
       ))}
 
       <div>
         <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">
-          Upload Project Image (drag & drop)
+          {t("projectForm.uploadLabel")}
         </label>
         <div
           {...getRootProps()}
@@ -137,9 +145,9 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
         >
           <input {...getInputProps()} />
           {isDragActive ? (
-            <p>Drop the image here ...</p>
+            <p>{t("projectForm.dropHere")}</p>
           ) : (
-            <p>Drag & drop image here, or click to select file</p>
+            <p>{t("projectForm.dragHere")}</p>
           )}
         </div>
         {imageUrl && (
@@ -183,7 +191,7 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
             onClick={onCancel}
             className="px-4 py-2 bg-gray-200 dark:bg-slate-700 text-sm text-black dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-600"
           >
-            Cancel
+            {t("projectForm.cancel")}
           </button>
         )}
         <button
@@ -191,7 +199,7 @@ const ProjectForm = ({ defaultValues = {}, onSubmit, onCancel, loading }) => {
           disabled={loading}
           className="px-4 py-2 bg-cyan-600 text-white text-sm font-semibold rounded hover:bg-cyan-700 disabled:opacity-50"
         >
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? t("projectForm.submitting") : t("projectForm.submit")}
         </button>
       </div>
     </motion.form>

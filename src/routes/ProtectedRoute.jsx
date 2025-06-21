@@ -2,8 +2,8 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "../utils/axios";
+import { useTranslation } from "react-i18next";
 
-// ✅ Cookie asosidagi sessiyani yuborish uchun
 axios.defaults.withCredentials = true;
 
 // ✅ Backenddan foydalanuvchi ma'lumotini olish
@@ -13,6 +13,7 @@ const fetchMe = async () => {
 };
 
 const ProtectedRoute = ({ children }) => {
+  const { t } = useTranslation();
   const {
     data: user,
     isLoading,
@@ -26,7 +27,7 @@ const ProtectedRoute = ({ children }) => {
   if (isLoading) {
     return (
       <div className="text-center mt-20 text-lg text-gray-700 dark:text-gray-300">
-        Checking access...
+        {t("protected.checking")}
       </div>
     );
   }

@@ -5,6 +5,7 @@ import axios from "../utils/axios";
 import { Briefcase, GraduationCap } from "lucide-react"; // Yangi ikonkalarni import qilamiz
 import Section from "../components/Section";
 import SectionTitle from "../components/SectionTitle";
+import { useTranslation } from "react-i18next";
 
 const fetchExperience = async () => {
   // Ma'lumotlarni serverdan olish
@@ -28,6 +29,7 @@ const timelineItemConfig = {
 };
 
 const Experience = () => {
+  const { t } = useTranslation();
   const { data: experienceList = [], isLoading } = useQuery({
     queryKey: ["experience"],
     queryFn: fetchExperience,
@@ -36,15 +38,17 @@ const Experience = () => {
   if (isLoading) {
     return (
       <Section id="experience">
-        <SectionTitle>Career & Education</SectionTitle>
-        <div className="text-center text-slate-400">Loading experience...</div>
+        <SectionTitle>{t("experience.title")}</SectionTitle>
+        <div className="text-center text-slate-400">
+          {t("experience.loading")}
+        </div>
       </Section>
     );
   }
 
   return (
     <Section id="experience" className="font-sans">
-      <SectionTitle>Career & Education</SectionTitle>
+      <SectionTitle>{t("experience.title")}</SectionTitle>
 
       {/* Asosiy timeline container */}
       <div className="relative max-w-5xl mx-auto mt-12">
@@ -77,16 +81,16 @@ const Experience = () => {
                 {/* Kartochka dizayni */}
                 <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-lg border border-transparent dark:border-slate-700/50 hover:border-cyan-500 transition-all duration-300">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-                    {item.title || "Untitled"}
+                    {item.title || t("experience.untitled")}
                   </h3>
                   <p className="text-cyan-600 dark:text-cyan-400 text-sm font-medium mb-1">
-                    {item.company || "Unknown Company"}
+                    {item.company || t("experience.unknownCompany")}
                   </p>
                   <time className="block mb-3 text-xs font-medium text-slate-500 dark:text-slate-400">
                     {item.startDate || "—"} — {item.endDate || "Present"}
                   </time>
                   <p className="text-sm text-slate-600 dark:text-slate-300">
-                    {item.description || "No description provided."}
+                    {item.description || t("experience.noDescription")}
                   </p>
                 </div>
               </motion.div>

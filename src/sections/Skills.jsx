@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Section from "../components/Section";
 import SectionTitle from "../components/SectionTitle";
 import { useSkillsQuery } from "../api/skillApi";
+import { useTranslation } from "react-i18next";
 
 // Ikonkalarni kategoriyalar uchun ham olamiz
 import { FaBrain, FaRegHandshake, FaGlobeAmericas } from "react-icons/fa";
@@ -64,6 +65,7 @@ const SkillChip = ({ skill }) => (
 );
 
 const Skills = () => {
+  const { t } = useTranslation();
   const { data = [], isLoading } = useSkillsQuery();
 
   const grouped = {
@@ -89,10 +91,10 @@ const Skills = () => {
 
   return (
     <Section id="skills" className="bg-slate-50 dark:bg-slate-900/50">
-      <SectionTitle>My Technical Arsenal</SectionTitle>
+      <SectionTitle>{t("skills.title")}</SectionTitle>
 
       {isLoading ? (
-        <div className="text-center text-slate-400">Loading skills...</div>
+        <div className="text-center text-slate-400">{t("skills.loading")}</div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {/* Hard Skills Card */}
@@ -106,7 +108,7 @@ const Skills = () => {
             <div className="flex items-center mb-6">
               <FaBrain className="text-3xl text-cyan-500 mr-4" />
               <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-                Hard Skills
+                {t("skills.hard")}
               </h3>
             </div>
             <div>
@@ -127,7 +129,7 @@ const Skills = () => {
             <div className="flex items-center mb-6">
               <FaRegHandshake className="text-3xl text-cyan-500 mr-4" />
               <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-                Soft Skills
+                {t("skills.soft")}
               </h3>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -148,7 +150,7 @@ const Skills = () => {
             <div className="flex items-center mb-6">
               <FaGlobeAmericas className="text-3xl text-cyan-500 mr-4" />
               <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
-                Languages
+                {t("skills.languages")}
               </h3>
             </div>
             <div className="flex flex-wrap gap-3">

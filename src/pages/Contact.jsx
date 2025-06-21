@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useContactInfoQuery } from "../api/contactInfoApi";
 import ContactForm from "../components/ContactForm";
+import { useTranslation } from "react-i18next";
 
 // Framer Motion va React Icons importlari
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = useContactInfoQuery();
   const [expandedItems, setExpandedItems] = useState([]);
 
@@ -22,34 +24,34 @@ const Contact = () => {
   const contactItems = data
     ? [
         {
-          label: "Phone",
+          label: t("contactPage.phone"),
           value: data.phone,
           icon: <FaPhone className="text-cyan-400" />,
         },
         {
-          label: "Email",
+          label: t("contactPage.email"),
           value: data.email,
           icon: <FaEnvelope className="text-cyan-400" />,
         },
         {
-          label: "Location",
+          label: t("contactPage.location"),
           value: data.location,
           icon: <FaMapMarkerAlt className="text-cyan-400" />,
         },
         {
-          label: "Telegram",
+          label: t("contactPage.telegram"),
           value: data.telegram,
           icon: <FaTelegramPlane className="text-cyan-400" />,
           link: `https://t.me/${data.telegram.replace("@", "")}`,
         },
         {
-          label: "GitHub",
+          label: t("contactPage.github"),
           value: data.github,
           icon: <FaGithub className="text-cyan-400" />,
           link: data.github,
         },
         {
-          label: "LinkedIn",
+          label: t("contactPage.linkedin"),
           value: data.linkedin,
           icon: <FaLinkedin className="text-cyan-400" />,
           link: data.linkedin,
@@ -96,10 +98,10 @@ const Contact = () => {
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Get in Touch 📨
+          {t("contactPage.title")}
         </h1>
         <p className="text-lg text-slate-400">
-          I'm always open to discussing new projects, creative ideas or
+          {t("contactPage.subtitle")}
           opportunities.
         </p>
       </motion.div>
@@ -114,25 +116,25 @@ const Contact = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold">Contact Details</h2>
+            <h2 className="text-2xl font-semibold">
+              {t("contactPage.details")}
+            </h2>
             {!isLoading && data && (
               <button
                 onClick={toggleAll}
                 className="text-sm bg-cyan-600 px-4 py-2 rounded-lg hover:bg-cyan-700 transition-colors duration-300 font-semibold"
               >
                 {expandedItems.length === contactItems.length
-                  ? "Collapse All"
-                  : "Expand All"}
+                  ? t("contactPage.collapseAll")
+                  : t("contactPage.expandAll")}
               </button>
             )}
           </div>
 
           {isLoading ? (
-            <p className="text-gray-400">Loading contact info...</p>
+            <p className="text-gray-400">{t("contactPage.loading")}</p>
           ) : !data ? (
-            <p className="text-red-400">
-              Contact information couldn't be loaded.
-            </p>
+            <p className="text-red-400">{t("contactPage.failed")}</p>
           ) : (
             <motion.ul
               className="space-y-3"

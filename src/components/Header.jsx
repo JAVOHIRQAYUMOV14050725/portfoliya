@@ -6,8 +6,10 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import portfolioData from "../data/portfolioData";
+import { useTranslation } from "react-i18next";
 
 const Header = ({ theme, setTheme }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
@@ -20,25 +22,25 @@ const Header = ({ theme, setTheme }) => {
   }, []);
 
   const publicLinks = [
-    { to: "/", label: "Home" },
-    { to: "/skills", label: "Skills" },
-    { to: "/experience", label: "Experience" },
-    { to: "/projects", label: "Projects" },
-    { to: "/contact", label: "Contact" },
+    { to: "/", label: t("header.nav.home") },
+    { to: "/skills", label: t("header.nav.skills") },
+    { to: "/experience", label: t("header.nav.experience") },
+    { to: "/projects", label: t("header.nav.projects") },
+    { to: "/contact", label: t("header.nav.contact") },
   ];
 
   const adminLinks = {
     manage: [
-      { to: "/admin/projects", label: "Manage Projects" },
-      { to: "/admin/skills", label: "Manage Skills" },
-      { to: "/admin/experience", label: "Manage Experience" },
-      { to: "/admin/hero", label: "Manage Hero" },
-      { to: "/admin/messages", label: "Admin Messages" },
-      { to: "/admin/contact-info", label: "Manage Contact Info" },
+      { to: "/admin/projects", label: t("header.admin.manageProjects") },
+      { to: "/admin/skills", label: t("header.admin.manageSkills") },
+      { to: "/admin/experience", label: t("header.admin.manageExperience") },
+      { to: "/admin/hero", label: t("header.admin.manageHero") },
+      { to: "/admin/messages", label: t("header.admin.adminMessages") },
+      { to: "/admin/contact-info", label: t("header.admin.manageContact") },
     ],
     public: [
-      { to: "/projects", label: "↳ Public Projects" },
-      { to: "/skills", label: "↳ Public Skills" },
+      { to: "/projects", label: t("header.admin.publicProjects") },
+      { to: "/skills", label: t("header.admin.publicSkills") },
     ],
   };
 
@@ -86,12 +88,12 @@ const Header = ({ theme, setTheme }) => {
               <DropdownMenu.Root>
                 <DropdownMenu.Trigger asChild>
                   <button className="px-3 py-1 border border-cyan-500 text-cyan-500 rounded text-sm hover:bg-cyan-100 dark:hover:bg-slate-800">
-                    Admin Panel
+                    {t("header.admin.panel")}
                   </button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content className="w-64 p-3 bg-white dark:bg-slate-800 shadow-lg rounded space-y-2 z-50">
                   <h4 className="text-xs uppercase font-semibold text-gray-400">
-                    Manage
+                    {t("header.admin.manageTitle")}
                   </h4>
                   {adminLinks.manage.map((link) => (
                     <DropdownMenu.Item key={link.to} asChild>
@@ -105,7 +107,7 @@ const Header = ({ theme, setTheme }) => {
                   ))}
                   <hr className="border-slate-300 dark:border-slate-600" />
                   <h4 className="text-xs uppercase font-semibold text-gray-400">
-                    Preview
+                    {t("header.admin.previewTitle")}
                   </h4>
                   {adminLinks.public.map((link) => (
                     <DropdownMenu.Item key={link.to} asChild>
@@ -130,7 +132,7 @@ const Header = ({ theme, setTheme }) => {
                 onClick={handleLogout}
                 className="hidden md:inline-block px-4 py-1.5 bg-red-600 text-white rounded hover:bg-red-700"
               >
-                Logout
+                {t("header.logout")}
               </button>
             )}
             <button
@@ -172,7 +174,7 @@ const Header = ({ theme, setTheme }) => {
               onClick={handleLogout}
               className="w-full py-2 bg-red-600 text-white rounded hover:bg-red-700"
             >
-              Logout
+              {t("header.logout")}
             </button>
           )}
         </div>

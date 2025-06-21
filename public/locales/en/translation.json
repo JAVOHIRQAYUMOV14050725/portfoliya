@@ -1,14 +1,108 @@
 {
-  "About": "About",
-  "Skills": "Skills",
-  "Experience": "Experience",
-  "Projects": "Projects",
-  "Contact": "Contact",
-  "Full Name": "Full Name",
-  "Email Address": "Email Address",
-  "Message": "Message",
-  "Send Message": "Send Message",
-  "Sending...": "Sending...",
-  "Get In Touch": "Get In Touch",
-  "Contact Information": "Contact Information"
+  "header": {
+    "nav": {
+      "home": "Home",
+      "skills": "Skills",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "admin": {
+      "manageProjects": "Manage Projects",
+      "manageSkills": "Manage Skills",
+      "manageExperience": "Manage Experience",
+      "manageHero": "Manage Hero",
+      "adminMessages": "Admin Messages",
+      "manageContact": "Manage Contact Info",
+      "publicProjects": "↳ Public Projects",
+      "publicSkills": "↳ Public Skills",
+      "panel": "Admin Panel",
+      "manageTitle": "Manage",
+      "previewTitle": "Preview"
+    },
+    "logout": "Logout"
+  },
+  "footer": {
+    "copy": "© {{year}} {{name}}. All Rights Reserved."
+  },
+  "themeToggle": { "aria": "Toggle theme" },
+  "contactForm": {
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "toast": {
+      "success": "📨 Message sent successfully!",
+      "error": "❌ Failed to send message"
+    },
+    "errors": {
+      "fullName": "Full name is required",
+      "email": "Email is required",
+      "message": "Message is required"
+    }
+  },
+  "login": {
+    "success": "✅ Login successful!",
+    "error": "❌ Login failed. Check your credentials.",
+    "title": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "errors": {
+      "email": "Email is required",
+      "password": "Password is required"
+    },
+    "loading": "Logging in...",
+    "submit": "Login"
+  },
+  "contactPage": {
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "title": "Get in Touch 📨",
+    "subtitle": "I'm always open to discussing new projects, creative ideas or opportunities.",
+    "details": "Contact Details",
+    "collapseAll": "Collapse All",
+    "expandAll": "Expand All",
+    "loading": "Loading contact info...",
+    "failed": "Contact information couldn't be loaded."
+  },
+  "hero": {
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": { "title": "About Me" },
+  "skills": {
+    "title": "My Technical Arsenal",
+    "loading": "Loading skills...",
+    "hard": "Hard Skills",
+    "soft": "Soft Skills",
+    "languages": "Languages"
+  },
+  "experience": {
+    "title": "Career & Education",
+    "loading": "Loading experience...",
+    "untitled": "Untitled",
+    "unknownCompany": "Unknown Company",
+    "noDescription": "No description provided."
+  },
+  "projects": {
+    "loading": "Loading projects...",
+    "error": "Failed to load projects.",
+    "title": "Featured Projects",
+    "liveDemo": "Live Demo",
+    "github": "GitHub"
+  },
+  "contactSection": {
+    "loading": "Loading...",
+    "title": "📬 Contact Me",
+    "information": "Contact Information",
+    "description": "I'm open to meaningful collaborations and exciting backend opportunities. Let's build something impactful together!"
+  },
+  "protected": {
+    "checking": "Checking access..."
+  }
 }

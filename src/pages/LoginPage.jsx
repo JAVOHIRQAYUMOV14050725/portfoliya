@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import axios from "../utils/axios";
+import { useTranslation } from "react-i18next";
 
 function LoginPage() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -16,7 +18,7 @@ function LoginPage() {
         withCredentials: true,
       });
 
-      toast.success("✅ Login successful!", {
+      toast.success(t("login.success"), {
         icon: "🚀",
         duration: 3000,
       });
@@ -25,14 +27,14 @@ function LoginPage() {
         window.location.href = "/admin/projects";
       }, 1000); // 1 sekund kutib, yo'naltirish
     } catch (err) {
-      toast.error("❌ Login failed. Check your credentials.");
+      toast.error(t("login.error"));
     }
   };
 
   return (
     <div className="max-w-md mx-auto mt-24 px-4">
       <h1 className="text-3xl font-bold text-center mb-6 text-slate-800 dark:text-white">
-        🔐 Admin Login
+        🔐 {t("login.title")}
       </h1>
 
       <form
@@ -42,31 +44,33 @@ function LoginPage() {
         {/* Email Field */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Email
+            {t("login.email")}
           </label>
           <input
             type="email"
-            {...register("email", { required: "Email is required" })}
+            {...register("email", { required: "login.errors.email" })}
             className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {t(errors.email.message)}
+            </p>
           )}
         </div>
 
         {/* Password Field */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Password
+            {t("login.password")}
           </label>
           <input
             type="password"
-            {...register("password", { required: "Password is required" })}
+            {...register("password", { required: "login.errors.password" })}
             className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">
-              {errors.password.message}
+              {t(errors.password.message)}
             </p>
           )}
         </div>
@@ -77,7 +81,7 @@ function LoginPage() {
           disabled={isSubmitting}
           className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? "Logging in..." : "Login"}
+          {isSubmitting ? t("login.loading") : t("login.submit")}
         </button>
       </form>
     </div>
