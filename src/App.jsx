@@ -20,7 +20,6 @@ import AdminHero from "./pages/admin/AdminHero";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminContactInfo from "./pages/admin/AdminContactInfo";
 
-const queryClient = new QueryClient();
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
@@ -40,79 +39,75 @@ const App = () => {
   }, [theme]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="bg-white dark:bg-slate-900 transition-colors duration-300 min-h-screen flex flex-col">
-          <Toaster position="top-right" reverseOrder={false} />{" "}
-          {/* ✅ toast display */}
-          <Header theme={theme} setTheme={setTheme} />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<LoginPage />} />
+    <div className="bg-white dark:bg-slate-900 transition-colors duration-300 min-h-screen flex flex-col">
+      <Toaster position="top-right" reverseOrder={false} />
+      <Header theme={theme} setTheme={setTheme} />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<LoginPage />} />
 
-              {/* ✅ Admin Routes */}
-              <Route
-                path="/admin/projects"
-                element={
-                  <ProtectedRoute>
-                    <AdminProjects />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/messages"
-                element={
-                  <ProtectedRoute>
-                    <AdminMessages />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/skills"
-                element={
-                  <ProtectedRoute>
-                    <AdminSkills />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/admin/experience"
-                element={
-                  <ProtectedRoute>
-                    <AdminExperience />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/hero"
-                element={
-                  <ProtectedRoute>
-                    <AdminHero />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/contact-info"
-                element={
-                  <ProtectedRoute>
-                    <AdminContactInfo />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </QueryClientProvider>
+          {/* Admin Routes */}
+          <Route
+            path="/admin/projects"
+            element={
+              <ProtectedRoute>
+                <AdminProjects />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/messages"
+            element={
+              <ProtectedRoute>
+                <AdminMessages />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/skills"
+            element={
+              <ProtectedRoute>
+                <AdminSkills />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/experience"
+            element={
+              <ProtectedRoute>
+                <AdminExperience />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/hero"
+            element={
+              <ProtectedRoute>
+                <AdminHero />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/contact-info"
+            element={
+              <ProtectedRoute>
+                <AdminContactInfo />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 };
+
+
 
 export default App;

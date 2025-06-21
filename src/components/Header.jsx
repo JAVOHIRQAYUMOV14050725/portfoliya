@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import axios from "../utils/axios";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import portfolioData from "../data/portfolioData";
 
 const Header = ({ theme, setTheme }) => {
@@ -122,6 +123,7 @@ const Header = ({ theme, setTheme }) => {
           </nav>
 
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             <ThemeToggle theme={theme} setTheme={setTheme} />
             {isAuthenticated && (
               <button

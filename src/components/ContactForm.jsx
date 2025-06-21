@@ -1,5 +1,6 @@
 // src/components/ContactForm.tsx
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -13,6 +14,7 @@ const schema = yup.object().shape({
 });
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   const createContact = useCreateContact();
 
   const {
@@ -43,7 +45,7 @@ const ContactForm = () => {
     >
       <div>
         <label className="block mb-1 font-medium text-slate-700 dark:text-slate-300">
-          Full Name
+          {t("Full Name")}
         </label>
         <input type="text" {...register("fullName")} className="input" />
         {errors.fullName && (
@@ -53,7 +55,7 @@ const ContactForm = () => {
 
       <div>
         <label className="block mb-1 font-medium text-slate-700 dark:text-slate-300">
-          Email
+          {t("Email Address")}
         </label>
         <input type="email" {...register("email")} className="input" />
         {errors.email && (
@@ -63,7 +65,7 @@ const ContactForm = () => {
 
       <div>
         <label className="block mb-1 font-medium text-slate-700 dark:text-slate-300">
-          Message
+          {t("Message")}
         </label>
         <textarea rows={5} {...register("message")} className="input" />
         {errors.message && (
@@ -76,7 +78,7 @@ const ContactForm = () => {
         disabled={isSubmitting}
         className="bg-cyan-600 hover:bg-cyan-700 text-white px-5 py-2 rounded-md disabled:opacity-50"
       >
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? t("Sending...") : t("Send Message")}
       </button>
     </form>
   );

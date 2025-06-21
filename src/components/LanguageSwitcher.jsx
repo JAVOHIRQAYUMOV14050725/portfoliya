@@ -6,24 +6,26 @@ const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'en', label: '🇺🇸' },
-    { code: 'uz', label: '🇺🇿' },
-    { code: 'ru', label: '🇷🇺' }
+    { code: "en", label: "🇬🇧 English" },
+    { code: "uz", label: "🇺🇿 O\u2018zbek" },
+    { code: "ru", label: "🇷🇺 \u0420\u0443\u0441\u0441\u043A\u0438\u0439" },
+    { code: "fr", label: "🇫🇷 Fran\u00E7ais" },
+    { code: "zh", label: "🇨🇳 \u4E2D\u6587" },
   ];
 
-  return (
-    <div className="flex items-center space-x-2">
+  <select
+  className="bg-transparent border rounded px-2 py-1 text-sm dark:text-slate-200"
+  value={i18n.language}
+  onChange={(e) => i18n.changeLanguage(e.target.value)}
+>
       {languages.map(({ code, label }) => (
-        <button
-          key={code}
-          onClick={() => i18n.changeLanguage(code)}
-          className={`text-xl transition-all hover:scale-110 ${i18n.language === code ? 'text-cyan-500 font-bold' : 'text-slate-500 dark:text-slate-400'}`}
-        >
+            <option key={code} value={code}>
+
           {label}
-        </button>
+          </option>
       ))}
-    </div>
-  );
+    </select>
+
 };
 
 export default LanguageSwitcher;
