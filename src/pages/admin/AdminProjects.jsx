@@ -10,6 +10,13 @@ import ProjectForm from "../../components/ProjectForm";
 
 const AdminProjects = () => {
   const { t } = useTranslation();
+  const toastCreated = t("admin.projects.toast.created");
+  const toastCreateError = t("admin.projects.toast.createError");
+  const toastUpdated = t("admin.projects.toast.updated");
+  const toastUpdateError = t("admin.projects.toast.updateError");
+  const confirmDeleteMsg = t("admin.projects.confirmDelete");
+  const toastDeleted = t("admin.projects.toast.deleted");
+  const toastDeleteError = t("admin.projects.toast.deleteError");
   const { data: projects = [], isLoading, isError } = useProjectsQuery();
   const createMutation = useCreateProject();
   const updateMutation = useUpdateProject();
@@ -32,10 +39,10 @@ const AdminProjects = () => {
   const handleCreate = (values) => {
     createMutation.mutate(values, {
       onSuccess: () => {
-        showToast(t("admin.projects.toast.created"));
+        showToast(toastCreated);
         closeForm();
       },
-      onError: () => showToast(t("admin.projects.toast.createError"), "error"),
+      onError: () => showToast(toastCreateError, "error"),
     });
   };
 
@@ -45,20 +52,19 @@ const AdminProjects = () => {
       { id: editing.id, data: values },
       {
         onSuccess: () => {
-          showToast(t("admin.projects.toast.updated"));
+          showToast(toastUpdated);
           closeForm();
         },
-        onError: () =>
-          showToast(t("admin.projects.toast.updateError"), "error"),
+        onError: () => showToast(toastUpdateError, "error"),
       }
     );
   };
 
   const handleDelete = (id) => {
-    if (!window.confirm(t("admin.projects.confirmDelete"))) return;
+    if (!window.confirm(confirmDeleteMsg)) return; // ✅ i18n fixed
     deleteMutation.mutate(id, {
-      onSuccess: () => showToast(t("admin.projects.toast.deleted")),
-      onError: () => showToast(t("admin.projects.toast.deleteError"), "error"),
+      onSuccess: () => showToast(toastDeleted),
+      onError: () => showToast(toastDeleteError, "error"),
     });
   };
 

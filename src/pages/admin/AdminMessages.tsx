@@ -1,10 +1,11 @@
 import React from 'react';
 import { useMessagesQuery, useDeleteMessage } from '../../api/massageApi';
-import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
+import dayjs from '../../setup/dayjs';
 
 const AdminMessages = () => {
     const { t } = useTranslation();
+    const confirmDeleteMsg = t('admin.messages.confirmDelete');
     const { data: messages = [], isLoading, isError } = useMessagesQuery();
     const deleteMessage = useDeleteMessage();
 
@@ -28,11 +29,14 @@ const AdminMessages = () => {
                                     <h3 className="font-semibold text-cyan-700 dark:text-cyan-300">{msg.fullName}</h3>
                                     <p className="text-sm text-slate-600 dark:text-slate-400">{msg.email}</p>
                                     <p className="text-sm mt-2">{msg.message}</p>
-                                    <p className="text-xs text-slate-400 mt-1">{dayjs(msg.createdAt).format('YYYY-MM-DD HH:mm')}</p>
+                                    <p className="text-xs text-slate-400 mt-1">
+                                        {dayjs(msg.createdAt).format('YYYY-MM-DD HH:mm')}
+                                    </p>
+
                                 </div>
                                 <button
                                     onClick={() => {
-                                        if (confirm(t('admin.messages.confirmDelete'))) {
+                                        if (confirm(confirmDeleteMsg)) {
                                             deleteMessage.mutate(msg.id);
                                         }
                                     }}

@@ -68,6 +68,15 @@ const schema = yup.object().shape({
   
 const AdminContactInfo = () => {
   const { t } = useTranslation();
+  const contactNoValid = t("admin.contact.toast.noValid");
+  const toastUpdated = t("admin.contact.toast.updated");
+  const toastUpdateError = t("admin.contact.toast.updateError");
+  const toastCreated = t("admin.contact.toast.created");
+  const toastCreateError = t("admin.contact.toast.createError");
+  const toastDeleted = t("admin.contact.toast.deleted");
+  const toastDeleteError = t("admin.contact.toast.deleteError");
+  const resetMsg = t("admin.contact.reset");
+  const confirmDeleteMsg = t("admin.contact.confirmDelete");
   const { data, isLoading } = useContactInfoQuery();
   const updateMutation = useUpdateContactInfo();
   const createMutation = useCreateContactInfo();
@@ -91,15 +100,15 @@ const AdminContactInfo = () => {
 
   const onSubmit = (values) => {
     if (!data?.id || isNaN(data.id)) {
-      toast.error(t("admin.contact.toast.noValid"));
+      toast.error(contactNoValid);
       return;
     }
 
     updateMutation.mutate(
       { id: data.id, ...values },
       {
-        onSuccess: () => toast.success(t("admin.contact.toast.updated")),
-        onError: () => toast.error(t("admin.contact.toast.updateError")),
+        onSuccess: () => toast.success(toastUpdated),
+        onError: () => toast.error(toastUpdateError),
       }
     );
   };
@@ -115,8 +124,8 @@ const AdminContactInfo = () => {
         linkedin: "",
       },
       {
-        onSuccess: () => toast.success(t("admin.contact.toast.created")),
-        onError: () => toast.error(t("admin.contact.toast.createError")),
+        onSuccess: () => toast.success(toastCreated),
+        onError: () => toast.error(toastCreateError),
       }
     );
   };
@@ -228,7 +237,7 @@ const AdminContactInfo = () => {
 
         <button
           type="button"
-          onClick={() => toast(t("admin.contact.reset")) || reset(data)}
+          onClick={() => toast(resetMsg) || reset(data)}
           className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md"
         >
           {t("form.reset")}
@@ -236,12 +245,10 @@ const AdminContactInfo = () => {
         <button
           type="button"
           onClick={() => {
-            if (confirm(t("admin.contact.confirmDelete"))) {
+            if (confirm(confirmDeleteMsg)) {
               deleteMutation.mutate(data.id, {
-                onSuccess: () =>
-                  toast.success(t("admin.contact.toast.deleted")),
-                onError: () =>
-                  toast.error(t("admin.contact.toast.deleteError")),
+                onSuccess: () => toast.success(toastDeleted),
+                onError: () => toast.error(toastDeleteError),
               });
             }
           }}

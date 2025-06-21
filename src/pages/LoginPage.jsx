@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 
 function LoginPage() {
   const { t } = useTranslation();
+  const loginSuccess = t("login.success");
+  const loginError = t("login.error"); 
   const {
     register,
     handleSubmit,
@@ -18,7 +20,7 @@ function LoginPage() {
         withCredentials: true,
       });
 
-      toast.success(t("login.success"), {
+      toast.success(loginSuccess, {
         icon: "🚀",
         duration: 3000,
       });
@@ -27,7 +29,7 @@ function LoginPage() {
         window.location.href = "/admin/projects";
       }, 1000); // 1 sekund kutib, yo'naltirish
     } catch (err) {
-      toast.error(t("login.error"));
+      toast.error(loginError);
     }
   };
 

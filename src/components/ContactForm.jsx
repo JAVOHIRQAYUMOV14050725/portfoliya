@@ -15,6 +15,8 @@ const schema = yup.object().shape({
 
 const ContactForm = () => {
   const { t } = useTranslation();
+  const contactSuccess = t("contactForm.toast.success");
+  const contactError = t("contactForm.toast.error"); 
   const createContact = useCreateContact();
 
   const {
@@ -29,11 +31,11 @@ const ContactForm = () => {
   const onSubmit = async (data) => {
     createContact.mutate(data, {
       onSuccess: () => {
-        toast.success(t("contactForm.toast.success"));
+        toast.success(contactSuccess);
         reset();
       },
       onError: () => {
-        toast.error(t("contactForm.toast.error"));
+        toast.error(contactError);
       },
     });
   };

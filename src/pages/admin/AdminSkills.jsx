@@ -51,6 +51,13 @@ const buttonClasses = {
 
 function AdminSkills() {
   const { t } = useTranslation();
+  const skillCreated = t("admin.skills.toast.created");
+  const skillCreateError = t("admin.skills.toast.createError");
+  const skillUpdated = t("admin.skills.toast.updated");
+  const skillUpdateError = t("admin.skills.toast.updateError");
+  const skillDeleted = t("admin.skills.toast.deleted");
+  const skillDeleteError = t("admin.skills.toast.deleteError");
+  const skillConfirmDelete = t("admin.skills.confirmDelete");
   const { data: skills = [], isLoading: isSkillsLoading } = useSkillsQuery();
 
   const [editingId, setEditingId] = useState(null);
@@ -64,26 +71,23 @@ function AdminSkills() {
   // YAXSHILANISH: Operatsiyalar natijasi haqida xabarnoma berish
   const createSkill = useCreateSkill({
     onSuccess: () => {
-      toast.success(t("admin.skills.toast.created"));
+      toast.success(skillCreated);
       resetForm();
     },
-    onError: (err) =>
-      toast.error(err.message || t("admin.skills.toast.createError")),
+    onError: (err) => toast.error(err.message || skillCreateError),
   });
 
   const updateSkill = useUpdateSkill({
     onSuccess: () => {
-      toast.success(t("admin.skills.toast.updated"));
+      toast.success(skillUpdated);
       resetForm();
     },
-    onError: (err) =>
-      toast.error(err.message || t("admin.skills.toast.updateError")),
+    onError: (err) => toast.error(err.message || skillUpdateError),
   });
 
   const deleteSkill = useDeleteSkill({
-    onSuccess: () => toast.success(t("admin.skills.toast.deleted")),
-    onError: (err) =>
-      toast.error(err.message || t("admin.skills.toast.deleteError")),
+    onSuccess: () => toast.success(skillDeleted),
+    onError: (err) => toast.error(err.message || skillDeleteError),
   });
 
   const {
@@ -116,7 +120,7 @@ function AdminSkills() {
   };
 
   const handleDelete = (skillId, skillName) => {
-    if (window.confirm(t("admin.skills.confirmDelete"))) {
+    if (window.confirm(skillConfirmDelete)) {
       deleteSkill.mutate(skillId);
     }
   };

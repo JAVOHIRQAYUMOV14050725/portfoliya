@@ -22,6 +22,13 @@ const schema = yup.object({
 
 const AdminHero = () => {
   const { t } = useTranslation();
+  const heroUpdated = t("admin.hero.toast.updated");
+  const heroUpdateError = t("admin.hero.toast.updateError");
+  const heroCreated = t("admin.hero.toast.created");
+  const heroCreateError = t("admin.hero.toast.createError");
+  const heroDeleted = t("admin.hero.toast.deleted");
+  const heroDeleteError = t("admin.hero.toast.deleteError");
+  const heroConfirmDelete = t("admin.hero.confirmDelete");
   const { data, isLoading, isError } = useHeroQuery();
   const createHero = useCreateHero();
   const updateHero = useUpdateHero();
@@ -70,22 +77,22 @@ const AdminHero = () => {
         { id: data.id, payload },
         {
           onSuccess: () => {
-            toast.success(t("admin.hero.toast.updated"));
+            toast.success(heroUpdated);
             queryClient.invalidateQueries(["hero"]);
             setShowForm(false);
           },
-          onError: () => toast.error(t("admin.hero.toast.updateError")),
+          onError: () => toast.error(heroUpdateError),
         }
       );
     } else {
       createHero.mutate(payload, {
         onSuccess: () => {
-          toast.success(t("admin.hero.toast.created"));
+          toast.success(heroCreated);
           queryClient.invalidateQueries(["hero"]);
           reset();
           setShowForm(false);
         },
-        onError: () => toast.error(t("admin.hero.toast.createError")),
+        onError: () => toast.error(heroCreateError),
       });
     }
   };
@@ -226,16 +233,15 @@ const AdminHero = () => {
             <button
               type="button"
               onClick={() => {
-                if (window.confirm(t("admin.hero.confirmDelete"))) {
+                if (window.confirm(heroConfirmDelete)) {
                   deleteHero.mutate(data.id, {
                     onSuccess: () => {
-                      toast.success(t("admin.hero.toast.deleted"));
+                      toast.success(heroDeleted);
                       queryClient.invalidateQueries(["hero"]);
                       reset();
                       setShowForm(false);
                     },
-                    onError: () =>
-                      toast.error(t("admin.hero.toast.deleteError")),
+                    onError: () => toast.error(heroDeleteError),
                   });
                 }
               }}
