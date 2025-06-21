@@ -237,5 +237,12 @@
   },
   "protected": {
     "checking": "Vérification de l'accès..."
+  },
+  "languages": {
+    "en": "Anglais",
+    "uz": "Ouzbek",
+    "ru": "Russe",
+    "fr": "Français",
+    "zh": "Chinois"
   }
 }

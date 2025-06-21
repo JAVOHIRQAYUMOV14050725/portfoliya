@@ -1,21 +1,25 @@
+// src/components/LanguageSwitcher.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronDown } from "lucide-react";
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
   const languages = [
-    { code: "en", label: "English", flag: "🇬🇧" },
-    { code: "uz", label: "O'zbek", flag: "🇺🇿" },
-    { code: "ru", label: "Русский", flag: "🇷🇺" },
-    { code: "fr", label: "Français", flag: "🇫🇷" },
-    { code: "zh", label: "中文", flag: "🇨🇳" },
+    { code: "en", flag: "🇬🇧" },
+    { code: "uz", flag: "🇺🇿" },
+    { code: "ru", flag: "🇷🇺" },
+    { code: "fr", flag: "🇫🇷" },
+    { code: "zh", flag: "🇨🇳" },
   ];
 
-  // ⏳ Default language detection from localStorage (fallback handled by i18n)
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
   useEffect(() => {
     const savedLang = localStorage.getItem("i18nextLng");
     if (savedLang && savedLang !== i18n.language) {
@@ -24,15 +28,16 @@ const LanguageSwitcher = () => {
   }, []);
 
   const handleChange = (code) => {
-    localStorage.setItem("i18nextLng", code);
-    i18n.changeLanguage(code);
+    i18n.changeLanguage(code).then(() => {
+      localStorage.setItem("i18nextLng", code);
+      document.documentElement.lang = code;
+    });
     setOpen(false);
   };
 
   const current =
     languages.find((l) => l.code === i18n.language) || languages[0];
 
-  // 🧠 Click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -50,7 +55,9 @@ const LanguageSwitcher = () => {
         className="flex items-center gap-1 px-3 py-1 border dark:border-slate-600 border-slate-300 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
       >
         <span>{current.flag}</span>
-        <span className="hidden sm:inline">{current.label}</span>
+        <span className="hidden sm:inline" translate="no">
+          {t(`languages.${current.code}`)}
+        </span>
         <ChevronDown size={16} />
       </button>
 
@@ -66,8 +73,8 @@ const LanguageSwitcher = () => {
                   : ""
               }`}
             >
-              <span>{lang.flag}</span>
-              <span>{lang.label}</span>
+              <span>{lang.flag}</span>  
+              <span translate="no">{t(`languages.${lang.code}`)}</span>
             </button>
           ))}
         </div>

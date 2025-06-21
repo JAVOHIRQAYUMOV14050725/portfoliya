@@ -1,14 +1,8 @@
+// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
-
-const languageDetectorOptions = {
-    order: ['localStorage', 'querystring', 'navigator', 'htmlTag'],
-    caches: ['localStorage'],
-    htmlTag: document.documentElement,
-    lookupLocalStorage: 'i18nextLng'
-};
 
 i18n
     .use(Backend)
@@ -17,7 +11,12 @@ i18n
     .init({
         fallbackLng: 'en',
         supportedLngs: ['en', 'uz', 'ru', 'fr', 'zh'],
-        detection: languageDetectorOptions,
+        detection: {
+            order: ['localStorage', 'navigator', 'querystring', 'htmlTag'], // localStorage birinchi
+            lookupLocalStorage: 'i18nextLng', // 🔐 key nomi
+            caches: ['localStorage'],         // 🌐 saqlash joyi
+            htmlTag: document.documentElement,
+        },
         interpolation: {
             escapeValue: false,
         },

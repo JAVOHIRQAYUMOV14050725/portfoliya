@@ -102,7 +102,6 @@ const Contact = () => {
         </h1>
         <p className="text-lg text-slate-400">
           {t("contactPage.subtitle")}
-          opportunities.
         </p>
       </motion.div>
 

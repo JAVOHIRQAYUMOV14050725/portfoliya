@@ -235,5 +235,12 @@
   },
   "protected": {
     "checking": "Checking access..."
+  },
+  "languages": {
+    "en": "English",
+    "uz": "O'zbek",
+    "ru": "Russian",
+    "fr": "French",
+    "zh": "Chinese"
   }
 }

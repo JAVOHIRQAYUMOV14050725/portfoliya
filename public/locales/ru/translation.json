@@ -25,7 +25,9 @@
   "footer": {
     "copy": "© {{year}} {{name}}. Все права защищены."
   },
-  "themeToggle": { "aria": "Переключить тему" },
+  "themeToggle": {
+    "aria": "Переключить тему"
+  },
   "contactForm": {
     "fullName": "Полное имя",
     "email": "Электронная почта",
@@ -106,136 +108,143 @@
     "description": "Открыт для сотрудничества и интересных задач на бэкенде. Давайте создадим что-то полезное вместе!"
   },
   "form": {
-    "save": "Save",
-    "saveChanges": "Save Changes",
-    "saving": "Saving...",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "create": "Create",
-    "update": "Update",
-    "edit": "Edit",
-    "reset": "Reset"
+    "save": "Сохранить",
+    "saveChanges": "Сохранить изменения",
+    "saving": "Сохранение...",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "create": "Создать",
+    "update": "Обновить",
+    "edit": "Редактировать",
+    "reset": "Сбросить"
   },
   "toast": {
-    "success": "✅ Success!",
-    "error": "❌ Something went wrong"
+    "success": "✅ Успешно!",
+    "error": "❌ Что-то пошло не так"
   },
   "admin": {
     "projects": {
-      "title": "🚀 Manage Projects",
-      "add": "➕ Add Project",
-      "edit": "✏️ Edit Project",
-      "new": "🆕 New Project",
-      "loading": "Loading projects...",
-      "error": "❌ Failed to load projects.",
-      "empty": "No projects yet.",
-      "imageNotFound": "Image Not Found",
-      "noDescription": "No description.",
-      "confirmDelete": "🗑️ Delete this project?",
+      "title": "🚀 Управление проектами",
+      "add": "➕ Добавить проект",
+      "edit": "✏️ Редактировать проект",
+      "new": "🆕 Новый проект",
+      "loading": "Загрузка проектов...",
+      "error": "❌ Не удалось загрузить проекты.",
+      "empty": "Пока нет проектов.",
+      "imageNotFound": "Изображение не найдено",
+      "noDescription": "Описание отсутствует.",
+      "confirmDelete": "🗑️ Удалить этот проект?",
       "toast": {
-        "created": "✅ Project created!",
-        "createError": "❌ Failed to create",
-        "updated": "✏️ Project updated!",
-        "updateError": "❌ Update failed",
-        "deleted": "🗑️ Deleted",
-        "deleteError": "❌ Delete failed"
+        "created": "✅ Проект создан!",
+        "createError": "❌ Не удалось создать",
+        "updated": "✏️ Проект обновлен!",
+        "updateError": "❌ Обновление не удалось",
+        "deleted": "🗑️ Удалено",
+        "deleteError": "❌ Удаление не удалось"
       }
     },
     "skills": {
-      "title": "Manage Skills",
-      "editSkill": "Edit Skill",
-      "newSkill": "Add New Skill",
-      "category": "Category",
-      "name": "Name",
-      "icon": "Icon",
-      "level": "Level",
-      "namePlaceholder": "e.g. React",
-      "iconPlaceholder": "Select an icon...",
-      "levelPlaceholder": "e.g. B2",
+      "title": "Управление навыками",
+      "editSkill": "Редактировать навык",
+      "newSkill": "Добавить новый навык",
+      "category": "Категория",
+      "name": "Название",
+      "icon": "Иконка",
+      "level": "Уровень",
+      "namePlaceholder": "например, React",
+      "iconPlaceholder": "Выберите иконку...",
+      "levelPlaceholder": "например, B2",
       "table": {
-        "skill": "Skill",
-        "category": "Category",
-        "level": "Level",
-        "actions": "Actions"
+        "skill": "Навык",
+        "category": "Категория",
+        "level": "Уровень",
+        "actions": "Действия"
       },
-      "loading": "Loading...",
-      "confirmDelete": "Are you sure you want to delete this skill?",
+      "loading": "Загрузка...",
+      "confirmDelete": "Вы уверены, что хотите удалить этот навык?",
       "toast": {
-        "created": "Skill created successfully!",
-        "createError": "Failed to create skill",
-        "updated": "Skill updated successfully!",
-        "updateError": "Failed to update skill",
-        "deleted": "Skill deleted!",
-        "deleteError": "Failed to delete skill"
+        "created": "Навык успешно создан!",
+        "createError": "Не удалось создать навык",
+        "updated": "Навык успешно обновлен!",
+        "updateError": "Не удалось обновить навык",
+        "deleted": "Навык удален!",
+        "deleteError": "Не удалось удалить навык"
       }
     },
     "experience": {
-      "title": "Manage Experience",
-      "present": "Present",
+      "title": "Управление опытом",
+      "present": "Настоящее время",
       "placeholders": {
-        "title": "Job Title",
-        "company": "Company",
-        "start": "Start Date (e.g. Jan 2023)",
-        "end": "End Date (or leave blank)",
-        "icon": "Enter icon name (e.g. FaBriefcase)",
-        "description": "Description"
+        "title": "Название должности",
+        "company": "Компания",
+        "start": "Дата начала (например, Янв 2023)",
+        "end": "Дата окончания (или оставьте пустым)",
+        "icon": "Введите название иконки (например, FaBriefcase)",
+        "description": "Описание"
       }
     },
     "hero": {
-      "loading": "Loading...",
-      "error": "❌ Failed to load hero data",
-      "add": "➕ Add Hero",
-      "edit": "✏️ Edit Hero",
-      "editTitle": "✏️ Edit Hero Section",
-      "newTitle": "➕ Create Hero Section",
-      "name": "Name",
-      "tagline": "Tagline",
-      "technologies": "Technologies (comma-separated)",
-      "confirmDelete": "⚠️ Delete this hero?",
-      "delete": "🗑️ Delete Hero",
+      "loading": "Загрузка...",
+      "error": "❌ Не удалось загрузить данные главной",
+      "add": "➕ Добавить главную",
+      "edit": "✏️ Редактировать главную",
+      "editTitle": "✏️ Редактировать раздел главной",
+      "newTitle": "➕ Создать раздел главной",
+      "name": "Имя",
+      "tagline": "Слоган",
+      "technologies": "Технологии (через запятую)",
+      "confirmDelete": "⚠️ Удалить эту главную?",
+      "delete": "🗑️ Удалить главную",
       "toast": {
-        "created": "✅ Hero created",
-        "createError": "❌ Failed to create",
-        "updated": "✅ Hero updated",
-        "updateError": "❌ Failed to update",
-        "deleted": "🗑️ Hero deleted",
-        "deleteError": "❌ Failed to delete"
+        "created": "✅ Главная создана",
+        "createError": "❌ Не удалось создать",
+        "updated": "✅ Главная обновлена",
+        "updateError": "❌ Обновление не удалось",
+        "deleted": "🗑️ Главная удалена",
+        "deleteError": "❌ Удаление не удалось"
       }
     },
     "messages": {
-      "title": "📨 Contact Messages",
-      "loading": "Loading...",
-      "error": "❌ Failed to load messages",
-      "noMessages": "No messages received yet.",
-      "confirmDelete": "❌ Delete this message?"
+      "title": "📨 Сообщения контактов",
+      "loading": "Загрузка...",
+      "error": "❌ Не удалось загрузить сообщения",
+      "noMessages": "Пока нет сообщений.",
+      "confirmDelete": "❌ Удалить это сообщение?"
     },
     "contact": {
-      "loading": "⏳ Loading contact info...",
-      "notFound": "⚠️ No contact info found. You can add one below:",
-      "add": "➕ Add Contact Info",
-      "title": "📇 Edit Contact Info",
+      "loading": "⏳ Загрузка контактной информации...",
+      "notFound": "⚠️ Контактная информация не найдена. Вы можете добавить ниже:",
+      "add": "➕ Добавить контактную информацию",
+      "title": "📇 Редактировать контактную информацию",
       "placeholders": {
-        "phone": "Enter your phone number",
-        "email": "Enter your email address",
-        "location": "Enter your location",
-        "github": "https://github.com/your-username",
-        "telegram": "https://t.me/your-username",
-        "linkedin": "https://linkedin.com/in/your-username"
+        "phone": "Введите номер телефона",
+        "email": "Введите адрес электронной почты",
+        "location": "Введите адрес",
+        "github": "https://github.com/ваш-логин",
+        "telegram": "https://t.me/ваш-логин",
+        "linkedin": "https://linkedin.com/in/ваш-логин"
       },
-      "reset": "🧹 Reset to last saved",
-      "confirmDelete": "Are you sure you want to delete contact info?",
+      "reset": "🧹 Сбросить до последнего сохраненного",
+      "confirmDelete": "Вы уверены, что хотите удалить контактную информацию?",
       "toast": {
-        "created": "✅ Contact info created",
-        "createError": "❌ Failed to create contact info",
-        "updated": "✅ Contact info updated",
-        "updateError": "❌ Failed to update contact info",
-        "deleted": "🗑️ Contact info deleted",
-        "deleteError": "❌ Failed to delete contact info",
-        "noValid": "❌ Cannot update: No valid contact info found"
+        "created": "✅ Контактная информация создана",
+        "createError": "❌ Не удалось создать контактную информацию",
+        "updated": "✅ Контактная информация обновлена",
+        "updateError": "❌ Не удалось обновить контактную информацию",
+        "deleted": "🗑️ Контактная информация удалена",
+        "deleteError": "❌ Не удалось удалить контактную информацию",
+        "noValid": "❌ Невозможно обновить: не найдена действительная контактная информация"
       }
     }
   },
   "protected": {
     "checking": "Проверка доступа..."
+  },
+  "languages": {
+    "en": "Английский",
+    "uz": "Узбекский",
+    "ru": "Русский",
+    "fr": "Французский",
+    "zh": "Китайский"
   }
 }

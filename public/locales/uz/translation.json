@@ -5,20 +5,20 @@
       "skills": "Ko'nikmalar",
       "experience": "Tajriba",
       "projects": "Loyihalar",
-      "contact": "Bog'lanish"
+      "contact": "Aloqa"
     },
     "admin": {
       "manageProjects": "Loyihalarni boshqarish",
       "manageSkills": "Ko'nikmalarni boshqarish",
-      "manageExperience": "Tajribalarni boshqarish",
-      "manageHero": "Asosiy sahifani boshqarish",
-      "adminMessages": "Xabarlarni boshqarish",
+      "manageExperience": "Tajribani boshqarish",
+      "manageHero": "Bosh qismni boshqarish",
+      "adminMessages": "Admin xabarlari",
       "manageContact": "Aloqa ma'lumotlarini boshqarish",
-      "publicProjects": "↳ Ochiq loyihalar",
-      "publicSkills": "↳ Ochiq ko'nikmalar",
-      "panel": "Admin panel",
-      "manageTitle": "Boshqaruv",
-      "previewTitle": "Ko'rish"
+      "publicProjects": "↳ Umumiy loyihalar",
+      "publicSkills": "↳ Umumiy ko'nikmalar",
+      "panel": "Admin paneli",
+      "manageTitle": "Boshqarish",
+      "previewTitle": "Oldindan ko'rish"
     },
     "logout": "Chiqish"
   },
@@ -29,32 +29,32 @@
     "aria": "Mavzuni almashtirish"
   },
   "contactForm": {
-    "fullName": "To'liq ismingiz",
-    "email": "Elektron pochta",
+    "fullName": "To'liq ism",
+    "email": "Elektron pochta manzili",
     "message": "Xabar",
     "send": "Xabar yuborish",
     "sending": "Yuborilmoqda...",
     "toast": {
       "success": "📨 Xabar muvaffaqiyatli yuborildi!",
-      "error": "❌ Xabar yuborilmadi"
+      "error": "❌ Xabar yuborish amalga oshmadi"
     },
     "errors": {
-      "fullName": "To'liq ism kiritilishi kerak",
-      "email": "Elektron pochta kiritilishi kerak",
-      "message": "Xabar matni kiritilishi kerak"
+      "fullName": "To'liq ism kiritilishi shart",
+      "email": "Elektron pochta kiritilishi shart",
+      "message": "Xabar kiritilishi shart"
     }
   },
   "login": {
-    "success": "✅ Muvaffaqiyatli tizimga kirildi!",
-    "error": "❌ Kirishda xatolik. Ma'lumotlaringizni tekshiring.",
-    "title": "Admin Kirish",
+    "success": "✅ Kirish muvaffaqiyatli!",
+    "error": "❌ Kirish amalga oshmadi. Ma'lumotlaringizni tekshiring.",
+    "title": "Admin kirish",
     "email": "Elektron pochta",
     "password": "Parol",
     "errors": {
-      "email": "Elektron pochta majburiy",
-      "password": "Parol majburiy"
+      "email": "Elektron pochta kiritilishi shart",
+      "password": "Parol kiritilishi shart"
     },
-    "loading": "Kirish jarayoni...",
+    "loading": "Kirilmoqda...",
     "submit": "Kirish"
   },
   "contactPage": {
@@ -64,180 +64,187 @@
     "telegram": "Telegram",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "title": "Bog'lanish 📨",
-    "subtitle": "Yangi loyihalar, ijodiy g‘oyalar yoki imkoniyatlar haqida suhbatlashishga doimo tayyorman.",
-    "details": "Aloqa tafsilotlari",
-    "collapseAll": "Hammasini yopish",
-    "expandAll": "Hammasini ochish",
+    "title": "Aloqaga chiqing 📨",
+    "subtitle": "Men har doim yangi loyihalar, ijodiy g'oyalar yoki imkoniyatlar haqida suhbatlashishga tayyorman.",
+    "details": "Aloqa ma'lumotlari",
+    "collapseAll": "Hammasini yig'ish",
+    "expandAll": "Hammasini kengaytirish",
     "loading": "Aloqa ma'lumotlari yuklanmoqda...",
-    "failed": "Aloqa ma'lumotlarini yuklab bo‘lmadi."
+    "failed": "Aloqa ma'lumotlari yuklanmadi."
   },
   "hero": {
-    "viewProjects": "Loyihalarni ko‘rish",
-    "contactMe": "Bog‘lanish"
+    "viewProjects": "Loyihalarni ko'rish",
+    "contactMe": "Men bilan bog'lanish"
   },
   "about": {
     "title": "Men haqimda"
   },
   "skills": {
-    "title": "Mening texnik arsenalim",
+    "title": "Mening texnik qurollarim",
     "loading": "Ko'nikmalar yuklanmoqda...",
     "hard": "Texnik ko'nikmalar",
-    "soft": "Shaxsiy ko'nikmalar",
+    "soft": "Ijtimoiy ko'nikmalar",
     "languages": "Tillar"
   },
   "experience": {
-    "title": "Kasbiy va ta'lim yo'nalishim",
+    "title": "Karyera va ta'lim",
     "loading": "Tajriba yuklanmoqda...",
     "untitled": "Nomsiz",
     "unknownCompany": "Noma'lum kompaniya",
-    "noDescription": "Tavsif berilmagan."
+    "noDescription": "Tavsif kiritilmagan."
   },
   "projects": {
     "loading": "Loyihalar yuklanmoqda...",
-    "error": "Loyihalarni yuklab bo‘lmadi.",
+    "error": "Loyihalarni yuklash amalga oshmadi.",
     "title": "Tanlangan loyihalar",
-    "liveDemo": "Jonli namoyish",
+    "liveDemo": "Jonli demo",
     "github": "GitHub",
-    "techStack": "Texnologiyalar to‘plami"
+    "techStack": "Texnologiyalar to'plami"
   },
   "contactSection": {
     "loading": "Yuklanmoqda...",
-    "title": "📬 Menga yozing",
+    "title": "📬 Men bilan bog'laning",
     "information": "Aloqa ma'lumotlari",
-    "description": "Hamkorlik takliflari va zamonaviy backend imkoniyatlariga doimo ochiqman. Birga kuchli narsa yaratamiz!"
+    "description": "Men mazmunli hamkorlik va qiziqarli backend imkoniyatlariga ochiqman. Keling, birgalikda muhim narsalarni yarataylik!"
   },
   "form": {
-    "save": "Save",
-    "saveChanges": "Save Changes",
-    "saving": "Saving...",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "create": "Create",
-    "update": "Update",
-    "edit": "Edit",
-    "reset": "Reset"
+    "save": "Saqlash",
+    "saveChanges": "O'zgarishlarni saqlash",
+    "saving": "Saqlanmoqda...",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "create": "Yaratish",
+    "update": "Yangilash",
+    "edit": "Tahrirlash",
+    "reset": "Tiklash"
   },
   "toast": {
-    "success": "✅ Success!",
-    "error": "❌ Something went wrong"
+    "success": "✅ Muvaffaqiyatli!",
+    "error": "❌ Nimadadir xatolik yuz berdi"
   },
   "admin": {
     "projects": {
-      "title": "🚀 Manage Projects",
-      "add": "➕ Add Project",
-      "edit": "✏️ Edit Project",
-      "new": "🆕 New Project",
-      "loading": "Loading projects...",
-      "error": "❌ Failed to load projects.",
-      "empty": "No projects yet.",
-      "imageNotFound": "Image Not Found",
-      "noDescription": "No description.",
-      "confirmDelete": "🗑️ Delete this project?",
+      "title": "🚀 Loyihalarni boshqarish",
+      "add": "➕ Loyiha qo'shish",
+      "edit": "✏️ Loyihani tahrirlash",
+      "new": "🆕 Yangi loyiha",
+      "loading": "Loyihalar yuklanmoqda...",
+      "error": "❌ Loyihalarni yuklash amalga oshmadi.",
+      "empty": "Hozircha loyihalar yo'q.",
+      "imageNotFound": "Rasm topilmadi",
+      "noDescription": "Tavsif yo'q.",
+      "confirmDelete": "🗑️ Bu loyihani o'chirishni xohlaysizmi?",
       "toast": {
-        "created": "✅ Project created!",
-        "createError": "❌ Failed to create",
-        "updated": "✏️ Project updated!",
-        "updateError": "❌ Update failed",
-        "deleted": "🗑️ Deleted",
-        "deleteError": "❌ Delete failed"
+        "created": "✅ Loyiha yaratildi!",
+        "createError": "❌ Yaratish amalga oshmadi",
+        "updated": "✏️ Loyiha yangilandi!",
+        "updateError": "❌ Yangilash amalga oshmadi",
+        "deleted": "🗑️ O'chirildi",
+        "deleteError": "❌ O'chirish amalga oshmadi"
       }
     },
     "skills": {
-      "title": "Manage Skills",
-      "editSkill": "Edit Skill",
-      "newSkill": "Add New Skill",
-      "category": "Category",
-      "name": "Name",
-      "icon": "Icon",
-      "level": "Level",
-      "namePlaceholder": "e.g. React",
-      "iconPlaceholder": "Select an icon...",
-      "levelPlaceholder": "e.g. B2",
+      "title": "Ko'nikmalarni boshqarish",
+      "editSkill": "Ko'nikmani tahrirlash",
+      "newSkill": "Yangi ko'nikma qo'shish",
+      "category": "Kategoriya",
+      "name": "Nomi",
+      "icon": "Ikonka",
+      "level": "Daraja",
+      "namePlaceholder": "masalan, React",
+      "iconPlaceholder": "Ikonkani tanlang...",
+      "levelPlaceholder": "masalan, B2",
       "table": {
-        "skill": "Skill",
-        "category": "Category",
-        "level": "Level",
-        "actions": "Actions"
+        "skill": "Ko'nikma",
+        "category": "Kategoriya",
+        "level": "Daraja",
+        "actions": "Amallar"
       },
-      "loading": "Loading...",
-      "confirmDelete": "Are you sure you want to delete this skill?",
+      "loading": "Yuklanmoqda...",
+      "confirmDelete": "Bu ko'nikmani o'chirishni xohlaysizmi?",
       "toast": {
-        "created": "Skill created successfully!",
-        "createError": "Failed to create skill",
-        "updated": "Skill updated successfully!",
-        "updateError": "Failed to update skill",
-        "deleted": "Skill deleted!",
-        "deleteError": "Failed to delete skill"
+        "created": "Ko'nikma muvaffaqiyatli yaratildi!",
+        "createError": "Ko'nikma yaratish amalga oshmadi",
+        "updated": "Ko'nikma muvaffaqiyatli yangilandi!",
+        "updateError": "Ko'nikma yangilash amalga oshmadi",
+        "deleted": "Ko'nikma o'chirildi!",
+        "deleteError": "Ko'nikma o'chirish amalga oshmadi"
       }
     },
     "experience": {
-      "title": "Manage Experience",
-      "present": "Present",
+      "title": "Tajribani boshqarish",
+      "present": "Hozirgi vaqt",
       "placeholders": {
-        "title": "Job Title",
-        "company": "Company",
-        "start": "Start Date (e.g. Jan 2023)",
-        "end": "End Date (or leave blank)",
-        "icon": "Enter icon name (e.g. FaBriefcase)",
-        "description": "Description"
+        "title": "Ish unvoni",
+        "company": "Kompaniya",
+        "start": "Boshlanish sanasi (masalan, Yan 2023)",
+        "end": "Tugash sanasi (yoki bo'sh qoldiring)",
+        "icon": "Ikonka nomini kiriting (masalan, FaBriefcase)",
+        "description": "Tavsif"
       }
     },
     "hero": {
-      "loading": "Loading...",
-      "error": "❌ Failed to load hero data",
-      "add": "➕ Add Hero",
-      "edit": "✏️ Edit Hero",
-      "editTitle": "✏️ Edit Hero Section",
-      "newTitle": "➕ Create Hero Section",
-      "name": "Name",
-      "tagline": "Tagline",
-      "technologies": "Technologies (comma-separated)",
-      "confirmDelete": "⚠️ Delete this hero?",
-      "delete": "🗑️ Delete Hero",
+      "loading": "Yuklanmoqda...",
+      "error": "❌ Bosh qism ma'lumotlarini yuklash amalga oshmadi",
+      "add": "➕ Bosh qism qo'shish",
+      "edit": "✏️ Bosh qismni tahrirlash",
+      "editTitle": "✏️ Bosh qism bo'limini tahrirlash",
+      "newTitle": "➕ Bosh qism bo'limini yaratish",
+      "name": "Ism",
+      "tagline": "Shior",
+      "technologies": "Texnologiyalar (vergul bilan ajratilgan)",
+      "confirmDelete": "⚠️ Bu bosh qismni o'chirishni xohlaysizmi?",
+      "delete": "🗑️ Bosh qismni o'chirish",
       "toast": {
-        "created": "✅ Hero created",
-        "createError": "❌ Failed to create",
-        "updated": "✅ Hero updated",
-        "updateError": "❌ Failed to update",
-        "deleted": "🗑️ Hero deleted",
-        "deleteError": "❌ Failed to delete"
+        "created": "✅ Bosh qism yaratildi",
+        "createError": "❌ Yaratish amalga oshmadi",
+        "updated": "✅ Bosh qism yangilandi",
+        "updateError": "❌ Yangilash amalga oshmadi",
+        "deleted": "🗑️ Bosh qism o'chirildi",
+        "deleteError": "❌ O'chirish amalga oshmadi"
       }
     },
     "messages": {
-      "title": "📨 Contact Messages",
-      "loading": "Loading...",
-      "error": "❌ Failed to load messages",
-      "noMessages": "No messages received yet.",
-      "confirmDelete": "❌ Delete this message?"
+      "title": "📨 Aloqa xabarlari",
+      "loading": "Yuklanmoqda...",
+      "error": "❌ Xabarlarni yuklash amalga oshmadi",
+      "noMessages": "Hozircha xabarlar yo'q.",
+      "confirmDelete": "❌ Bu xabarni o'chirishni xohlaysizmi?"
     },
     "contact": {
-      "loading": "⏳ Loading contact info...",
-      "notFound": "⚠️ No contact info found. You can add one below:",
-      "add": "➕ Add Contact Info",
-      "title": "📇 Edit Contact Info",
+      "loading": "⏳ Aloqa ma'lumotlari yuklanmoqda...",
+      "notFound": "⚠️ Aloqa ma'lumotlari topilmadi. Quyida qo'shishingiz mumkin:",
+      "add": "➕ Aloqa ma'lumotlarini qo'shish",
+      "title": "📇 Aloqa ma'lumotlarini tahrirlash",
       "placeholders": {
-        "phone": "Enter your phone number",
-        "email": "Enter your email address",
-        "location": "Enter your location",
-        "github": "https://github.com/your-username",
-        "telegram": "https://t.me/your-username",
-        "linkedin": "https://linkedin.com/in/your-username"
+        "phone": "Telefon raqamingizni kiriting",
+        "email": "Elektron pochta manzilingizni kiriting",
+        "location": "Manzilingizni kiriting",
+        "github": "https://github.com/sizning-foydalanuvchi-nomingiz",
+        "telegram": "https://t.me/sizning-foydalanuvchi-nomingiz",
+        "linkedin": "https://linkedin.com/in/sizning-foydalanuvchi-nomingiz"
       },
-      "reset": "🧹 Reset to last saved",
-      "confirmDelete": "Are you sure you want to delete contact info?",
+      "reset": "🧹 Oxirgi saqlangan holatga qaytarish",
+      "confirmDelete": "Aloqa ma'lumotlarini o'chirishni xohlaysizmi?",
       "toast": {
-        "created": "✅ Contact info created",
-        "createError": "❌ Failed to create contact info",
-        "updated": "✅ Contact info updated",
-        "updateError": "❌ Failed to update contact info",
-        "deleted": "🗑️ Contact info deleted",
-        "deleteError": "❌ Failed to delete contact info",
-        "noValid": "❌ Cannot update: No valid contact info found"
+        "created": "✅ Aloqa ma'lumotlari yaratildi",
+        "createError": "❌ Aloqa ma'lumotlari yaratish amalga oshmadi",
+        "updated": "✅ Aloqa ma'lumotlari yangilandi",
+        "updateError": "❌ Aloqa ma'lumotlari yangilash amalga oshmadi",
+        "deleted": "🗑️ Aloqa ma'lumotlari o'chirildi",
+        "deleteError": "❌ Aloqa ma'lumotlari o'chirish amalga oshmadi",
+        "noValid": "❌ Yangilash mumkin emas: Yaroqli aloqa ma'lumotlari topilmadi"
       }
     }
   },
   "protected": {
     "checking": "Kirish huquqi tekshirilmoqda..."
+  },
+  "languages": {
+    "en": "Inglizcha",
+    "uz": "O'zbekcha",
+    "ru": "Ruscha",
+    "fr": "Fransuzcha",
+    "zh": "Xitoycha"
   }
 }
