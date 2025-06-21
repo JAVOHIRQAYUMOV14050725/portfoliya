@@ -1,4 +1,3 @@
-// contact-info.service.ts
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -22,8 +21,12 @@ export class ContactInfoService {
     return this.repo.find({ order: { createdAt: 'DESC' } });
   }
 
-  findLatest() {
-    return this.repo.findOne({ order: { createdAt: 'DESC' } });
+  async findLatest() {
+    const latest = await this.repo.find({
+      order: { createdAt: 'DESC' },
+      take: 1,
+    });
+    return latest[0] || null;
   }
 
   update(id: number, dto: UpdateContactInfoDto) {

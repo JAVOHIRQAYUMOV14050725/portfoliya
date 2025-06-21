@@ -2,30 +2,35 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from '../utils/axios';
 
-export const useMessagesQuery = () => {
-    return useQuery({
+// ✅ Ideal fetch messages hook
+export const useMessagesQuery = () =>
+    useQuery({
         queryKey: ['messages'],
         queryFn: async () => {
-            const res = await axios.get('/contact');
-            return res.data;
+            const { data } = await axios.get('/contact');
+            return data;
         },
     });
-  };
 
+// ✅ Ideal delete message hook
 export const useDeleteMessage = () => {
     const queryClient = useQueryClient();
+
     return useMutation({
-        mutationFn: (id) => axios.delete(`/contact/${id}`),
-        onSuccess: () => queryClient.invalidateQueries(['messages']),
+        mutationFn: async (id) => {
+            await axios.delete(`/contact/${id}`);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['messages'] });
+        },
     });
 };
 
-
-export const useCreateContact = () => {
-    return useMutation({
-        mutationFn: async (data) => {
-            const res = await axios.post('/contact', data);
-            return res.data;
+// ✅ Ideal create contact hook
+export const useCreateContact = () =>
+    useMutation({
+        mutationFn: async (newContact) => {
+            const { data } = await axios.post('/contact', newContact);
+            return data;
         },
     });
-  };

@@ -6,19 +6,21 @@ export const useContactInfoQuery = () => {
     return useQuery({
         queryKey: ["contact-info"],
         queryFn: async () => {
-            const res = await axios.get("/contact-info"); 
+            const res = await axios.get("/contact-info/latest"); // ✅ 'latest' endpoint
             return res.data;
         },
     });
 };
+  
 
 export const useUpdateContactInfo = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ id, ...payload }) => axios.patch(`/contact-info/${id}`, payload),
+        mutationFn: ({ id, ...data }) => axios.patch(`/contact-info/${id}`, data),
         onSuccess: () => queryClient.invalidateQueries(["contact-info"]),
     });
 };
+  
 
 // ✨ Faqat o‘qish uchun (Contact.jsx ishlatadi)
 export const usePublicContactInfo = () => {
