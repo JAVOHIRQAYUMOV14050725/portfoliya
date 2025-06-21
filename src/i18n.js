@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -12,10 +11,13 @@ i18n
         fallbackLng: 'en',
         supportedLngs: ['en', 'uz', 'ru', 'fr', 'zh'],
         detection: {
-            order: ['localStorage', 'navigator'], // 👈 1) localStorage, 2) brauzer
-            caches: ['localStorage'], // 👈 Saqlanadi
+            order: ['localStorage', 'querystring', 'navigator', 'htmlTag'],
+            caches: ['localStorage'],
+            htmlTag: document.documentElement,
         },
-        interpolation: { escapeValue: false },
+        interpolation: {
+            escapeValue: false,
+        },
         backend: {
             loadPath: '/locales/{{lng}}/translation.json',
         },

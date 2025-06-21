@@ -1,11 +1,11 @@
-// 📁 src/components/LanguageSwitcher.jsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Menu, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
   const languages = [
     { code: "en", label: "English", flag: "🇬🇧" },
@@ -14,6 +14,14 @@ const LanguageSwitcher = () => {
     { code: "fr", label: "Français", flag: "🇫🇷" },
     { code: "zh", label: "中文", flag: "🇨🇳" },
   ];
+
+  // ⏳ Default language detection from localStorage (fallback handled by i18n)
+  useEffect(() => {
+    const savedLang = localStorage.getItem("i18nextLng");
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, []);
 
   const handleChange = (code) => {
     i18n.changeLanguage(code);
@@ -24,8 +32,19 @@ const LanguageSwitcher = () => {
   const current =
     languages.find((l) => l.code === i18n.language) || languages[0];
 
+  // 🧠 Click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative text-sm">
+    <div ref={ref} className="relative text-sm z-50">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="flex items-center gap-1 px-3 py-1 border dark:border-slate-600 border-slate-300 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200"
@@ -36,7 +55,7 @@ const LanguageSwitcher = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-44 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg">
           {languages.map((lang) => (
             <button
               key={lang.code}

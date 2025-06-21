@@ -1,14 +1,111 @@
 {
-  "About": "À propos",
-  "Skills": "Compétences",
-  "Experience": "Expérience",
-  "Projects": "Projets",
-  "Contact": "Contact",
-  "Full Name": "Nom complet",
-  "Email Address": "Adresse électronique",
-  "Message": "Message",
-  "Send Message": "Envoyer le message",
-  "Sending...": "Envoi...",
-  "Get In Touch": "Entrer en contact",
-  "Contact Information": "Coordonnées"
+  "header": {
+    "nav": {
+      "home": "Accueil",
+      "skills": "Compétences",
+      "experience": "Expérience",
+      "projects": "Projets",
+      "contact": "Contact"
+    },
+    "admin": {
+      "manageProjects": "Gérer les projets",
+      "manageSkills": "Gérer les compétences",
+      "manageExperience": "Gérer l'expérience",
+      "manageHero": "Gérer la page d'accueil",
+      "adminMessages": "Messages d'administration",
+      "manageContact": "Gérer les contacts",
+      "publicProjects": "↳ Projets publics",
+      "publicSkills": "↳ Compétences publiques",
+      "panel": "Panneau d'administration",
+      "manageTitle": "Gérer",
+      "previewTitle": "Aperçu"
+    },
+    "logout": "Déconnexion"
+  },
+  "footer": {
+    "copy": "© {{year}} {{name}}. Tous droits réservés."
+  },
+  "themeToggle": { "aria": "Changer le thème" },
+  "contactForm": {
+    "fullName": "Nom complet",
+    "email": "Adresse e-mail",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "sending": "Envoi...",
+    "toast": {
+      "success": "📨 Message envoyé avec succès !",
+      "error": "❌ Échec de l'envoi du message"
+    },
+    "errors": {
+      "fullName": "Le nom complet est requis",
+      "email": "L'e-mail est requis",
+      "message": "Le message est requis"
+    }
+  },
+  "login": {
+    "success": "✅ Connexion réussie !",
+    "error": "❌ Échec de la connexion. Vérifiez vos identifiants.",
+    "title": "Connexion administrateur",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "errors": {
+      "email": "L'e-mail est requis",
+      "password": "Le mot de passe est requis"
+    },
+    "loading": "Connexion...",
+    "submit": "Se connecter"
+  },
+  "contactPage": {
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "location": "Adresse",
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "title": "Prenez contact 📨",
+    "subtitle": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités.",
+    "details": "Coordonnées",
+    "collapseAll": "Tout réduire",
+    "expandAll": "Tout développer",
+    "loading": "Chargement des coordonnées...",
+    "failed": "Impossible de charger les informations de contact."
+  },
+  "hero": {
+    "viewProjects": "Voir les projets",
+    "contactMe": "Contactez-moi"
+  },
+  "about": {
+    "title": "À propos de moi"
+  },
+  "skills": {
+    "title": "Mon arsenal technique",
+    "loading": "Chargement des compétences...",
+    "hard": "Compétences techniques",
+    "soft": "Compétences interpersonnelles",
+    "languages": "Langues"
+  },
+  "experience": {
+    "title": "Carrière & Éducation",
+    "loading": "Chargement de l'expérience...",
+    "untitled": "Sans titre",
+    "unknownCompany": "Entreprise inconnue",
+    "noDescription": "Aucune description fournie."
+  },
+  "projects": {
+    "loading": "Chargement des projets...",
+    "error": "Échec du chargement des projets.",
+    "title": "Projets en vedette",
+    "liveDemo": "Démo en ligne",
+    "github": "GitHub",
+    "techStack": "Pile technologique"
+  },
+  "contactSection": {
+    "loading": "Chargement...",
+    "title": "📬 Contactez-moi",
+    "information": "Informations de contact",
+    "description": "Je suis ouvert à des collaborations significatives et à des opportunités passionnantes en back-end. Construisons quelque chose de grand ensemble !"
+  },
+  "protected": {
+    "checking": "Vérification de l'accès..."
+  }
 }

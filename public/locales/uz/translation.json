@@ -1,14 +1,113 @@
 {
-  "About": "Men haqimda",
-  "Skills": "Ko'nikmalar",
-  "Experience": "Tajriba",
-  "Projects": "Loyihalar",
-  "Contact": "Bog'lanish",
-  "Full Name": "To'liq ismingiz",
-  "Email Address": "Elektron pochta manzili",
-  "Message": "Xabar",
-  "Send Message": "Xabar yuborish",
-  "Sending...": "Yuborilmoqda...",
-  "Get In Touch": "Bog'laning",
-  "Contact Information": "Aloqa ma’lumotlari"
+  "header": {
+    "nav": {
+      "home": "Bosh sahifa",
+      "skills": "Ko'nikmalar",
+      "experience": "Tajriba",
+      "projects": "Loyihalar",
+      "contact": "Bog'lanish"
+    },
+    "admin": {
+      "manageProjects": "Loyihalarni boshqarish",
+      "manageSkills": "Ko'nikmalarni boshqarish",
+      "manageExperience": "Tajribalarni boshqarish",
+      "manageHero": "Asosiy sahifani boshqarish",
+      "adminMessages": "Xabarlarni boshqarish",
+      "manageContact": "Aloqa ma'lumotlarini boshqarish",
+      "publicProjects": "↳ Ochiq loyihalar",
+      "publicSkills": "↳ Ochiq ko'nikmalar",
+      "panel": "Admin panel",
+      "manageTitle": "Boshqaruv",
+      "previewTitle": "Ko'rish"
+    },
+    "logout": "Chiqish"
+  },
+  "footer": {
+    "copy": "© {{year}} {{name}}. Barcha huquqlar himoyalangan."
+  },
+  "themeToggle": {
+    "aria": "Mavzuni almashtirish"
+  },
+  "contactForm": {
+    "fullName": "To'liq ismingiz",
+    "email": "Elektron pochta",
+    "message": "Xabar",
+    "send": "Xabar yuborish",
+    "sending": "Yuborilmoqda...",
+    "toast": {
+      "success": "📨 Xabar muvaffaqiyatli yuborildi!",
+      "error": "❌ Xabar yuborilmadi"
+    },
+    "errors": {
+      "fullName": "To'liq ism kiritilishi kerak",
+      "email": "Elektron pochta kiritilishi kerak",
+      "message": "Xabar matni kiritilishi kerak"
+    }
+  },
+  "login": {
+    "success": "✅ Muvaffaqiyatli tizimga kirildi!",
+    "error": "❌ Kirishda xatolik. Ma'lumotlaringizni tekshiring.",
+    "title": "Admin Kirish",
+    "email": "Elektron pochta",
+    "password": "Parol",
+    "errors": {
+      "email": "Elektron pochta majburiy",
+      "password": "Parol majburiy"
+    },
+    "loading": "Kirish jarayoni...",
+    "submit": "Kirish"
+  },
+  "contactPage": {
+    "phone": "Telefon",
+    "email": "Elektron pochta",
+    "location": "Manzil",
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "title": "Bog'lanish 📨",
+    "subtitle": "Yangi loyihalar, ijodiy g‘oyalar yoki imkoniyatlar haqida suhbatlashishga doimo tayyorman.",
+    "details": "Aloqa tafsilotlari",
+    "collapseAll": "Hammasini yopish",
+    "expandAll": "Hammasini ochish",
+    "loading": "Aloqa ma'lumotlari yuklanmoqda...",
+    "failed": "Aloqa ma'lumotlarini yuklab bo‘lmadi."
+  },
+  "hero": {
+    "viewProjects": "Loyihalarni ko‘rish",
+    "contactMe": "Bog‘lanish"
+  },
+  "about": {
+    "title": "Men haqimda"
+  },
+  "skills": {
+    "title": "Mening texnik arsenalim",
+    "loading": "Ko'nikmalar yuklanmoqda...",
+    "hard": "Texnik ko'nikmalar",
+    "soft": "Shaxsiy ko'nikmalar",
+    "languages": "Tillar"
+  },
+  "experience": {
+    "title": "Kasbiy va ta'lim yo'nalishim",
+    "loading": "Tajriba yuklanmoqda...",
+    "untitled": "Nomsiz",
+    "unknownCompany": "Noma'lum kompaniya",
+    "noDescription": "Tavsif berilmagan."
+  },
+  "projects": {
+    "loading": "Loyihalar yuklanmoqda...",
+    "error": "Loyihalarni yuklab bo‘lmadi.",
+    "title": "Tanlangan loyihalar",
+    "liveDemo": "Jonli namoyish",
+    "github": "GitHub",
+    "techStack": "Texnologiyalar to‘plami"
+  },
+  "contactSection": {
+    "loading": "Yuklanmoqda...",
+    "title": "📬 Menga yozing",
+    "information": "Aloqa ma'lumotlari",
+    "description": "Hamkorlik takliflari va zamonaviy backend imkoniyatlariga doimo ochiqman. Birga kuchli narsa yaratamiz!"
+  },
+  "protected": {
+    "checking": "Kirish huquqi tekshirilmoqda..."
+  }
 }

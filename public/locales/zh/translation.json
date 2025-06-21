@@ -1,14 +1,113 @@
 {
-  "About": "关于",
-  "Skills": "技能",
-  "Experience": "经验",
-  "Projects": "项目",
-  "Contact": "联系",
-  "Full Name": "姓名",
-  "Email Address": "电子邮件地址",
-  "Message": "留言",
-  "Send Message": "发送信息",
-  "Sending...": "发送中...",
-  "Get In Touch": "取得联系",
-  "Contact Information": "联系方式"
+  "header": {
+    "nav": {
+      "home": "首页",
+      "skills": "技能",
+      "experience": "经验",
+      "projects": "项目",
+      "contact": "联系"
+    },
+    "admin": {
+      "manageProjects": "管理项目",
+      "manageSkills": "管理技能",
+      "manageExperience": "管理经验",
+      "manageHero": "管理主页",
+      "adminMessages": "管理员消息",
+      "manageContact": "管理联系信息",
+      "publicProjects": "↳ 公开项目",
+      "publicSkills": "↳ 公开技能",
+      "panel": "管理面板",
+      "manageTitle": "管理",
+      "previewTitle": "预览"
+    },
+    "logout": "退出登录"
+  },
+  "footer": {
+    "copy": "© {{year}} {{name}}。保留所有权利。"
+  },
+  "themeToggle": {
+    "aria": "切换主题"
+  },
+  "contactForm": {
+    "fullName": "全名",
+    "email": "电子邮箱",
+    "message": "留言",
+    "send": "发送留言",
+    "sending": "发送中...",
+    "toast": {
+      "success": "📨 留言发送成功！",
+      "error": "❌ 留言发送失败"
+    },
+    "errors": {
+      "fullName": "全名为必填项",
+      "email": "邮箱为必填项",
+      "message": "留言内容为必填项"
+    }
+  },
+  "login": {
+    "success": "✅ 登录成功！",
+    "error": "❌ 登录失败。请检查凭据。",
+    "title": "管理员登录",
+    "email": "邮箱",
+    "password": "密码",
+    "errors": {
+      "email": "邮箱为必填项",
+      "password": "密码为必填项"
+    },
+    "loading": "登录中...",
+    "submit": "登录"
+  },
+  "contactPage": {
+    "phone": "电话",
+    "email": "电子邮箱",
+    "location": "地址",
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "title": "取得联系 📨",
+    "subtitle": "我始终乐于探讨新项目、创意想法或合作机会。",
+    "details": "联系详情",
+    "collapseAll": "全部折叠",
+    "expandAll": "全部展开",
+    "loading": "正在加载联系信息...",
+    "failed": "无法加载联系信息。"
+  },
+  "hero": {
+    "viewProjects": "查看项目",
+    "contactMe": "联系我"
+  },
+  "about": {
+    "title": "关于我"
+  },
+  "skills": {
+    "title": "我的技术栈",
+    "loading": "加载技能中...",
+    "hard": "硬技能",
+    "soft": "软技能",
+    "languages": "语言"
+  },
+  "experience": {
+    "title": "职业 & 教育经历",
+    "loading": "加载经历中...",
+    "untitled": "无标题",
+    "unknownCompany": "未知公司",
+    "noDescription": "未提供描述。"
+  },
+  "projects": {
+    "loading": "加载项目中...",
+    "error": "加载项目失败。",
+    "title": "精选项目",
+    "liveDemo": "在线演示",
+    "github": "GitHub"
+  },
+  "contactSection": {
+    "loading": "加载中...",
+    "title": "📬 联系我",
+    "information": "联系信息",
+    "description": "我愿意参与有意义的合作与令人兴奋的后端机会。让我们一起创造影响力！",
+    "techStack": "技术栈"
+  },
+  "protected": {
+    "checking": "正在检查访问权限..."
+  }
 }

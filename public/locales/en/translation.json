@@ -94,7 +94,8 @@
     "error": "Failed to load projects.",
     "title": "Featured Projects",
     "liveDemo": "Live Demo",
-    "github": "GitHub"
+    "github": "GitHub",
+    "techStack": "Tech Stack"
   },
   "contactSection": {
     "loading": "Loading...",
