@@ -19,10 +19,12 @@ import AdminProjects from "./pages/admin/AdminProjects";
 import AdminHero from "./pages/admin/AdminHero";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminContactInfo from "./pages/admin/AdminContactInfo";
-
+import { useTranslation } from "react-i18next";
 
 const App = () => {
   const [theme, setTheme] = useState("dark");
+
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -37,6 +39,10 @@ const App = () => {
     localStorage.setItem("theme", theme);
     document.documentElement.style.scrollBehavior = "smooth";
   }, [theme]);
+  
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   return (
     <div className="bg-white dark:bg-slate-900 transition-colors duration-300 min-h-screen flex flex-col">
