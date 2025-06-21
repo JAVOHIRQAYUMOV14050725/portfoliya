@@ -1,19 +1,21 @@
 import React from 'react';
 import { useMessagesQuery, useDeleteMessage } from '../../api/massageApi';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 const AdminMessages = () => {
+    const { t } = useTranslation();
     const { data: messages = [], isLoading, isError } = useMessagesQuery();
     const deleteMessage = useDeleteMessage();
 
-    if (isLoading) return <p className="text-center mt-10 text-slate-400">Loading...</p>;
-    if (isError) return <p className="text-center mt-10 text-red-500">❌ Failed to load messages</p>;
+    if (isLoading) return <p className="text-center mt-10 text-slate-400">{t('admin.messages.loading')}</p>;
+    if (isError) return <p className="text-center mt-10 text-red-500">{t('admin.messages.error')}</p>;
 
     return (
         <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">📨 Contact Messages</h1>
+            <h1 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">{t('admin.messages.title')}</h1>
             {messages.length === 0 ? (
-                <p className="text-slate-500">No messages received yet.</p>
+                <p className="text-slate-500">{t('admin.messages.noMessages')}</p>
             ) : (
                 <div className="space-y-4">
                     {messages.map((msg) => (
@@ -30,14 +32,14 @@ const AdminMessages = () => {
                                 </div>
                                 <button
                                     onClick={() => {
-                                        if (confirm('❌ Delete this message?')) {
+                                        if (confirm(t('admin.messages.confirmDelete'))) {
                                             deleteMessage.mutate(msg.id);
                                         }
                                     }}
                                     className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm"
                                 >
-                                    Delete
-                                </button>
+                                    {t('form.delete')}
+                                    </button>
                             </div>
                         </div>
                     ))}

@@ -105,6 +105,136 @@
     "information": "Informations de contact",
     "description": "Je suis ouvert à des collaborations significatives et à des opportunités passionnantes en back-end. Construisons quelque chose de grand ensemble !"
   },
+  "form": {
+    "save": "Enregistrer",
+    "saveChanges": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "edit": "Modifier",
+    "reset": "Réinitialiser"
+  },
+  "toast": {
+    "success": "✅ Succès !",
+    "error": "❌ Une erreur s'est produite"
+  },
+  "admin": {
+    "projects": {
+      "title": "🚀 Gérer les projets",
+      "add": "➕ Ajouter un projet",
+      "edit": "✏️ Modifier le projet",
+      "new": "🆕 Nouveau projet",
+      "loading": "Chargement des projets...",
+      "error": "❌ Échec du chargement des projets.",
+      "empty": "Aucun projet pour le moment.",
+      "imageNotFound": "Image non trouvée",
+      "noDescription": "Aucune description.",
+      "confirmDelete": "🗑️ Supprimer ce projet ?",
+      "toast": {
+        "created": "✅ Projet créé !",
+        "createError": "❌ Échec de la création",
+        "updated": "✏️ Projet mis à jour !",
+        "updateError": "❌ Échec de la mise à jour",
+        "deleted": "🗑️ Supprimé",
+        "deleteError": "❌ Échec de la suppression"
+      }
+    },
+    "skills": {
+      "title": "Gérer les compétences",
+      "editSkill": "Modifier la compétence",
+      "newSkill": "Ajouter une compétence",
+      "category": "Catégorie",
+      "name": "Nom",
+      "icon": "Icône",
+      "level": "Niveau",
+      "namePlaceholder": "ex. React",
+      "iconPlaceholder": "Sélectionnez une icône...",
+      "levelPlaceholder": "ex. B2",
+      "table": {
+        "skill": "Compétence",
+        "category": "Catégorie",
+        "level": "Niveau",
+        "actions": "Actions"
+      },
+      "loading": "Chargement...",
+      "confirmDelete": "Voulez-vous vraiment supprimer cette compétence ?",
+      "toast": {
+        "created": "Compétence créée avec succès !",
+        "createError": "Échec de la création de la compétence",
+        "updated": "Compétence mise à jour !",
+        "updateError": "Échec de la mise à jour",
+        "deleted": "Compétence supprimée !",
+        "deleteError": "Échec de la suppression"
+      }
+    },
+    "experience": {
+      "title": "Gérer l'expérience",
+      "present": "Présent",
+      "placeholders": {
+        "title": "Titre du poste",
+        "company": "Entreprise",
+        "start": "Date de début (ex. Jan 2023)",
+        "end": "Date de fin (ou laisser vide)",
+        "icon": "Nom de l'icône (ex. FaBriefcase)",
+        "description": "Description"
+      }
+    },
+    "hero": {
+      "loading": "Chargement...",
+      "error": "❌ Échec du chargement des données du héros",
+      "add": "➕ Ajouter un héros",
+      "edit": "✏️ Modifier le héros",
+      "editTitle": "✏️ Modifier la section Héros",
+      "newTitle": "➕ Créer une section Héros",
+      "name": "Nom",
+      "tagline": "Slogan",
+      "technologies": "Technologies (séparées par des virgules)",
+      "confirmDelete": "⚠️ Supprimer ce héros ?",
+      "delete": "🗑️ Supprimer le héros",
+      "toast": {
+        "created": "✅ Héros créé",
+        "createError": "❌ Échec de la création",
+        "updated": "✅ Héros mis à jour",
+        "updateError": "❌ Échec de la mise à jour",
+        "deleted": "🗑️ Héros supprimé",
+        "deleteError": "❌ Échec de la suppression"
+      }
+    },
+    "messages": {
+      "title": "📨 Messages de contact",
+      "loading": "Chargement...",
+      "error": "❌ Échec du chargement des messages",
+      "noMessages": "Aucun message reçu pour l'instant.",
+      "confirmDelete": "❌ Supprimer ce message ?"
+    },
+    "contact": {
+      "loading": "⏳ Chargement des infos de contact...",
+      "notFound": "⚠️ Aucune info de contact trouvée. Vous pouvez en ajouter ci-dessous :",
+      "add": "➕ Ajouter une info de contact",
+      "title": "📇 Modifier les infos de contact",
+      "placeholders": {
+        "phone": "Entrez votre numéro de téléphone",
+        "email": "Entrez votre adresse email",
+        "location": "Entrez votre emplacement",
+        "github": "https://github.com/votre-nom",
+        "telegram": "https://t.me/votre-nom",
+        "linkedin": "https://linkedin.com/in/votre-nom"
+      },
+      "reset": "🧹 Réinitialiser aux valeurs sauvegardées",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer les infos de contact ?",
+      "toast": {
+        "created": "✅ Infos de contact créées",
+        "createError": "❌ Échec de la création",
+        "updated": "✅ Infos de contact mises à jour",
+        "updateError": "❌ Échec de la mise à jour",
+        "deleted": "🗑️ Infos de contact supprimées",
+        "deleteError": "❌ Échec de la suppression",
+        "noValid": "❌ Impossible de mettre à jour : aucune info valide"
+      }
+    }
+  },
   "protected": {
     "checking": "Vérification de l'accès..."
   }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   useProjectsQuery,
   useCreateProject,
@@ -8,6 +9,7 @@ import {
 import ProjectForm from "../../components/ProjectForm";
 
 const AdminProjects = () => {
+  const { t } = useTranslation();
   const { data: projects = [], isLoading, isError } = useProjectsQuery();
   const createMutation = useCreateProject();
   const updateMutation = useUpdateProject();
@@ -30,10 +32,10 @@ const AdminProjects = () => {
   const handleCreate = (values) => {
     createMutation.mutate(values, {
       onSuccess: () => {
-        showToast("✅ Project created!");
+        showToast(t("admin.projects.toast.created"));
         closeForm();
       },
-      onError: () => showToast("❌ Failed to create", "error"),
+      onError: () => showToast(t("admin.projects.toast.createError"), "error"),
     });
   };
 
@@ -43,19 +45,20 @@ const AdminProjects = () => {
       { id: editing.id, data: values },
       {
         onSuccess: () => {
-          showToast("✏️ Project updated!");
+          showToast(t("admin.projects.toast.updated"));
           closeForm();
         },
-        onError: () => showToast("❌ Update failed", "error"),
+        onError: () =>
+          showToast(t("admin.projects.toast.updateError"), "error"),
       }
     );
   };
 
   const handleDelete = (id) => {
-    if (!window.confirm("🗑️ Delete this project?")) return;
+    if (!window.confirm(t("admin.projects.confirmDelete"))) return;
     deleteMutation.mutate(id, {
-      onSuccess: () => showToast("🗑️ Deleted"),
-      onError: () => showToast("❌ Delete failed", "error"),
+      onSuccess: () => showToast(t("admin.projects.toast.deleted")),
+      onError: () => showToast(t("admin.projects.toast.deleteError"), "error"),
     });
   };
 
@@ -63,7 +66,7 @@ const AdminProjects = () => {
     <div className="p-6 max-w-6xl mx-auto relative">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-cyan-700 dark:text-cyan-300">
-          🚀 Manage Projects
+          {t("admin.projects.title")}
         </h1>
         <button
           type="button"
@@ -73,7 +76,7 @@ const AdminProjects = () => {
           }}
           className="relative z-50 px-4 py-2 bg-yellow-300 text-black font-semibold border border-black rounded hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition"
         >
-          ➕ Add Project
+          {t("admin.projects.add")}
         </button>
       </div>
 
@@ -91,7 +94,7 @@ const AdminProjects = () => {
         <div className="fixed inset-0 z-40 bg-black/50 flex justify-center overflow-y-auto">
           <div className="relative w-full max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 my-10 rounded-lg shadow-xl z-50">
             <h2 className="text-xl font-semibold mb-4 text-slate-700 dark:text-white">
-              {editing ? "✏️ Edit Project" : "🆕 New Project"}
+              {editing ? t("admin.projects.edit") : t("admin.projects.new")}
             </h2>
             <ProjectForm
               defaultValues={editing || undefined}
@@ -104,11 +107,15 @@ const AdminProjects = () => {
       )}
 
       {isLoading ? (
-        <p className="text-center text-slate-400">Loading projects...</p>
+        <p className="text-center text-slate-400">
+          {t("admin.projects.loading")}
+        </p>
       ) : isError ? (
-        <p className="text-center text-red-500">❌ Failed to load projects.</p>
+        <p className="text-center text-red-500">{t("admin.projects.error")}</p>
       ) : projects.length === 0 ? (
-        <p className="text-center text-slate-400">No projects yet.</p>
+        <p className="text-center text-slate-400">
+          {t("admin.projects.empty")}
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
@@ -124,7 +131,7 @@ const AdminProjects = () => {
                 />
               ) : (
                 <div className="w-full h-40 bg-slate-200 dark:bg-slate-700 flex items-center justify-center rounded mb-3 text-sm text-slate-500">
-                  Image Not Found
+                  {t("admin.projects.imageNotFound")}
                 </div>
               )}
 
@@ -132,7 +139,7 @@ const AdminProjects = () => {
                 {project.title}
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-2">
-                {project.description || "No description."}
+                {project.description || t("admin.projects.noDescription")}
               </p>
               <div className="flex flex-wrap gap-1 mb-2">
                 {project.techStack?.map((tech, i) => (
@@ -152,13 +159,13 @@ const AdminProjects = () => {
                   }}
                   className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm"
                 >
-                  Edit
+                  {t("form.edit")}
                 </button>
                 <button
                   onClick={() => handleDelete(project.id)}
                   className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
                 >
-                  Delete
+                  {t("form.delete")}
                 </button>
               </div>
             </div>

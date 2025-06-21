@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import {
   useHeroQuery,
   useCreateHero,
@@ -22,6 +23,7 @@ const schema = yup.object({
 });
 
 const AdminHero = () => {
+  const { t } = useTranslation();
   const { data, isLoading, isError } = useHeroQuery();
   const createHero = useCreateHero();
   const updateHero = useUpdateHero();
@@ -70,36 +72,38 @@ const AdminHero = () => {
         { id: data.id, payload },
         {
           onSuccess: () => {
-            toast.success("✅ Hero updated");
+            toast.success(t("admin.hero.toast.updated"));
             queryClient.invalidateQueries(["hero"]);
             setShowForm(false);
           },
-          onError: () => toast.error("❌ Failed to update"),
+          onError: () => toast.error(t("admin.hero.toast.updateError")),
         }
       );
     } else {
       createHero.mutate(payload, {
         onSuccess: () => {
-          toast.success("✅ Hero created");
+          toast.success(t("admin.hero.toast.created"));
           queryClient.invalidateQueries(["hero"]);
           reset();
           setShowForm(false);
         },
-        onError: () => toast.error("❌ Failed to create"),
+        onError: () => toast.error(t("admin.hero.toast.createError")),
       });
     }
   };
 
   // 1. LOADING
   if (isLoading)
-    return <p className="text-center mt-10 text-slate-500">Loading...</p>;
+    return (
+      <p className="text-center mt-10 text-slate-500">
+        {t("admin.hero.loading")}
+      </p>
+    );
 
   // 2. ERROR
   if (isError)
     return (
-      <p className="text-center mt-10 text-red-500">
-        ❌ Failed to load hero data
-      </p>
+      <p className="text-center mt-10 text-red-500">{t("admin.hero.error")}</p>
     );
 
   // 3. ADD HERO (data yo‘q, forma yopiq)
@@ -113,7 +117,7 @@ const AdminHero = () => {
           }}
           className="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700 text-lg shadow-md transition duration-200"
         >
-          ➕ Add Hero
+          {t("admin.hero.add")}
         </button>
       </div>
     );
@@ -127,7 +131,7 @@ const AdminHero = () => {
           onClick={() => setShowForm(true)}
           className="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 text-lg shadow-md transition duration-200"
         >
-          ✏️ Edit Hero
+          {t("admin.hero.edit")}
         </button>
       </div>
     );
@@ -145,14 +149,14 @@ const AdminHero = () => {
         className="max-w-2xl mx-auto p-6 bg-white dark:bg-slate-800 rounded-lg shadow-xl dark:shadow-gray-700/50"
       >
         <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">
-          {data ? "✏️ Edit Hero Section" : "➕ Create Hero Section"}
+          {data ? t("admin.hero.editTitle") : t("admin.hero.newTitle")}
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Inputs... */}
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Name
+              {t("admin.hero.name")}
             </label>
             <input
               {...register("name")}
@@ -165,7 +169,7 @@ const AdminHero = () => {
 
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Tagline
+              {t("admin.hero.tagline")}
             </label>
             <input
               {...register("tagline")}
@@ -178,7 +182,7 @@ const AdminHero = () => {
 
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Technologies (comma-separated)
+              {t("admin.hero.technologies")}
             </label>
             <input
               {...register("technologies")}
@@ -199,8 +203,8 @@ const AdminHero = () => {
               className="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 disabled:opacity-50 transition duration-200"
             >
               {createHero.isPending || updateHero.isPending
-                ? "Saving..."
-                : "Save Changes"}
+                ? t("form.saving")
+                : t("form.saveChanges")}
             </button>
 
             <button
@@ -211,7 +215,7 @@ const AdminHero = () => {
               }}
               className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-200"
             >
-              Cancel
+              {t("form.cancel")}
             </button>
           </div>
         </form>
@@ -222,21 +226,22 @@ const AdminHero = () => {
             <button
               type="button"
               onClick={() => {
-                if (window.confirm("⚠️ Delete this hero?")) {
+                if (window.confirm(t("admin.hero.confirmDelete"))) {
                   deleteHero.mutate(data.id, {
                     onSuccess: () => {
-                      toast.success("🗑️ Hero deleted");
+                      toast.success(t("admin.hero.toast.deleted"));
                       queryClient.invalidateQueries(["hero"]);
                       reset();
                       setShowForm(false);
                     },
-                    onError: () => toast.error("❌ Failed to delete"),
+                    onError: () =>
+                      toast.error(t("admin.hero.toast.deleteError")),
                   });
                 }
               }}
               className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200"
             >
-              🗑️ Delete Hero
+              {t("admin.hero.delete")}
             </button>
 
             <button
@@ -244,7 +249,7 @@ const AdminHero = () => {
               onClick={() => setShowForm(false)}
               className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-200"
             >
-              ✏️ Edit Hero
+              {t("admin.hero.edit")}
             </button>
           </div>
         )}

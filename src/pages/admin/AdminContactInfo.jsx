@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 
 import {
   useContactInfoQuery,
@@ -67,6 +68,7 @@ const schema = yup.object().shape({
 
   
 const AdminContactInfo = () => {
+  const { t } = useTranslation();
   const { data, isLoading } = useContactInfoQuery();
   const updateMutation = useUpdateContactInfo();
   const createMutation = useCreateContactInfo();
@@ -90,15 +92,15 @@ const AdminContactInfo = () => {
 
   const onSubmit = (values) => {
     if (!data?.id || isNaN(data.id)) {
-      toast.error("❌ Cannot update: No valid contact info found");
+      toast.error(t("admin.contact.toast.noValid"));
       return;
     }
 
     updateMutation.mutate(
       { id: data.id, ...values },
       {
-        onSuccess: () => toast.success("✅ Contact info updated"),
-        onError: () => toast.error("❌ Failed to update contact info"),
+        onSuccess: () => toast.success(t("admin.contact.toast.updated")),
+        onError: () => toast.error(t("admin.contact.toast.updateError")),
       }
     );
   };
@@ -114,8 +116,8 @@ const AdminContactInfo = () => {
         linkedin: "",
       },
       {
-        onSuccess: () => toast.success("✅ Contact info created"),
-        onError: () => toast.error("❌ Failed to create contact info"),
+        onSuccess: () => toast.success(t("admin.contact.toast.created")),
+        onError: () => toast.error(t("admin.contact.toast.createError")),
       }
     );
   };
@@ -123,21 +125,19 @@ const AdminContactInfo = () => {
   if (isLoading)
     return (
       <p className="text-center mt-10 text-slate-400">
-        ⏳ Loading contact info...
+        {t("admin.contact.loading")}
       </p>
     );
 
   if (!data?.id) {
     return (
       <div className="text-center mt-10">
-        <p className="text-red-400 mb-4">
-          ⚠️ No contact info found. You can add one below:
-        </p>
+        <p className="text-red-400 mb-4">{t("admin.contact.notFound")}</p>
         <button
           onClick={handleCreate}
           className="bg-cyan-600 text-white px-6 py-2 rounded hover:bg-cyan-700"
         >
-          ➕ Add Contact Info
+          {t("admin.contact.add")}
         </button>
       </div>
     );
@@ -149,33 +149,33 @@ const AdminContactInfo = () => {
       className="space-y-4 max-w-xl mx-auto p-6 bg-white dark:bg-slate-800 rounded-lg shadow"
     >
       <h2 className="text-2xl font-bold mb-4 text-slate-800 dark:text-white">
-        📇 Edit Contact Info
+        {t("admin.contact.title")}
       </h2>
 
       {["phone", "email", "location", "github", "telegram", "linkedin"].map(
         (name) => {
           const placeholders = {
-            phone: "Enter your phone number",
-            email: "Enter your email address",
-            location: "Enter your location",
-            github: "https://github.com/your-username",
-            telegram: "https://t.me/your-username",
-            linkedin: "https://linkedin.com/in/your-username",
+            phone: t("admin.contact.placeholders.phone"),
+            email: t("admin.contact.placeholders.email"),
+            location: t("admin.contact.placeholders.location"),
+            github: t("admin.contact.placeholders.github"),
+            telegram: t("admin.contact.placeholders.telegram"),
+            linkedin: t("admin.contact.placeholders.linkedin"),
           };
-          
+
           const types = {
             phone: "tel",
             email: "email",
             location: "text",
             github: "text",
             telegram: "text",
-            linkedin: "text", 
+            linkedin: "text",
           };
 
           return (
             <div key={name}>
               <label className="block mb-1 capitalize text-slate-700 dark:text-slate-300">
-                {name}
+                {t(`contactPage.${name}`)}
               </label>
               <input
                 type={types[name]}
@@ -224,29 +224,31 @@ const AdminContactInfo = () => {
           disabled={isSubmitting}
           className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-md disabled:opacity-50"
         >
-          {isSubmitting ? "Saving..." : "Save Changes"}
+          {isSubmitting ? t("form.saving") : t("form.saveChanges")}
         </button>
 
         <button
           type="button"
-          onClick={() => toast("🧹 Reset to last saved") || reset(data)}
+          onClick={() => toast(t("admin.contact.reset")) || reset(data)}
           className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md"
         >
-          Reset
+          {t("form.reset")}
         </button>
         <button
           type="button"
           onClick={() => {
-            if (confirm("Are you sure you want to delete contact info?")) {
+            if (confirm(t("admin.contact.confirmDelete"))) {
               deleteMutation.mutate(data.id, {
-                onSuccess: () => toast.success("🗑️ Contact info deleted"),
-                onError: () => toast.error("❌ Failed to delete contact info"),
+                onSuccess: () =>
+                  toast.success(t("admin.contact.toast.deleted")),
+                onError: () =>
+                  toast.error(t("admin.contact.toast.deleteError")),
               });
             }
           }}
           className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
         >
-          Delete
+          {t("form.delete")}
         </button>
       </div>
     </form>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 import {
   useExperiencesQuery,
   useCreateExperience,
@@ -30,6 +31,7 @@ function getIconComponent(name) {
 }
 
 function AdminExperience() {
+  const { t } = useTranslation();
   const { data: experiences = [] } = useExperiencesQuery();
   const create = useCreateExperience();
   const update = useUpdateExperience();
@@ -74,7 +76,7 @@ function AdminExperience() {
 
   return (
     <div className="p-8 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Manage Experience</h1>
+      <h1 className="text-2xl font-bold mb-6">{t("admin.experience.title")}</h1>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -82,22 +84,22 @@ function AdminExperience() {
       >
         <input
           {...register("title")}
-          placeholder="Job Title"
+          placeholder={t("admin.experience.placeholders.title")}
           className="input"
         />
         <input
           {...register("company")}
-          placeholder="Company"
+          placeholder={t("admin.experience.placeholders.company")}
           className="input"
         />
         <input
           {...register("startDate")}
-          placeholder="Start Date (e.g. Jan 2023)"
+          placeholder={t("admin.experience.placeholders.start")}
           className="input"
         />
         <input
           {...register("endDate")}
-          placeholder="End Date (or leave blank)"
+          placeholder={t("admin.experience.placeholders.end")}
           className="input"
         />
 
@@ -109,7 +111,7 @@ function AdminExperience() {
               setIconInput(e.target.value);
               setValue("icon", e.target.value);
             }}
-            placeholder="Enter icon name (e.g. FaBriefcase)"
+            placeholder={t("admin.experience.placeholders.icon")}
             className="input pr-10"
           />
           <div className="absolute right-3 top-2.5">
@@ -135,7 +137,7 @@ function AdminExperience() {
 
         <textarea
           {...register("description")}
-          placeholder="Description"
+          placeholder={t("admin.experience.placeholders.description")}
           rows={3}
           className="textarea col-span-full"
         />
@@ -144,7 +146,7 @@ function AdminExperience() {
           type="submit"
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 col-span-full"
         >
-          {editingId ? "Update" : "Create"}
+          {editingId ? t("form.update") : t("form.create")}
         </button>
       </form>
 
@@ -161,7 +163,8 @@ function AdminExperience() {
                 {item.company}
               </h3>
               <p className="text-sm text-slate-500 dark:text-slate-300">
-                {item.startDate} — {item.endDate || "Present"}
+                {item.startDate} —{" "}
+                {item.endDate || t("admin.experience.present")}
               </p>
               <p className="text-sm mt-2 text-slate-600 dark:text-slate-400">
                 {item.description}
@@ -172,13 +175,13 @@ function AdminExperience() {
                 onClick={() => handleEdit(item)}
                 className="px-3 py-1 bg-yellow-400 text-black rounded"
               >
-                Edit
+                {t("form.edit")}
               </button>
               <button
                 onClick={() => remove.mutate(item.id)}
                 className="px-3 py-1 bg-red-500 text-white rounded"
               >
-                Delete
+                {t("form.delete")}
               </button>
             </div>
           </div>

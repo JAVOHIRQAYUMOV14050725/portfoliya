@@ -105,6 +105,136 @@
     "information": "Контактные данные",
     "description": "Открыт для сотрудничества и интересных задач на бэкенде. Давайте создадим что-то полезное вместе!"
   },
+  "form": {
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "edit": "Edit",
+    "reset": "Reset"
+  },
+  "toast": {
+    "success": "✅ Success!",
+    "error": "❌ Something went wrong"
+  },
+  "admin": {
+    "projects": {
+      "title": "🚀 Manage Projects",
+      "add": "➕ Add Project",
+      "edit": "✏️ Edit Project",
+      "new": "🆕 New Project",
+      "loading": "Loading projects...",
+      "error": "❌ Failed to load projects.",
+      "empty": "No projects yet.",
+      "imageNotFound": "Image Not Found",
+      "noDescription": "No description.",
+      "confirmDelete": "🗑️ Delete this project?",
+      "toast": {
+        "created": "✅ Project created!",
+        "createError": "❌ Failed to create",
+        "updated": "✏️ Project updated!",
+        "updateError": "❌ Update failed",
+        "deleted": "🗑️ Deleted",
+        "deleteError": "❌ Delete failed"
+      }
+    },
+    "skills": {
+      "title": "Manage Skills",
+      "editSkill": "Edit Skill",
+      "newSkill": "Add New Skill",
+      "category": "Category",
+      "name": "Name",
+      "icon": "Icon",
+      "level": "Level",
+      "namePlaceholder": "e.g. React",
+      "iconPlaceholder": "Select an icon...",
+      "levelPlaceholder": "e.g. B2",
+      "table": {
+        "skill": "Skill",
+        "category": "Category",
+        "level": "Level",
+        "actions": "Actions"
+      },
+      "loading": "Loading...",
+      "confirmDelete": "Are you sure you want to delete this skill?",
+      "toast": {
+        "created": "Skill created successfully!",
+        "createError": "Failed to create skill",
+        "updated": "Skill updated successfully!",
+        "updateError": "Failed to update skill",
+        "deleted": "Skill deleted!",
+        "deleteError": "Failed to delete skill"
+      }
+    },
+    "experience": {
+      "title": "Manage Experience",
+      "present": "Present",
+      "placeholders": {
+        "title": "Job Title",
+        "company": "Company",
+        "start": "Start Date (e.g. Jan 2023)",
+        "end": "End Date (or leave blank)",
+        "icon": "Enter icon name (e.g. FaBriefcase)",
+        "description": "Description"
+      }
+    },
+    "hero": {
+      "loading": "Loading...",
+      "error": "❌ Failed to load hero data",
+      "add": "➕ Add Hero",
+      "edit": "✏️ Edit Hero",
+      "editTitle": "✏️ Edit Hero Section",
+      "newTitle": "➕ Create Hero Section",
+      "name": "Name",
+      "tagline": "Tagline",
+      "technologies": "Technologies (comma-separated)",
+      "confirmDelete": "⚠️ Delete this hero?",
+      "delete": "🗑️ Delete Hero",
+      "toast": {
+        "created": "✅ Hero created",
+        "createError": "❌ Failed to create",
+        "updated": "✅ Hero updated",
+        "updateError": "❌ Failed to update",
+        "deleted": "🗑️ Hero deleted",
+        "deleteError": "❌ Failed to delete"
+      }
+    },
+    "messages": {
+      "title": "📨 Contact Messages",
+      "loading": "Loading...",
+      "error": "❌ Failed to load messages",
+      "noMessages": "No messages received yet.",
+      "confirmDelete": "❌ Delete this message?"
+    },
+    "contact": {
+      "loading": "⏳ Loading contact info...",
+      "notFound": "⚠️ No contact info found. You can add one below:",
+      "add": "➕ Add Contact Info",
+      "title": "📇 Edit Contact Info",
+      "placeholders": {
+        "phone": "Enter your phone number",
+        "email": "Enter your email address",
+        "location": "Enter your location",
+        "github": "https://github.com/your-username",
+        "telegram": "https://t.me/your-username",
+        "linkedin": "https://linkedin.com/in/your-username"
+      },
+      "reset": "🧹 Reset to last saved",
+      "confirmDelete": "Are you sure you want to delete contact info?",
+      "toast": {
+        "created": "✅ Contact info created",
+        "createError": "❌ Failed to create contact info",
+        "updated": "✅ Contact info updated",
+        "updateError": "❌ Failed to update contact info",
+        "deleted": "🗑️ Contact info deleted",
+        "deleteError": "❌ Failed to delete contact info",
+        "noValid": "❌ Cannot update: No valid contact info found"
+      }
+    }
+  },
   "protected": {
     "checking": "Проверка доступа..."
   }

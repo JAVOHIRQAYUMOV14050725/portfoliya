@@ -8,6 +8,7 @@ import * as FaIcons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
 import * as MdIcons from "react-icons/md";
 import * as GiIcons from "react-icons/gi";
+import { useTranslation } from "react-i18next";
 
 import {
   useSkillsQuery,
@@ -49,6 +50,7 @@ const buttonClasses = {
 };
 
 function AdminSkills() {
+  const { t } = useTranslation();
   const { data: skills = [], isLoading: isSkillsLoading } = useSkillsQuery();
 
   const [editingId, setEditingId] = useState(null);
@@ -62,26 +64,26 @@ function AdminSkills() {
   // YAXSHILANISH: Operatsiyalar natijasi haqida xabarnoma berish
   const createSkill = useCreateSkill({
     onSuccess: () => {
-      toast.success("Ko'nikma muvaffaqiyatli yaratildi!");
+      toast.success(t("admin.skills.toast.created"));
       resetForm();
     },
     onError: (err) =>
-      toast.error(err.message || "Yaratishda xatolik yuz berdi"),
+      toast.error(err.message || t("admin.skills.toast.createError")),
   });
 
   const updateSkill = useUpdateSkill({
     onSuccess: () => {
-      toast.success("Ko'nikma muvaffaqiyatli yangilandi!");
+      toast.success(t("admin.skills.toast.updated"));
       resetForm();
     },
     onError: (err) =>
-      toast.error(err.message || "Yangilashda xatolik yuz berdi"),
+      toast.error(err.message || t("admin.skills.toast.updateError")),
   });
 
   const deleteSkill = useDeleteSkill({
-    onSuccess: () => toast.success("Ko'nikma o'chirildi!"),
+    onSuccess: () => toast.success(t("admin.skills.toast.deleted")),
     onError: (err) =>
-      toast.error(err.message || "O'chirishda xatolik yuz berdi"),
+      toast.error(err.message || t("admin.skills.toast.deleteError")),
   });
 
   const {
@@ -114,12 +116,7 @@ function AdminSkills() {
   };
 
   const handleDelete = (skillId, skillName) => {
-    // YAXSHILANISH: O'chirishdan oldin tasdiqlash so'rovi
-    if (
-      window.confirm(
-        `Siz rostdan ham "${skillName}" ko'nikmasini o'chirmoqchimisiz?`
-      )
-    ) {
+    if (window.confirm(t("admin.skills.confirmDelete"))) {
       deleteSkill.mutate(skillId);
     }
   };
@@ -130,13 +127,13 @@ function AdminSkills() {
     <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-8">
       <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">
-        Ko'nikmalarni Boshqarish
+        {t("admin.skills.title")}
       </h1>
 
       {/* YAXSHILANISH: Forma uchun alohida, chiroyli "Kartochka" */}
       <div className="bg-white dark:bg-slate-800/50 p-6 rounded-lg shadow-md border border-slate-200 dark:border-slate-700">
         <h2 className="text-xl font-semibold mb-6 text-slate-700 dark:text-slate-200">
-          {editingId ? "Ko'nikmani Tahrirlash" : "Yangi Ko'nikma Qo'shish"}
+          {editingId ? t("admin.skills.editSkill") : t("admin.skills.newSkill")}
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -147,27 +144,27 @@ function AdminSkills() {
               className="block text-sm font-medium mb-1"
               htmlFor="category"
             >
-              Kategoriya
+              {t("admin.skills.category")}
             </label>
             <select
               id="category"
               {...register("category")}
               className={inputClasses}
             >
-              <option value="hard">Hard Skill</option>
-              <option value="soft">Soft Skill</option>
-              <option value="language">Til</option>
+              <option value="hard">{t("skills.hard")}</option>
+              <option value="soft">{t("skills.soft")}</option>
+              <option value="language">{t("skills.languages")}</option>
             </select>
           </div>
 
           <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-1" htmlFor="name">
-              Nomi
+              {t("admin.skills.name")}
             </label>
             <input
               id="name"
               {...register("name")}
-              placeholder="Masalan, React"
+              placeholder={t("admin.skills.namePlaceholder")}
               className={inputClasses}
             />
             {errors.name && (
@@ -178,7 +175,7 @@ function AdminSkills() {
           {(selectedCategory === "hard" || selectedCategory === "soft") && (
             <div className="md:col-span-2">
               <label className="block text-sm font-medium mb-1" htmlFor="icon">
-                Ikonka
+                {t("admin.skills.icon")}
               </label>
               <Select
                 id="icon"
@@ -189,13 +186,9 @@ function AdminSkills() {
                 onChange={(opt) =>
                   setValue("icon", opt?.value || "", { shouldValidate: true })
                 }
-                placeholder="Ikonka tanlang..."
+                placeholder={t("admin.skills.iconPlaceholder")}
                 isClearable
-                styles={
-                  {
-                    /* Dark mode uchun stillar bu yerga qo'shilishi mumkin */
-                  }
-                }
+                styles={{}}
               />
             </div>
           )}
@@ -203,12 +196,12 @@ function AdminSkills() {
           {selectedCategory === "language" && (
             <div className="md:col-span-2">
               <label className="block text-sm font-medium mb-1" htmlFor="level">
-                Daraja
+                {t("admin.skills.level")}
               </label>
               <input
                 id="level"
                 {...register("level")}
-                placeholder="Masalan, B2"
+                placeholder={t("admin.skills.levelPlaceholder")}
                 className={inputClasses}
               />
             </div>
@@ -228,7 +221,7 @@ function AdminSkills() {
                 <FaIcons.FaPlus />
               )}
               <span className="hidden sm:inline">
-                {editingId ? "Saqlash" : "Yaratish"}
+                {editingId ? t("form.save") : t("form.create")}
               </span>
             </button>
             {editingId && (
@@ -238,7 +231,7 @@ function AdminSkills() {
                 className={buttonClasses.secondary}
               >
                 <FaIcons.FaTimes />
-                <span className="hidden sm:inline">Bekor</span>
+                <span className="hidden sm:inline">{t("form.cancel")}</span>
               </button>
             )}
           </div>
@@ -252,16 +245,16 @@ function AdminSkills() {
             <thead className="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-700 dark:text-slate-300">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  Ko'nikma
+                  {t("admin.skills.table.skill")}
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Kategoriya
+                  {t("admin.skills.table.category")}
                 </th>
                 <th scope="col" className="px-6 py-3 hidden md:table-cell">
-                  Daraja
+                  {t("admin.skills.table.level")}
                 </th>
                 <th scope="col" className="px-6 py-3 text-right">
-                  Amallar
+                  {t("admin.skills.table.actions")}
                 </th>
               </tr>
             </thead>
@@ -269,7 +262,7 @@ function AdminSkills() {
               {isSkillsLoading ? (
                 <tr>
                   <td colSpan="4" className="text-center py-4">
-                    Yuklanmoqda...
+                    {t("admin.skills.loading")}
                   </td>
                 </tr>
               ) : (
