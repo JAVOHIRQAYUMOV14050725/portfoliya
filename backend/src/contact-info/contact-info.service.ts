@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ContactInfo } from './entities/contact-info.entity';
@@ -30,6 +30,9 @@ export class ContactInfoService {
   }
 
   update(id: number, dto: UpdateContactInfoDto) {
+    if (!Number.isFinite(id)) {
+      throw new BadRequestException('Invalid contact info ID');
+    }
     return this.repo.update(id, dto);
   }
 

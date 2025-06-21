@@ -1,6 +1,5 @@
-// ✅ Full ShadCN DropdownMenu-based Header
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import axios from "axios";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
@@ -32,14 +31,13 @@ const Header = ({ theme, setTheme }) => {
       { to: "/admin/projects", label: "Manage Projects" },
       { to: "/admin/skills", label: "Manage Skills" },
       { to: "/admin/experience", label: "Manage Experience" },
-      { to: "/admin/contact", label: "Manage Contact" },
       { to: "/admin/hero", label: "Manage Hero" },
-      { to: "/admin/messages", label: "Admin massage" },
+      { to: "/admin/messages", label: "Admin Messages" },
       { to: "/admin/contact-info", label: "Manage Contact Info" },
     ],
     public: [
-      { to: "/projects", label: "\u21B3 Public Projects" },
-      { to: "/skills", label: "\u21B3 Public Skills" },
+      { to: "/projects", label: "↳ Public Projects" },
+      { to: "/skills", label: "↳ Public Skills" },
     ],
   };
 
@@ -57,26 +55,30 @@ const Header = ({ theme, setTheme }) => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link
+          <NavLink
             to="/"
+            end
             className="text-xl font-bold text-slate-800 dark:text-slate-100"
           >
             {portfolioData.personalInfo.name}
-          </Link>
+          </NavLink>
 
           <nav className="hidden md:flex items-center space-x-6">
             {publicLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.to}
                 to={link.to}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === link.to
-                    ? "text-cyan-500 dark:text-cyan-400"
-                    : "text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400"
-                }`}
+                end
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-cyan-500 dark:text-cyan-400"
+                      : "text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400"
+                  }`
+                }
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
 
             {isAuthenticated && (
@@ -92,12 +94,12 @@ const Header = ({ theme, setTheme }) => {
                   </h4>
                   {adminLinks.manage.map((link) => (
                     <DropdownMenu.Item key={link.to} asChild>
-                      <Link
+                      <NavLink
                         to={link.to}
                         className="block text-sm px-2 py-1 rounded hover:text-cyan-500"
                       >
                         {link.label}
-                      </Link>
+                      </NavLink>
                     </DropdownMenu.Item>
                   ))}
                   <hr className="border-slate-300 dark:border-slate-600" />
@@ -106,12 +108,12 @@ const Header = ({ theme, setTheme }) => {
                   </h4>
                   {adminLinks.public.map((link) => (
                     <DropdownMenu.Item key={link.to} asChild>
-                      <Link
+                      <NavLink
                         to={link.to}
                         className="block text-xs px-2 py-1 text-slate-500 hover:text-cyan-400"
                       >
                         {link.label}
-                      </Link>
+                      </NavLink>
                     </DropdownMenu.Item>
                   ))}
                 </DropdownMenu.Content>
@@ -147,14 +149,20 @@ const Header = ({ theme, setTheme }) => {
               ? [...adminLinks.manage, ...adminLinks.public]
               : []),
           ].map((link) => (
-            <Link
+            <NavLink
               key={link.to}
               to={link.to}
               onClick={() => setIsOpen(false)}
-              className="block text-sm text-slate-600 dark:text-slate-300 hover:text-cyan-500"
+              className={({ isActive }) =>
+                `block text-sm ${
+                  isActive
+                    ? "text-cyan-500"
+                    : "text-slate-600 dark:text-slate-300 hover:text-cyan-500"
+                }`
+              }
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
 
           {isAuthenticated && (

@@ -9,7 +9,6 @@ import {
   useUpdateContactInfo,
 } from "../../api/contactInfoApi";
 
-// ✅ Yup validation schema
 const schema = yup.object().shape({
   phone: yup.string().required("Phone is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -46,25 +45,31 @@ const AdminContactInfo = () => {
 
   const onSubmit = (values) => {
     if (!data?.id || isNaN(data.id)) {
-      toast.error("❌ Invalid ID for update");
+      toast.error("❌ Cannot update: No valid contact info found");
       return;
     }
 
     updateMutation.mutate(
       { id: data.id, ...values },
       {
-        onSuccess: () => {
-          toast.success("✅ Contact info updated");
-        },
-        onError: () => {
-          toast.error("❌ Failed to update contact info");
-        },
+        onSuccess: () => toast.success("✅ Contact info updated"),
+        onError: () => toast.error("❌ Failed to update contact info"),
       }
     );
   };
 
-  if (isLoading || !data?.id)
-    return <p className="text-center">Loading contact info...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center mt-10 text-slate-400">
+        ⏳ Loading contact info...
+      </p>
+    );
+  if (!data?.id)
+    return (
+      <p className="text-center mt-10 text-red-400">
+        ⚠️ No contact info found. Please add one from backend.
+      </p>
+    );
 
   return (
     <form

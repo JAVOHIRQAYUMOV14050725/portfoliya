@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMessagesQuery, useDeleteMessage } from '../../api/contactApi';
+import { useMessagesQuery, useDeleteMessage } from '../../api/massageApi';
 import dayjs from 'dayjs';
 
 const AdminMessages = () => {

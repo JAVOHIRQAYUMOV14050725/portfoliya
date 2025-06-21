@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import toast from "react-hot-toast";
-import { useCreateContact } from "../api/contactApi";
+import { useCreateContact } from "../api/massageApi";
 
 const schema = yup.object().shape({
   fullName: yup.string().min(3).required("Full name is required"),
